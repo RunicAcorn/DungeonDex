@@ -31,15 +31,16 @@ export class LoginComponent {
         console.log('User logged successfully:', response  );
         // Handle success, such as displaying a success message or redirecting
         //Not sure what's wrong here that makes it so I am not getting a totally correct response.
-        
+        sessionStorage.setItem('jwtToken', response.token);
         
       },
       error => {
-
+        console.error(error);
     
         switch(error.status){
           case 200:
-            console.log("successful login");
+            console.log("successful login but still errored");
+            console.log(error.token);
             break;
           case 400:
             console.log("error logging in");
