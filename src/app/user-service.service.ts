@@ -11,4 +11,7 @@ export class UserService {
   createUser(username: string, password: string) {
     return this.http.post<any>('https://dungeonapi.azurewebsites.net/api/users/createuser', { username, password });
   }
+  loginUser(username: string, password: string) {
+    return this.http.post<any>('https://dungeonapi.azurewebsites.net/api/users/login', { username, password });
+  }
 }

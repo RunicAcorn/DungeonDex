@@ -16,5 +16,7 @@ export class MenuComponent {
   registerClick() {
     this.router.navigate(['/register']);
   }
-  
+  loginClick() {
+    this.router.navigate(['/login']);
+  }
 }
