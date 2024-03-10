@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; 
 import { UserService } from '../user-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   submitForm() {
 
@@ -32,6 +32,7 @@ export class LoginComponent {
         // Handle success, such as displaying a success message or redirecting
         //Not sure what's wrong here that makes it so I am not getting a totally correct response.
         sessionStorage.setItem('jwtToken', response.token);
+        this.router.navigate(['/username']);
         
       },
       error => {
