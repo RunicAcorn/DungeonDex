@@ -16,8 +16,8 @@ export class UsernameDisplayComponent {
 
   ngOnInit(): void {
     this.userService.getUsername().subscribe(
-      (username: string) => {
-        this.username = username;
+      (response: any) => {
+        this.username = response.user;
       },
       (error: any) => {
         console.error('Error retrieving username:', error);
