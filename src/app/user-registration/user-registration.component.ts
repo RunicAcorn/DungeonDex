@@ -35,6 +35,6 @@ export class UserRegistrationComponent {
         console.error('Failed to create user:', error);
         // Handle error, such as displaying an error message to the user
       }
-    );
+    )
   }
 }

@@ -29,6 +29,9 @@ export class UsernameDisplayComponent {
     backToMenu() {
       this.router.navigate(['/login']);
     }
+    CreateClick() {
+      this.router.navigate(['/createCampaign']);
+    }
    
   }
 

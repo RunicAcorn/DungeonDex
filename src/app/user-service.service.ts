@@ -22,9 +22,7 @@ export class UserService {
   // Ensure JWT token exists
   if (!jwtToken) {
     throw new Error('JWT token not found in session storage.');
-  } else {
-    console.log("Found token" + jwtToken)
-  }
+  } 
 
   // Set headers with JWT token for authentication
   const headers = new HttpHeaders({

@@ -1,0 +1,11 @@
+<form (ngSubmit)="submitCampaign()" #campaignForm="ngForm">
+    <div class="form-group">
+        <label for="campaignName">Campaign Name:</label>
+        <input type="text" id="campaignName" name="campaignName" [(ngModel)]="campaign.Name" required>
+    </div>
+    <div class="form-group">
+        <label for="campaignDescription">Description:</label>
+        <textarea id="campaignDescription" name="campaignDescription" rows="5" [(ngModel)]="campaign.Description" required></textarea>
+    </div>
+    <button type="submit" [disabled]="!campaignForm.form.valid">Submit Campaign</button>
+</form>
