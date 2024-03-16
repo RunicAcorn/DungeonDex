@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CampaignService } from '../campaign.service';
+import { UserService } from '../user-service.service';
 
 @Component({
   selector: 'app-newcampaignform',
@@ -10,15 +11,29 @@ import { CampaignService } from '../campaign.service';
   styleUrl: './newcampaignform.component.css'
 })
 export class NewcampaignformComponent {
-  campaign = {
+  Campaign = {
     Name: '',
-    Description: ''
+    Description: '',
+    UserId: ''
   };
+  
 
-  constructor(private campaignServ: CampaignService) { }
+  constructor(private campaignServ: CampaignService, private userService: UserService) { }
+
+
+  ngOnInit(): void {
+    this.userService.getUsername().subscribe(
+      (response: any) => {
+        this.Campaign.UserId = response.userId;
+      },
+      (error: any) => {
+        console.error('Error retrieving username:', error);
+      }
+    )
+  }
 
   submitCampaign() {
-    this.campaignServ.createCampaign(this.campaign).subscribe(
+    this.campaignServ.createCampaign(this.Campaign).subscribe(
       response => {
         console.log('Campaign created successfully:', response);
         // Handle success, such as displaying a success message or redirecting
