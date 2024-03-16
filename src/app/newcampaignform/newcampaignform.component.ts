@@ -13,9 +13,9 @@ import { Router } from '@angular/router';
 })
 export class NewcampaignformComponent {
   Campaign = {
-    Name: '',
-    Description: '',
-    UserId: ''
+    name: '',
+    description: '',
+    userId: '',
   };
   
 
@@ -25,7 +25,7 @@ export class NewcampaignformComponent {
   ngOnInit(): void {
     this.userService.getUsername().subscribe(
       (response: any) => {
-        this.Campaign.UserId = response.userId;
+        this.Campaign.userId = response.userId;
       },
       (error: any) => {
         console.error('Error retrieving username:', error);

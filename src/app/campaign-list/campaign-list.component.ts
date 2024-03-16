@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CampaignService } from '../campaign.service';
 import { CommonModule } from '@angular/common';
+import { Campaign } from '../campaign.interface';
 
 @Component({
   selector: 'app-campaign-list',
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./campaign-list.component.css']
 })
 export class CampaignListComponent implements OnInit {
-  campaigns: any[] = [];
+  campaigns: Campaign[] = [];
 
   constructor(private campaignService: CampaignService) { }
 
@@ -38,10 +39,28 @@ export class CampaignListComponent implements OnInit {
     console.log('Editing campaign:', campaign);
   }
 
-  deleteCampaign(campaign: any): void {
+  deleteCampaign(campaign: Campaign): void {
     // Implement delete logic here
     console.log('Deleting campaign:', campaign);
-  }
+
+    const campaignId = campaign?.campaignId;
 
 
+    if (campaignId !== undefined) {
+      this.campaignService.deleteCampaign(campaignId).subscribe(
+        () => {
+          // Remove the deleted campaign from the campaigns array
+          this.campaigns = this.campaigns.filter(c => c.campaignId !== campaignId);
+          console.log('Campaign deleted successfully:', campaign);
+        },
+        error => {
+          console.error('Error deleting campaign:', error);
+        }
+      );
+    } else {
+      console.error('Campaign ID is undefined.');
+    
+    }
+
+  } 
 }
