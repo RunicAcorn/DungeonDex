@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-
 @Component({
-  selector: 'app-menu',
+  selector: 'app-login-menu',
   standalone: true,
   imports: [],
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  templateUrl: './login-menu.component.html',
+  styleUrl: './login-menu.component.css'
 })
-export class MenuComponent {
-
+export class LoginMenuComponent {
   constructor(private router: Router) { }
 
   registerClick() {

@@ -2,10 +2,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user-service.service';
 import { Router } from '@angular/router';
-
+import { CampaignListComponent } from '../campaign-list/campaign-list.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-username-display',
+  standalone: true,
+  imports: [CampaignListComponent, CommonModule],
   templateUrl: './username-display.component.html',
   styleUrls: ['./username-display.component.css']
 })

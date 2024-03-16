@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CampaignService } from '../campaign.service';
 import { UserService } from '../user-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newcampaignform',
@@ -18,7 +19,7 @@ export class NewcampaignformComponent {
   };
   
 
-  constructor(private campaignServ: CampaignService, private userService: UserService) { }
+  constructor(private campaignServ: CampaignService, private userService: UserService, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -37,6 +38,7 @@ export class NewcampaignformComponent {
       response => {
         console.log('Campaign created successfully:', response);
         // Handle success, such as displaying a success message or redirecting
+        this.router.navigate(['/username']);
       },
       error => {
         console.error('Failed to create campaign:', error);

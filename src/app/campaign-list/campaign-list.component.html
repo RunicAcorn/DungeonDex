@@ -1,0 +1,10 @@
+<h2>Campaigns List</h2>
+
+<ul>
+  <li *ngFor="let campaign of campaigns">
+    <h3>{{ campaign.name }}</h3>
+    <p>{{ campaign.description }}</p>
+    <button (click)="editCampaign(campaign)">Edit</button>
+    <button (click)="deleteCampaign(campaign)">Delete</button>
+  </li>
+</ul>
