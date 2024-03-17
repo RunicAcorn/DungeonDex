@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class EditCampaignComponent {
   @Input()campaign!: Campaign;
-  
+  @Output() saveCampaign = new EventEmitter<void>();
   
   constructor(private campaignService: CampaignService) {}
 
@@ -19,6 +19,7 @@ export class EditCampaignComponent {
       this.campaignService.updateCampaign(this.campaign).subscribe(
         updatedCampaign => {
           console.log("updated successfully" + updatedCampaign);
+          this.saveCampaign.emit();
         },
         error => {
           console.error("error: " + error);

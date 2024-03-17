@@ -16,14 +16,15 @@ export class CampaignListComponent implements OnInit {
 
   @Output() editCampaignEmit = new EventEmitter<Campaign>();
 
-  showEditComponent = true;
+  showEditComponent = false;
 
   campaigns: Campaign[] = [];
   selectedCampaign!: Campaign;
 
   onEditCampaignEmit(campaign: Campaign) {
-    this.editCampaignEmit.emit(campaign);
-    console.log("emitted: " + campaign);
+    this.editCampaignEmit.emit(this.selectedCampaign);
+    console.log("emitted: " + this.selectedCampaign);
+     this.selectedCampaign = campaign;
   }
 
   constructor(private campaignService: CampaignService, private router: Router ) {
@@ -34,10 +35,20 @@ export class CampaignListComponent implements OnInit {
     this.getCampaigns();
   }
 
-  toggleEditComponent() {
+  toggleShowEdit(){
     this.showEditComponent = !this.showEditComponent;
   }
-  
+  sendCampaignToEditor(editingCampaign: Campaign) {
+    this.toggleShowEdit();
+    this.selectedCampaign = editingCampaign; 
+    
+  }
+
+  handleSaveEvent(): void {
+    console.log('got emiited event');
+    this.toggleShowEdit();
+  }
+
   getCampaigns(): void {
     // Assuming you have the user ID, replace 'userIdValue' with the actual user ID
     const userId = 'userIdValue';
@@ -52,7 +63,7 @@ export class CampaignListComponent implements OnInit {
     );
   }
 
-  
+  /*
   editCampaign(campaign: Campaign): void {
     // Implement edit logic here
     console.log('Editing campaign:', campaign);
@@ -62,6 +73,7 @@ export class CampaignListComponent implements OnInit {
       this.router.navigate(['editCampaign'])
     
   }
+  */
 
   onSaveCampaign(updatedCampaign: Campaign): void {
     // Update the campaign in the campaigns array
@@ -69,6 +81,8 @@ export class CampaignListComponent implements OnInit {
     if (index !== -1) {
       this.campaigns[index] = updatedCampaign;
     }
+
+    this.toggleShowEdit();
   }
 
   deleteCampaign(campaign: Campaign): void {

@@ -4,9 +4,9 @@
   <li *ngFor="let campaign of campaigns">
     <h3>{{ campaign.name }}</h3>
     <p>{{ campaign.description }}</p>
-    <button (click)="toggleEditComponent()">Edit </button>
-    <ng-container *ngIf="showEditComponent">
-    <app-edit-campaign [campaign]="campaign"></app-edit-campaign>
+    <button (click)="sendCampaignToEditor(campaign)">Edit </button>
+    <ng-container *ngIf="campaign === selectedCampaign && showEditComponent">
+    <app-edit-campaign (saveCampaign)="handleSaveEvent()" [campaign]="campaign"></app-edit-campaign>
     </ng-container>
     <button (click)="deleteCampaign(campaign)">Delete</button>
   </li>
