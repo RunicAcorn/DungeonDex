@@ -4,7 +4,10 @@
   <li *ngFor="let campaign of campaigns">
     <h3>{{ campaign.name }}</h3>
     <p>{{ campaign.description }}</p>
-    <button (click)="editCampaign(campaign)">Edit</button>
+    <button (click)="toggleEditComponent()">Edit </button>
+    <ng-container *ngIf="showEditComponent">
+    <app-edit-campaign [campaign]="campaign"></app-edit-campaign>
+    </ng-container>
     <button (click)="deleteCampaign(campaign)">Delete</button>
   </li>
 </ul>

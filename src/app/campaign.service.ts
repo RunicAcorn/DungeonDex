@@ -9,7 +9,7 @@ import { catchError } from 'rxjs';
   providedIn: 'root'
 })
 export class CampaignService {
-  private apiUrl = 'https://dungeonapi.azurewebsites.net/api/campaigns';
+  private apiUrl = 'https://dungeonapi.azurewebsites.net/api/campaign';
 
   constructor(private http: HttpClient) { }
 
@@ -52,6 +52,28 @@ export class CampaignService {
         throw error;
       })
     );
+  }
+
+   updateCampaign(campaign: Campaign): Observable<Campaign> {
+    const jwtToken = sessionStorage.getItem('jwtToken');
+    if (!jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${jwtToken}`,
+      'Content-Type': 'application/json' // Specify content type as JSON
+    });
+
+    const url = `${this.apiUrl}/${campaign.campaignId}`;
+
+    return this.http.put<Campaign>(url, campaign, { headers })
+      .pipe(
+        catchError(error => {
+          console.error('Error updating campaign:', error);
+          throw error;
+        })
+      );
   }
   
 }

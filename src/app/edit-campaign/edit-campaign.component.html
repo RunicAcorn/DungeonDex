@@ -1,0 +1,13 @@
+<p>edit-campaign works!</p>
+<form (ngSubmit)="onSave()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="campaign.name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea class="form-control" id="description" [(ngModel)]="campaign.description" name="description" required></textarea>
+    </div>
+    <!-- Add more fields as needed -->
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
