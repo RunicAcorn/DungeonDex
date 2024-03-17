@@ -44,6 +44,16 @@ export class CampaignListComponent implements OnInit {
     
   }
 
+  selectCampaign(campaignId: number | undefined): void {
+    if (campaignId !== undefined) {
+      this.router.navigate(['/campaign', campaignId])
+    }else {
+      // Handle the case where campaignId is undefined, such as displaying an error message
+      console.error('Campaign ID is undefined.');
+    }
+   
+  }
+
   handleSaveEvent(): void {
     console.log('got emiited event');
     this.toggleShowEdit();

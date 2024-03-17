@@ -32,7 +32,7 @@ export class LoginComponent {
         // Handle success, such as displaying a success message or redirecting
         //Not sure what's wrong here that makes it so I am not getting a totally correct response.
         sessionStorage.setItem('jwtToken', response.token);
-        this.router.navigate(['/username']);
+        this.router.navigate(['/menu']);
         
       },
       error => {

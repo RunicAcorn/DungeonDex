@@ -9,10 +9,10 @@ import { CommonModule } from '@angular/common';
   selector: 'app-username-display',
   standalone: true,
   imports: [CampaignListComponent, CommonModule],
-  templateUrl: './username-display.component.html',
-  styleUrls: ['./username-display.component.css']
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.css']
 })
-export class UsernameDisplayComponent {
+export class MenuComponent {
   username: string ='';
 
   constructor(private userService: UserService, private router: Router) { }
