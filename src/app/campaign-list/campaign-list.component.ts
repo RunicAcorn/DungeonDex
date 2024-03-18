@@ -10,7 +10,7 @@ import { EditCampaignComponent } from '../edit-campaign/edit-campaign.component'
   standalone: true,
   imports: [CommonModule, EditCampaignComponent],
   templateUrl: './campaign-list.component.html',
-  styleUrls: ['./campaign-list.component.css']
+  styleUrls: ['./campaign-list.component.scss']
 })
 export class CampaignListComponent implements OnInit {
 
@@ -38,7 +38,8 @@ export class CampaignListComponent implements OnInit {
   toggleShowEdit(){
     this.showEditComponent = !this.showEditComponent;
   }
-  sendCampaignToEditor(editingCampaign: Campaign) {
+  sendCampaignToEditor(editingCampaign: Campaign, event: MouseEvent) {
+    event.stopPropagation();
     this.toggleShowEdit();
     this.selectedCampaign = editingCampaign; 
     
@@ -95,9 +96,11 @@ export class CampaignListComponent implements OnInit {
     this.toggleShowEdit();
   }
 
-  deleteCampaign(campaign: Campaign): void {
+  deleteCampaign(campaign: Campaign, event: MouseEvent): void {
     // Implement delete logic here
-    console.log('Deleting campaign:', campaign);
+    console.log('Deleting campaign:', campaign,);
+    //Stop Propagation is to prevent the event from bubbling up to the list when delete is clicked.
+    event.stopPropagation();
 
     const campaignId = campaign?.campaignId;
 

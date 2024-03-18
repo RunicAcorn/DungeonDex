@@ -38,7 +38,7 @@ export class NewcampaignformComponent {
       response => {
         console.log('Campaign created successfully:', response);
         // Handle success, such as displaying a success message or redirecting
-        this.router.navigate(['/username']);
+        this.router.navigate(['/menu']);
       },
       error => {
         console.error('Failed to create campaign:', error);
