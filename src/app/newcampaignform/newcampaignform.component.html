@@ -1,4 +1,4 @@
-<form (ngSubmit)="submitCampaign()" #campaignForm="ngForm">
+<form (ngSubmit)="submitCampaign()" #campaignForm="ngForm" class="new-campaign-form">
     <div class="form-group">
         <label for="campaignName">Campaign Name:</label>
         <input type="text" id="campaignName" name="campaignName" [(ngModel)]="Campaign.name" required>

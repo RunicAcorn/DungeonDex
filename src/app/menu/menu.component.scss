@@ -1,0 +1,27 @@
+// menu.component.scss
+
+ul {
+    list-style-type: none;
+  
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+  
+      .campaign-info {
+        text-align: center;
+      }
+  
+      .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+  
+        button {
+          margin: 0 10px;
+        }
+      }
+    }
+  }
+  

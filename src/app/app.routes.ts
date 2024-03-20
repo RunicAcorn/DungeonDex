@@ -6,6 +6,8 @@ import { MenuComponent } from './menu/menu.component';
 import { NewcampaignformComponent } from './newcampaignform/newcampaignform.component';
 import { EditCampaignComponent } from './edit-campaign/edit-campaign.component';
 import { CampaignDetailsComponent } from './campaign-details/campaign-details.component';
+import { DMToolsComponent } from './dmtools/dmtools.component';
+
 
 export const routes: Routes = [
     {path: '', component: LoginMenuComponent},
@@ -14,5 +16,7 @@ export const routes: Routes = [
     {path: 'menu', component: MenuComponent},
     {path: 'createCampaign', component: NewcampaignformComponent},
     {path: 'editCampaign', component: EditCampaignComponent},
-    {path: 'campaign/:id', component: CampaignDetailsComponent }
+    {path: 'campaign/:id', component: CampaignDetailsComponent },
+    {path: 'tools', component: DMToolsComponent}
+    
 ];

@@ -1,0 +1,61 @@
+$dark-brown: #6E5E55; // Deeper, richer grey, evoking the shadowed stone of ancient castles
+$tan: #FF9B30; // Darker gold, suggesting the glow of treasure in dimly lit halls
+$dark-green: #397D33; // Rich forest green, for the depth of royal gardens under moonlight
+$beige: #EDEAD0; // Warm beige, softer, creating a vintage parchment look for contrast
+$off-white: #F0EDE4; // Muted pearl, adding a touch of aged elegance and mystery
+
+.campaign-list {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  max-width: 800px; // Adjust based on overall layout
+
+  li {
+    background-color: $dark-brown;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Slightly deeper shadow for depth
+    color: $off-white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center; // Center align items vertically
+
+    .campaign-info {
+      text-align: center; // Center-align the text for NAME and DESCRIPTION
+
+      h3 {
+        color: $tan;
+        margin: 0; // Remove margin to tighten the layout
+        padding-bottom: 10px; // Space between the title and the description
+      }
+
+      p {
+        margin-top: 0;
+        margin-bottom: 20px; // Increased space between the description and buttons
+        max-width: 80%; // Limit the width of the description for readability
+      }
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center; // Center the buttons horizontally
+      gap: 10px; // Maintain spacing between buttons
+
+      button {
+        background-color: $beige;
+        color: $dark-brown;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken($beige, 10%);
+        }
+      }
+    }
+  }
+}

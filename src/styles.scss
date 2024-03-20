@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 // Define base colors
-$dark-brown: #3D2C1B;
-$tan: #D2B48C;
-$dark-green: #556B2F;
-$beige: #F5F5DC; // Using beige instead of gold
-$off-white: #F5F5F5;
+$dark-brown: #504A40; // Deeper, richer grey, evoking the shadowed stone of ancient castles
+$tan: #BF9B30; // Darker gold, suggesting the glow of treasure in dimly lit halls
+$dark-green: #397D33; // Rich forest green, for the depth of royal gardens under moonlight
+$beige: #EDEAD0; // Warm beige, softer, creating a vintage parchment look for contrast
+$off-white: #F0EDE4; // Muted pearl, adding a touch of aged elegance and mystery
 
 
 .centered-content {
@@ -55,7 +55,7 @@ $off-white: #F5F5F5;
   margin-bottom: 20px;
 }
 
-.centered-content button {
+button {
   background-color: $beige; // Using beige instead of gold
   color: $dark-brown;
   border: none;
@@ -70,7 +70,24 @@ $off-white: #F5F5F5;
   }
 }
 
+
 .centered-content h2 {
   color: $tan;
   margin-bottom: 20px;
 }
+
+
+ul {
+    list-style-type: none;
+  }
+  
+  li {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    margin-bottom: 20px; /* Add spacing between list items */
+  }
+  
+  li button {
+    margin: 0 10px; /* Add horizontal spacing between buttons */
+  }
+  

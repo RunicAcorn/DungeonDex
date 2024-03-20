@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './newcampaignform.component.html',
-  styleUrl: './newcampaignform.component.css'
+  styleUrl: './newcampaignform.component.scss'
 })
 export class NewcampaignformComponent {
   Campaign = {

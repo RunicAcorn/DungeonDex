@@ -1,16 +1,18 @@
 <h2>Campaigns List</h2>
 
-<ul>
+<ul class="campaign-list">
   <li *ngFor="let campaign of campaigns">
-    
-        <h3>{{ campaign.name }}</h3>
-        <p>{{ campaign.description }}</p>
-    
-    <button (click)="sendCampaignToEditor(campaign, $event)">Edit </button>
-    <ng-container *ngIf="campaign === selectedCampaign && showEditComponent">
-    <app-edit-campaign (saveCampaign)="handleSaveEvent()" [campaign]="campaign"></app-edit-campaign>
-    </ng-container>
-    <button (click)="deleteCampaign(campaign, $event)">Delete</button>
-    <button (click)="selectCampaign(campaign.campaignId)">Select</button>
+    <div class="campaign-info">
+      <h3>{{ campaign.name }}</h3>
+      <p>{{ campaign.description }}</p>
+    </div>
+    <div class="button-container">
+      <button (click)="sendCampaignToEditor(campaign, $event)">Edit</button>
+      <ng-container *ngIf="campaign === selectedCampaign && showEditComponent">
+        <app-edit-campaign (saveCampaign)="handleSaveEvent()" [campaign]="campaign"></app-edit-campaign>
+      </ng-container>
+      <button (click)="deleteCampaign(campaign, $event)">Delete</button>
+      <button (click)="selectCampaign(campaign.campaignId)">Select</button>
+    </div>
   </li>
 </ul>

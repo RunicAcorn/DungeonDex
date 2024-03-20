@@ -30,6 +30,8 @@ export class CampaignDetailsComponent implements OnInit {
     
   }
   tools(campaignId: number): void {
+
+    this.router.navigate(["/tools"])
     
   }
   backToCampaignList(): void{
