@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-dmtools',
+  selector: 'app-codex',
   standalone: true,
   imports: [],
-  templateUrl: './dmtools.component.html',
-  styleUrl: './dmtools.component.css'
+  templateUrl: './codex.component.html',
+  styleUrl: './codex.component.css'
 })
-export class DMToolsComponent implements OnInit {
+export class CodexComponent {
 
   campaignId!: number;
   
@@ -31,3 +30,5 @@ export class DMToolsComponent implements OnInit {
   }
 
 }
+
+

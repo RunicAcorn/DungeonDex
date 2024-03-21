@@ -6,7 +6,8 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-edit-campaign',
   templateUrl: './edit-campaign.component.html',
   standalone: true,
-  imports:[FormsModule]
+  imports:[FormsModule],
+  styleUrls: ['./edit-campaign.component.scss']
 })
 export class EditCampaignComponent {
   @Input()campaign!: Campaign;

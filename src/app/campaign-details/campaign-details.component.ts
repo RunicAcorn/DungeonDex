@@ -24,14 +24,18 @@ export class CampaignDetailsComponent implements OnInit {
   }
 
   story(campaignId: number): void {
+
+    this.router.navigate(["/story", campaignId])
     
   }
   codex(campaignId: number): void {
+
+    this.router.navigate(["/codex", campaignId]);
     
   }
   tools(campaignId: number): void {
 
-    this.router.navigate(["/tools"])
+    this.router.navigate(["/tools", campaignId]);
     
   }
   backToCampaignList(): void{
