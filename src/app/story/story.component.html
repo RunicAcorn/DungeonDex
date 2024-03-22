@@ -1,2 +1,15 @@
 <p>story works!</p>
+
+<div *ngIf="chapters.length > 0; else noChapters">
+    <h2>Chapters:</h2>
+    <ul>
+      <li *ngFor="let chapter of chapters">
+        {{ chapter.title }} - Order: {{ chapter.order }}
+      </li>
+    </ul>
+  </div>
+  <ng-template #noChapters>
+    <p>No chapters found for this campaign.</p>
+  </ng-template>
+<button (click)="addChapter()">Add Chapter</button>
 <button (click)="backToCampaignList()">Exit</button>
