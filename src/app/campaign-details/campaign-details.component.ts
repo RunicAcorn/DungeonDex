@@ -26,6 +26,7 @@ export class CampaignDetailsComponent implements OnInit {
   story(campaignId: number): void {
 
     this.router.navigate(["/story", campaignId])
+   
     
   }
   codex(campaignId: number): void {

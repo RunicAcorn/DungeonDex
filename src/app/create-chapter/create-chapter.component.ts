@@ -43,7 +43,7 @@ export class CreateChapterComponent implements OnInit {
     if (this.chapterForm.valid) {
       this.chapterService.addChapter(this.chapterForm.value)
         .subscribe({
-          next: (res) => console.log("Chapter added successfully.", res),
+          next: (res) => console.log("Chapter added successfully.", res.message),
           error: (err) => console.error("Error adding chapter: ", err)
         });
     }
