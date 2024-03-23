@@ -52,4 +52,19 @@ export class StoryComponent {
     this.router.navigate(['/chapter/add', this.campaignId])
   }
 
+  confirmDelete(chapterId: number): void {
+    if (confirm("Are you sure you want to delete this chapter?")) {
+      this.chapterService.deleteChapter(this.campaignId, chapterId)
+        .subscribe({
+          next: () => {
+            // Remove the deleted chapter from the list
+            this.chapters = this.chapters.filter(c => c.chapterId !== chapterId);
+          },
+          error: (error) => {
+            console.error('Error deleting chapter:', error);
+          }
+        });
+    }
+  }
+
 }
