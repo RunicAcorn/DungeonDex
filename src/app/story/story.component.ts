@@ -52,6 +52,10 @@ export class StoryComponent {
     this.router.navigate(['/chapter/add', this.campaignId])
   }
 
+  selectChapter(chapterId: number): void {
+    this.router.navigate(['chapter/', chapterId])
+  }
+
   confirmDelete(chapterId: number): void {
     if (confirm("Are you sure you want to delete this chapter?")) {
       this.chapterService.deleteChapter(this.campaignId, chapterId)

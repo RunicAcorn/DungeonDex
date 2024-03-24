@@ -5,6 +5,7 @@
     <ul>
       <li *ngFor="let chapter of chapters">
         {{ chapter.title }} - Order: {{ chapter.order }}
+        <button (click)="selectChapter(chapter.chapterId)">Select</button>
         <button (click)="confirmDelete(chapter.chapterId)">Delete</button>
       </li>
     </ul>
