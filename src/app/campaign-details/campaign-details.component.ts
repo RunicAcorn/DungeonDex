@@ -18,6 +18,7 @@ export class CampaignDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.campaignId = params['id'];
+      sessionStorage.setItem('campaignId', JSON.stringify(this.campaignId));
       // Use this.campaignId to fetch campaign details from the API
     });
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-scenes',
@@ -11,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ScenesComponent implements OnInit{
   chapterId! : number;
 
-  constructor(private activatedRoute: ActivatedRoute){}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router){}
   
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -19,6 +20,11 @@ export class ScenesComponent implements OnInit{
       // Use this.campaignId to fetch campaign details from the API
      
     });
+  }
+
+  returnToChapters(){
+    const campaignId = JSON.parse(sessionStorage.getItem('campaignId') || 'null');
+    this.router.navigate(["/story", campaignId]);
   }
 
 }

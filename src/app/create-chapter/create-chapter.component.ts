@@ -16,7 +16,7 @@ export class CreateChapterComponent implements OnInit {
 
   campaignId! : number;
   chapterForm: FormGroup;
-
+  
 
   constructor(
     private fb: FormBuilder, 
@@ -43,7 +43,12 @@ export class CreateChapterComponent implements OnInit {
     if (this.chapterForm.valid) {
       this.chapterService.addChapter(this.chapterForm.value)
         .subscribe({
-          next: (res) => console.log("Chapter added successfully.", res.message),
+          next: (res) => 
+          {
+            console.log("Chapter added successfully.", res.message);
+            const chapterId = res.id;
+            this.router.navigate(['/chapter', chapterId]);
+          },
           error: (err) => console.error("Error adding chapter: ", err)
         });
     }

@@ -1,19 +1,29 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Campaign } from '../campaign.interface';
 import { CampaignService } from '../campaign.service';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-edit-campaign',
   templateUrl: './edit-campaign.component.html',
   standalone: true,
-  imports:[FormsModule],
+  imports:[FormsModule, FormGroup],
   styleUrls: ['./edit-campaign.component.scss']
 })
 export class EditCampaignComponent {
   @Input()campaign!: Campaign;
   @Output() saveCampaign = new EventEmitter<void>();
+
+  form: FormGroup;
   
-  constructor(private campaignService: CampaignService) {}
+  constructor(private campaignService: CampaignService, private fb: FormBuilder)
+  {
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      description: ['']
+    });
+
+  }
 
   onSave() {
     if (this.campaign != null) {
@@ -27,6 +37,8 @@ export class EditCampaignComponent {
         }
       )
     }
+
+    
 
   }
 }
