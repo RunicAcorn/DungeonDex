@@ -38,10 +38,15 @@ export class CampaignListComponent implements OnInit {
   toggleShowEdit(){
     this.showEditComponent = !this.showEditComponent;
   }
-  sendCampaignToEditor(editingCampaign: Campaign, event: MouseEvent) {
-    event.stopPropagation();
-    this.toggleShowEdit();
-    this.selectedCampaign = editingCampaign; 
+  sendCampaignToEditor(campaignId: number | undefined) {
+
+    if (campaignId !== undefined) {
+      this.router.navigate(['/editCampaign', campaignId])
+    }else {
+      // Handle the case where campaignId is undefined, such as displaying an error message
+      console.error('Campaign ID is undefined.');
+    }
+  
     
   }
 

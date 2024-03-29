@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { Campaign } from './campaign.interface';
-import { catchError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 
 
 @Injectable({
@@ -54,7 +54,7 @@ export class CampaignService {
     );
   }
 
-   updateCampaign(campaign: Campaign): Observable<Campaign> {
+   updateCampaign(campaignId: string, campaignData: Partial<Campaign>): Observable<Campaign> {
     const jwtToken = sessionStorage.getItem('jwtToken');
     if (!jwtToken) {
       throw new Error('JWT token not found in session storage.');
@@ -65,13 +65,14 @@ export class CampaignService {
       'Content-Type': 'application/json' // Specify content type as JSON
     });
 
-    const url = `${this.apiUrl}/${campaign.campaignId}`;
+    const url = `${this.apiUrl}/${campaignId}`;
 
-    return this.http.put<Campaign>(url, campaign, { headers })
+
+    return this.http.put<Campaign>(url, campaignData, { headers })
       .pipe(
         catchError(error => {
           console.error('Error updating campaign:', error);
-          throw error;
+          return throwError(() => new Error('Error updating campaign'));
         })
       );
   }

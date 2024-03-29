@@ -18,7 +18,7 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'menu', component: MenuComponent},
     {path: 'createCampaign', component: NewcampaignformComponent},
-    {path: 'editCampaign', component: EditCampaignComponent},
+    {path: 'editCampaign/:id', component: EditCampaignComponent},
     {path: 'campaign/:id', component: CampaignDetailsComponent },
     {path: 'tools', component: DMToolsComponent},
     {path: 'tools/:id', component: DMToolsComponent},

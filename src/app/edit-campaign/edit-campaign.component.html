@@ -1,12 +1,12 @@
-<form (ngSubmit)="onSave()">
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" [(ngModel)]="campaign.name" name="name" required>
-    </div>
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea class="form-control" id="description" [(ngModel)]="campaign.description" name="description" required></textarea>
-    </div>
-    <!-- Add more fields as needed -->
-    <button type="submit" class="btn btn-primary">Save</button>
-  </form>
+<form [formGroup]="form" (ngSubmit)="onSave()">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" id="name" formControlName="name" required>
+  </div>
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <textarea class="form-control" id="description" formControlName="description"></textarea>
+  </div>
+  <!-- Add more fields as needed -->
+  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>
+</form>
