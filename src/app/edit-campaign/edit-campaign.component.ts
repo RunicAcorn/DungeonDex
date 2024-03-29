@@ -4,6 +4,7 @@ import { CampaignService } from '../campaign.service';
 import { FormBuilder, Validators, FormGroup, FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../user-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-campaign',
@@ -29,7 +30,8 @@ export class EditCampaignComponent {
   constructor(private campaignService: CampaignService, 
     private fb: FormBuilder, 
     private ar: ActivatedRoute,
-    private userServ: UserService) {
+    private userServ: UserService,
+    private router: Router ) {
     
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -81,6 +83,7 @@ export class EditCampaignComponent {
       this.campaignService.updateCampaign(this.editCampaignId, this.EditedCampaign).subscribe(
         success => {
           console.log("Campaign updated successfully", success);
+          this.router.navigate(['/menu']);
           // Perform any additional actions on success, like navigation or showing a success message
         },
         error => {
