@@ -101,21 +101,26 @@ export class CampaignListComponent implements OnInit {
     this.toggleShowEdit();
   }
 
-  deleteCampaign(campaign: Campaign, event: MouseEvent): void {
+  deleteCampaign(campaginToDelete: number | undefined): void {
+
+    if (campaginToDelete === undefined) {
+      console.error('Campaign ID is undefined.');
+      return;
+    }
     // Implement delete logic here
-    console.log('Deleting campaign:', campaign,);
+    console.log('Deleting campaign:');
     //Stop Propagation is to prevent the event from bubbling up to the list when delete is clicked.
-    event.stopPropagation();
+  
 
-    const campaignId = campaign?.campaignId;
+   
 
 
-    if (campaignId !== undefined) {
-      this.campaignService.deleteCampaign(campaignId).subscribe(
+    if (campaginToDelete !== undefined) {
+      this.campaignService.deleteCampaign(campaginToDelete).subscribe(
         () => {
           // Remove the deleted campaign from the campaigns array
-          this.campaigns = this.campaigns.filter(c => c.campaignId !== campaignId);
-          console.log('Campaign deleted successfully:', campaign);
+          this.campaigns = this.campaigns.filter(c => c.campaignId !== campaginToDelete);
+          console.log('Campaign deleted successfully:', campaginToDelete);
         },
         error => {
           console.error('Error deleting campaign:', error);

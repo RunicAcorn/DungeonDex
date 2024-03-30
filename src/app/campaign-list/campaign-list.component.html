@@ -11,7 +11,7 @@
       <ng-container *ngIf="campaign === selectedCampaign && showEditComponent">
         <app-edit-campaign (saveCampaign)="handleSaveEvent()" ></app-edit-campaign>
       </ng-container>
-      <button (click)="deleteCampaign(campaign, $event)">Delete</button>
+      <button (click)="deleteCampaign(campaign.campaignId)">Delete</button>
       <button (click)="selectCampaign(campaign.campaignId)">Select</button>
     </div>
   </li>

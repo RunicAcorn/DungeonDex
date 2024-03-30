@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { Campaign } from './campaign.interface';
 import { catchError, throwError } from 'rxjs';
@@ -10,6 +10,7 @@ import { catchError, throwError } from 'rxjs';
 })
 export class CampaignService {
   private apiUrl = 'https://dungeonapi.azurewebsites.net/api/campaign';
+  private testUrl = 'https://localhost:5000/api/campaign';
 
   constructor(private http: HttpClient) { }
 
@@ -34,24 +35,24 @@ export class CampaignService {
       });
   }
 
- deleteCampaign(campaignId: number): Observable<void> {
+
+  deleteCampaign(campaignId: number): Observable<any> {
+
     const jwtToken = sessionStorage.getItem('jwtToken');
+
     if (!jwtToken) {
       throw new Error('JWT token not found in session storage.');
-    }
+    } 
 
+    // Set headers with JWT token for authentication
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${jwtToken}`
     });
 
-    const url = `https://dungeonapi.azurewebsites.net/api/campaign/${campaignId}`;
-   return this.http.delete<void>(url, { headers })
-    .pipe(
-      catchError(error => {
-        console.error('Error deleting campaign:', error);
-        throw error;
-      })
-    );
+    return this.http.delete<any>(`${this.apiUrl}/${campaignId}`, { headers })
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
    updateCampaign(campaignId: string, campaignData: Partial<Campaign>): Observable<Campaign> {
@@ -75,6 +76,19 @@ export class CampaignService {
           return throwError(() => new Error('Error updating campaign'));
         })
       );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Unknown error occurred';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+  
+    return throwError(() => new Error(errorMessage));
   }
   
 }
