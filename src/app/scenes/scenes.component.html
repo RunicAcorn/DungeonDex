@@ -1,4 +1,14 @@
 <p>scenes works!</p>
 Chapter id is: {{chapterId}}
+<h2>Scenes</h2>
+<ul>
+  <li *ngFor="let scene of scenes">
+    {{scene.description}}
+    <button (click)="selectScene(scene.id)">Select</button>
+  </li>
+ 
+ 
+</ul>
+
 <button (click)="addScene()">Add Scene</button>
 <button (click)="returnToChapters()">Return to Chapter View</button>
