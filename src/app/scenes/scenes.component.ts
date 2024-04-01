@@ -51,6 +51,19 @@ export class ScenesComponent implements OnInit{
     });
   }
 
+  confirmDelete(sceneId: number){
+    if (confirm("Are you sure you want to delete this scene?")) {
+      this.ss.deleteScene(this.chapterId, sceneId)
+      .subscribe({
+        next: (res) => {
+          console.log("Scene deleted successfully.", res.message);
+          this.getScenes();
+        },
+        error: (err) => console.error("Error deleting scene: ", err)
+      });
+    }
+  }
+
   
 
   selectScene(sceneId: number){

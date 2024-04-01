@@ -4,8 +4,9 @@ Chapter id is: {{chapterId}}
 <ul>
   <li *ngFor="let scene of scenes">
     {{scene.title}}
-    id is {{scene.sceneId}}
+   
     <button (click)="selectScene(scene.sceneId)">Select</button>
+    <button (click)="confirmDelete(scene.sceneId)">Delete</button>
   </li>
  
  
