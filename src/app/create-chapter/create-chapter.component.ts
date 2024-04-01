@@ -35,6 +35,7 @@ export class CreateChapterComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.campaignId = params['id'];
       // Use this.campaignId to fetch campaign details from the API
+      this.chapterService.getChaptersByCampaignId(this.campaignId);
       this.chapterForm.patchValue({campaignId: this.campaignId});
     });
   }

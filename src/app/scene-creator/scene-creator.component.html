@@ -1,0 +1,9 @@
+<form [formGroup]="sceneForm" (ngSubmit)="addScene()">
+    <label for="description">Scene:</label><br>
+    <input type="text" id="description" name="description" formControlName="description"><br>
+    <label for="order">Order:</label><br>
+    <input type="number" id="sceneOrder" name="order" formControlName="order">><br>
+    <button type="submit">Add Scene</button>
+    
+</form>
+<button (click)="returnToChapters()">Return to Chapter View</button>

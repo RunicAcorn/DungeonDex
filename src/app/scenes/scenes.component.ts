@@ -27,4 +27,8 @@ export class ScenesComponent implements OnInit{
     this.router.navigate(["/story", campaignId]);
   }
 
+  addScene(){
+    this.router.navigate(['/scene/add', this.chapterId]);
+  }
+
 }

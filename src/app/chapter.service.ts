@@ -17,6 +17,8 @@ export class ChapterService {
   constructor(private http: HttpClient) { }
 
 
+  
+
   getChaptersByCampaignId(campaignId: number): Observable<any[]> {
 
     if (!this.jwtToken) {
