@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,27 +11,57 @@ export class SceneService {
 
   constructor(private http: HttpClient) { }
 
+  private sceneSource = new BehaviorSubject(null);
+  currentScene = this.sceneSource.asObservable();
+
+  selectScene(scene: any) {
+    this.sceneSource.next(scene);
+  }
+
   private jwtToken = sessionStorage.getItem('jwtToken');
 
   private apiUrl = 'https://dungeonapi.azurewebsites.net/api/scene';
  
   private testUrl = 'http://localhost:5082/api/scene';
 
-  addScene(sceneData: { chapterId: number, description: string, order: number }): Observable<any> {
+
+  addScene(sceneData: { chapterId: number, title: string, description: string, order: number }): Observable<any> {
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-
     return this.http.post<any>(`${this.testUrl}`, sceneData, {headers})
     .pipe(
       catchError(this.handleError)
-    );;
+    );;  
+  }
 
-    
+  getSceneById(sceneId: number): Observable<any> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
 
-    
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
+
+    return this.http.get<any>(`${this.testUrl + '/scene'}/${sceneId}`, {headers});
+  }
+
+  deleteScene(chapterId: number, sceneId: number): Observable<any> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
+
+    return this.http.delete<any>(`${this.testUrl}/${chapterId}/${sceneId}`, { headers })
+    .pipe(
+      catchError(this.handleError)
+    );
   }
 
   getScenes(chapterId: number): Observable<any> {

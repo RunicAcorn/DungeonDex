@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { SceneService } from '../scene.service';
 import { CommonModule } from '@angular/common';
+
+
 @Component({
   selector: 'app-scenes',
   standalone: true,
@@ -24,6 +26,7 @@ export class ScenesComponent implements OnInit{
     this.activatedRoute.params.subscribe(params => {
       this.chapterId = params['id'];
       // Use this.campaignId to fetch campaign details from the API
+      console.log("Chapter ID: ", this.chapterId);
      this.getScenes();
     });
   }
@@ -51,7 +54,8 @@ export class ScenesComponent implements OnInit{
   
 
   selectScene(sceneId: number){
-    this.router.navigate(['/scene', sceneId]);
+    
+    this.router.navigate(['/chapter', this.chapterId, sceneId]);
   }
 
 }

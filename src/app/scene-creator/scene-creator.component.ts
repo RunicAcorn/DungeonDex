@@ -26,6 +26,7 @@ export class SceneCreatorComponent {
 
     this.sceneForm = this.fb.group({
       chapterId: ['', Validators.required],
+      title: ['', Validators.required],
       description: ['', Validators.required],
       order: ['', Validators.required]
   });
