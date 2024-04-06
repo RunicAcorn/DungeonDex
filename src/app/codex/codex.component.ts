@@ -29,6 +29,10 @@ export class CodexComponent {
     this.router.navigate(['/campaign', this.campaignId])
   }
 
+  toMonsters(): void{
+    this.router.navigate(['/monsters', this.campaignId])
+  }
+
 }
 
 

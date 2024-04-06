@@ -12,6 +12,7 @@ export class ChapterService {
 
   private apiUrl = 'https://dungeonapi.azurewebsites.net/api/chapter';
 
+  private testApiUrl = 'http://localhost:5082/api/chapter';
   
 
   constructor(private http: HttpClient) { }
@@ -31,7 +32,7 @@ export class ChapterService {
     });
   
 
-    return this.http.get<any[]>(`${this.apiUrl}/${campaignId}`, {headers});
+    return this.http.get<any[]>(`${this.testApiUrl}/${campaignId}`, {headers});
   }
 
   addChapter(chapterData: { campaignId: number, title: string, order: number }): Observable<any> {

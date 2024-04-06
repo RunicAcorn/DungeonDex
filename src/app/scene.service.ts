@@ -31,7 +31,7 @@ export class SceneService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.post<any>(`${this.testUrl}`, sceneData, {headers})
+    return this.http.post<any>(`${this.apiUrl}`, sceneData, {headers})
     .pipe(
       catchError(this.handleError)
     );;  
@@ -46,7 +46,7 @@ export class SceneService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.get<any>(`${this.testUrl + '/scene'}/${sceneId}`, {headers});
+    return this.http.get<any>(`${this.apiUrl + '/scene'}/${sceneId}`, {headers});
   }
 
   deleteScene(chapterId: number, sceneId: number): Observable<any> {
@@ -58,7 +58,7 @@ export class SceneService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.delete<any>(`${this.testUrl}/${chapterId}/${sceneId}`, { headers })
+    return this.http.delete<any>(`${this.apiUrl}/${chapterId}/${sceneId}`, { headers })
     .pipe(
       catchError(this.handleError)
     );
@@ -73,7 +73,7 @@ export class SceneService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.get<any>(`${this.testUrl}/${chapterId}`, {headers});
+    return this.http.get<any>(`${this.apiUrl}/${chapterId}`, {headers});
   }
 
   private handleError(error: HttpErrorResponse) {

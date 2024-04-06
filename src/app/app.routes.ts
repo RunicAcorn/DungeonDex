@@ -13,6 +13,7 @@ import { CreateChapterComponent } from './create-chapter/create-chapter.componen
 import { ScenesComponent } from './scenes/scenes.component';
 import { SceneCreatorComponent } from './scene-creator/scene-creator.component';
 import { SceneDisplayComponent } from './scene-display/scene-display.component';
+import { MonstersComponent } from './monsters/monsters.component';
 
 export const routes: Routes = [
     {path: '', component: LoginMenuComponent},
@@ -29,7 +30,8 @@ export const routes: Routes = [
     {path: 'chapter/add/:id', component: CreateChapterComponent},
     {path: 'chapter/:id', component: ScenesComponent},
     {path: 'scene/add/:id', component: SceneCreatorComponent},
-    {path: 'chapter/:chapterid/:sceneid', component: SceneDisplayComponent}
+    {path: 'chapter/:chapterid/:sceneid', component: SceneDisplayComponent},
+    {path: 'monsters/:id', component: MonstersComponent}
   
     
 ];
