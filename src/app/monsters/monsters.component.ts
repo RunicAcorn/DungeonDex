@@ -45,7 +45,7 @@ export class MonstersComponent implements OnInit{
   }
 
   addMonster(): void {
-    this.router.navigate(['/monster/add', this.campaignId]);
+    this.router.navigate(['/monsters/add', this.campaignId]);
   }
 
 }

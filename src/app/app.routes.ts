@@ -14,6 +14,7 @@ import { ScenesComponent } from './scenes/scenes.component';
 import { SceneCreatorComponent } from './scene-creator/scene-creator.component';
 import { SceneDisplayComponent } from './scene-display/scene-display.component';
 import { MonstersComponent } from './monsters/monsters.component';
+import { MonsterFormComponent } from './monster-form/monster-form.component';
 
 export const routes: Routes = [
     {path: '', component: LoginMenuComponent},
@@ -31,7 +32,8 @@ export const routes: Routes = [
     {path: 'chapter/:id', component: ScenesComponent},
     {path: 'scene/add/:id', component: SceneCreatorComponent},
     {path: 'chapter/:chapterid/:sceneid', component: SceneDisplayComponent},
-    {path: 'monsters/:id', component: MonstersComponent}
+    {path: 'monsters/:id', component: MonstersComponent},
+    {path: 'monsters/add/:id', component: MonsterFormComponent},
   
     
 ];

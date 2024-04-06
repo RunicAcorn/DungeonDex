@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
+import { Monster } from './monster.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,17 @@ export class MonsterService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.get<any[]>(`${this.testApiUrl}/${campaignId}`, {headers});
+    return this.http.get<Monster[]>(`${this.testApiUrl}/${campaignId}`, {headers});
 
+  }
+
+  addMonster(monsterData: Monster): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
+
+    return this.http.post<Monster>(`${this.testApiUrl}`, monsterData, {headers});
+    
   }
 }

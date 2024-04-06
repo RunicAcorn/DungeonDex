@@ -1,0 +1,49 @@
+<form (ngSubmit)="submitMonster()" #monsterForm="ngForm" class="new-monster-form">
+    <div class="form-group">
+        <label for="monsterName">Monster Name:</label>
+        <input type="text" id="monsterName" name="monsterName" [(ngModel)]="monster.name" required>
+    </div>
+    <div class="form-group">
+        <label for="monsterType">Type:</label>
+        <input type="text" id="monsterType" name="monsterType" [(ngModel)]="monster.type" required>
+    </div>
+    <div class="form-group">
+        <label for="monsterAlignment">Alignment:</label>
+        <input type="text" id="monsterAlignment" name="monsterAlignment" [(ngModel)]="monster.alignment" required>
+    </div>
+    <div class="form-group">
+        <label for="monsterHitPoints">Hit Points:</label>
+        <input type="number" id="monsterHitPoints" name="monsterHitPoints" [(ngModel)]="monster.hitPoints" required>
+    </div>
+    <div class="form-group">
+        <label for="monsterArmorClass">Armor Class:</label>
+        <input type="number" id="monsterArmorClass" name="monsterArmorClass" [(ngModel)]="monster.armorClass" required>
+    </div>
+    <div class="form-group">
+        <label for="monsterStrength">Strength:</label>
+        <input type="number" id="monsterStrength" name="monsterStrength" [(ngModel)]="monster.strength" required>
+    </div>
+    <div class="form-group">
+        <label for="monsterDexterity">Dexterity:</label>
+        <input type="number" id="monsterDexterity" name="monsterDexterity" [(ngModel)]="monster.dexterity" required>
+    </div>
+    <div class="form-group">
+        <label for="monsterConstitution">Constitution:</label>
+        <input type="number" id="monsterConstitution" name="monsterConstitution" [(ngModel)]="monster.constitution" required>
+    </div>
+    <div class="form-group">
+        <label for="monsterIntelligence">Intelligence:</label>
+        <input type="number" id="monsterIntelligence" name="monsterIntelligence" [(ngModel)]="monster.intelligence" required>
+    </div>
+    <div class="form-group">
+        <label for="monsterWisdom">Wisdom:</label>
+        <input type="number" id="monsterWisdom" name="monsterWisdom" [(ngModel)]="monster.wisdom" required>
+    </div>
+    <div class="form-group">
+        <label for="monsterCharisma">Charisma:</label>
+        <input type="number" id="monsterCharisma" name="monsterCharisma" [(ngModel)]="monster.charisma" required>
+    </div>
+
+    
+    <button type="submit" [disabled]="!monsterForm.form.valid">Submit Monster</button>
+</form>
