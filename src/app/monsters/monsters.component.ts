@@ -41,7 +41,7 @@ export class MonstersComponent implements OnInit{
   }
 
   selectMonster(monsterId: number): void {
-    console.log("Selected monster: " + this.campaignId);
+    console.log("Selected monster: " + monsterId);
   }
 
   addMonster(): void {
