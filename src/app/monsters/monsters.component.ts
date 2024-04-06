@@ -48,4 +48,8 @@ export class MonstersComponent implements OnInit{
     this.router.navigate(['/monsters/add', this.campaignId]);
   }
 
+  backToCodex(): void {
+    this.router.navigate(['/codex', this.campaignId]);
+  }
+
 }
