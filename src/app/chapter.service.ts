@@ -32,7 +32,7 @@ export class ChapterService {
     });
   
 
-    return this.http.get<any[]>(`${this.testApiUrl}/${campaignId}`, {headers});
+    return this.http.get<any[]>(`${this.apiUrl}/${campaignId}`, {headers});
   }
 
   addChapter(chapterData: { campaignId: number, title: string, order: number }): Observable<any> {

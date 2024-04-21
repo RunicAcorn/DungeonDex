@@ -30,8 +30,30 @@ export class CodexComponent {
   }
 
   toMonsters(): void{
-    this.router.navigate(['/monsters', this.campaignId])
+    this.router.navigate(['/monster', this.campaignId])
   }
+
+  toLocations(): void{
+    this.router.navigate(['/location', this.campaignId])
+  }
+
+  toQuests(): void{ 
+    this.router.navigate(['/quest', this.campaignId])
+  }
+
+  toNPCs(): void{
+    this.router.navigate(['/npc', this.campaignId])
+  }
+
+  toItems(): void{
+    this.router.navigate(['/item', this.campaignId])
+  }
+
+  toCharacters(): void{
+    this.router.navigate(['/character', this.campaignId])
+  }
+
+  
 
 }
 

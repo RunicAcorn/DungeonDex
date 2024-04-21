@@ -1,10 +1,10 @@
 <form [formGroup]="sceneForm" (ngSubmit)="addScene()">
-    <label for="title">Scene:</label><br>
+    <label for="title">Scene Title:</label><br>
     <input type="text" id="title" name="title" formControlName="title"><br>
     <label for="description">Description:</label><br>
     <input type="textfield" id="description" name="description" formControlName="description"><br>
     <label for="order">Order:</label><br>
-    <input type="number" id="sceneOrder" name="order" formControlName="order">><br>
+    <input type="number" id="sceneOrder" name="order" formControlName="order"><br>
     <button type="submit">Add Scene</button>
     
 </form>
