@@ -45,7 +45,7 @@ export class MonsterFormComponent implements OnInit{
   submitMonster(): void {
     this.ms.addMonster(this.monster).subscribe({
       next: (data) => {console.log(data)
-        this.router.navigate(['/monsters', this.campaignId])},
+        this.router.navigate(['/monster', this.campaignId])},
       error: (e) => console.error(e)
     });
 

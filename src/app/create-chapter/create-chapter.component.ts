@@ -32,11 +32,19 @@ export class CreateChapterComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    
     this.activatedRoute.params.subscribe(params => {
       this.campaignId = params['id'];
+      var lastestOrder = 0;
+      this.chapterService.getLatestChapterOrder(this.campaignId)
+      .subscribe({
+        next: (data) => this.chapterForm.patchValue({campaignId: this.campaignId, title: "test", order: data}),
+        error: (e) => console.error(e)
+      });
       // Use this.campaignId to fetch campaign details from the API
-      this.chapterService.getChaptersByCampaignId(this.campaignId);
-      this.chapterForm.patchValue({campaignId: this.campaignId});
+    //  this.chapterService.getChaptersByCampaignId(this.campaignId);
+      
+    
     });
   }
 
