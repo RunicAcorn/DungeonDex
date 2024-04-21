@@ -40,12 +40,10 @@ export class ChapterService {
       throw new Error('JWT token not found in session storage.');
     } 
   
-    // Set headers with JWT token for authentication
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.jwtToken}`
     });
   
-
     return this.http.get<any>(`${this.testApiUrl}/${campaignId}/latest`, {headers});
   }
 

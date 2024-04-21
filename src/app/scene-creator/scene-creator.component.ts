@@ -37,6 +37,11 @@ export class SceneCreatorComponent {
       this.chapterId = params['id'];
       // Use this.chapterId to fetch chapter details from the API
       this.sceneForm.patchValue({chapterId: this.chapterId});
+      this.sceneService.getLatestSceneOrder(this.chapterId)
+      .subscribe({
+        next: (data) => this.sceneForm.patchValue({title: "Scene Test", order: data}),
+        error: (e) => console.error(e)
+      });
       
     });
   }
