@@ -44,7 +44,7 @@ export class ChapterService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
   
-    return this.http.get<any>(`${this.testApiUrl}/${campaignId}/latest`, {headers});
+    return this.http.get<any>(`${this.apiUrl}/${campaignId}/latest`, {headers});
   }
 
   addChapter(chapterData: { campaignId: number, title: string, order: number }): Observable<any> {

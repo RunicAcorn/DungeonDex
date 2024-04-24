@@ -73,7 +73,7 @@ export class SceneService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
   
-    return this.http.get<any>(`${this.testUrl}/${sceneId}/latest`, {headers});
+    return this.http.get<any>(`${this.apiUrl}/${sceneId}/latest`, {headers});
   }
 
   getScenes(chapterId: number): Observable<any> {
