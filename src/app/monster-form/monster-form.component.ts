@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MonsterService } from '../monster.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Monster } from '../monster.interface';
 
 
 @Component({
@@ -14,17 +15,15 @@ import { Router } from '@angular/router';
   styleUrl: './monster-form.component.css'
 })
 export class MonsterFormComponent implements OnInit{
-  monster!: any;
+  monster!: Monster;
   campaignId!: number;
 
   constructor( private ar: ActivatedRoute, private ms:MonsterService, private router: Router) { }
 
   ngOnInit(): void {
     this.ar.params.subscribe(params => {
-
-      
-      this.campaignId = params['id'];
-      // Use this.campaignId to fetch campaign details from the API
+      this.campaignId = +params['id'];
+   
       this.monster = {  
         campaignId: this.campaignId,
         name: '',

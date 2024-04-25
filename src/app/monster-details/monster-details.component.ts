@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Monster } from '../monster.interface';
 
 @Component({
   selector: 'app-monster-details',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './monster-details.component.css'
 })
 export class MonsterDetailsComponent {
+
+  private monster: Monster;
 
 }
