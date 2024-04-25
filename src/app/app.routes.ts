@@ -21,6 +21,7 @@ import { QuestsComponent } from './quests/quests.component';
 import { LocationsComponent } from './locations/locations.component';
 import { NPCsComponent } from './npcs/npcs.component';
 import { ItemsComponent } from './items/items.component';
+import { MonsterDetailsComponent } from './monster-details/monster-details.component';
 
 
 
@@ -42,6 +43,7 @@ export const routes: Routes = [
     {path: 'chapter/:chapterid/:sceneid', component: SceneDisplayComponent},
     {path: 'monster/:id', component: MonstersComponent},
     {path: 'monster/add/:id', component: MonsterFormComponent},
+    {path: 'monster/select/:id', component: MonsterDetailsComponent},
     {path: 'imageWizard/:id', component: ImageGeneratorComponent},
     {path: 'character/:id', component: CharactersComponent},
     {path: 'quest/:id', component: QuestsComponent},
