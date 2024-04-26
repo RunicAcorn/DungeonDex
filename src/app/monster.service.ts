@@ -25,10 +25,11 @@ export class MonsterService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.get<Monster[]>(`${this.apiUrl}/${campaignId}`, {headers});
+    return this.http.get<Monster[]>(`${this.testApiUrl}/${campaignId}`, {headers});
 
   }
 
+  /*
   getMonsterById(monsterId: number): Observable<any> {
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');
@@ -39,9 +40,10 @@ export class MonsterService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.get<Monster>(`${this.apiUrl}/select/${monsterId}`, {headers});
+    return this.http.get<Monster>(`${this.testApiUrl}/select/${monsterId}`, {headers});
 
   }
+  */
 
   addMonster(monsterData: Monster): Observable<any> {
 
@@ -49,7 +51,7 @@ export class MonsterService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.post<Monster>(`${this.testApiUrl}`, monsterData, {headers});
+    return this.http.post<Monster>(`${this.apiUrl}`, monsterData, {headers});
     
   }
 }

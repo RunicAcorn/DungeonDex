@@ -1,4 +1,5 @@
 export interface Monster {
+    id?: number;
     campaignId: number;
     name: string;
     type: string;

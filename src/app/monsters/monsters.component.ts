@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MonsterService } from '../monster.service';
 import { Router } from '@angular/router';
+import { Monster } from '../monster.interface';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class MonstersComponent implements OnInit{
   campaignId!: number;
 
   constructor(private ar:ActivatedRoute, private ms:MonsterService, private router: Router) {}
+
   ngOnInit(): void
   {
     this.ar.params.subscribe(params => {
@@ -40,9 +42,9 @@ export class MonstersComponent implements OnInit{
     });
   }
 
-  selectMonster(monsterId: number): void {
-    console.log("Selected monster: " + monsterId);
-    this.router.navigate(['/monster/select', monsterId]);
+  selectMonster(selectedMonster: Monster): void {
+    console.log("Selected monster: " + selectedMonster);
+    this.router.navigate(['/monster/select', selectedMonster.id], {state: {monster: selectedMonster}});
   }
 
   addMonster(): void {

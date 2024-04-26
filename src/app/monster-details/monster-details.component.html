@@ -1,10 +1,16 @@
 
-<form>
-    <label for="name">Name:</label><br>
+<form [formGroup]="monsterDetailsForm"  (ngSubmit)="onSubmit()">
+    <label>
+        Alignment:
+        <input type="text" formControlName="name">
+      </label><br>
     <input type="text" id="name" name="name"><br>
     <label for="type">Type:</label><br>
     <input type="text" id="type" name="type"><br>
-    <label for="alignment">Alignment:</label><br>
+    <label>
+        Alignment:
+        <input type="text" formControlName="alignment">
+      </label><br>
     <input type="text" id="alignment" name="alignment"><br>
     <label for="hitPoints">Hit Points:</label><br>
     <input type="number" id="hitPoints" name="hitPoints"><br>
@@ -24,4 +30,5 @@
     <input type="number" id="wisdom" name="wisdom"><br>
     <label for="charisma">Charisma:</label><br>
     <input type="number" id="charisma" name="charisma"><br>
+    <button type="submit">Save</button>
 </form>
