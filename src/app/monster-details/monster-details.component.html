@@ -1,34 +1,48 @@
 
 <form [formGroup]="monsterDetailsForm"  (ngSubmit)="onSubmit()">
     <label>
-        Alignment:
+        Name:
         <input type="text" formControlName="name">
       </label><br>
-    <input type="text" id="name" name="name"><br>
-    <label for="type">Type:</label><br>
-    <input type="text" id="type" name="type"><br>
+      <label>
+        Type:
+        <input type="text" formControlName="type">
+      </label><br>   
     <label>
         Alignment:
         <input type="text" formControlName="alignment">
       </label><br>
-    <input type="text" id="alignment" name="alignment"><br>
-    <label for="hitPoints">Hit Points:</label><br>
-    <input type="number" id="hitPoints" name="hitPoints"><br>
-    <label for="armorClass">Armor Class:</label><br>
-    <input type="number" id="armorClass" name="armorClass"><br>
-    <label for="speed">Speed:</label><br>
-    <input type="number" id="speed" name="speed"><br>
-    <label for="strength">Strength:</label><br>
-    <input type="number" id="strength" name="strength"><br>
-    <label for="dexterity">Dexterity:</label><br>
-    <input type="number" id="dexterity" name="dexterity"><br>
-    <label for="constitution">Constitution:</label><br>
-    <input type="number" id="constitution" name="constitution"><br>
-    <label for="intelligence">Intelligence:</label><br>
-    <input type="number" id="intelligence" name="intelligence"><br>
-    <label for="wisdom">Wisdom:</label><br>
-    <input type="number" id="wisdom" name="wisdom"><br>
-    <label for="charisma">Charisma:</label><br>
-    <input type="number" id="charisma" name="charisma"><br>
+        <label>
+            Hit Points:
+            <input type="number" formControlName="hitPoints">
+        </label><br>
+        <label>
+            Armor Class:
+        <input type="number" formControlName="armorClass">
+        </label><br>
+        <label>
+            Strength:
+        <input type="number" formControlName="strength">
+        </label><br>
+        <label>
+            Dexterity:
+        <input type="number" formControlName="dexterity">
+        </label><br>
+        <label>
+            Constitution:
+        <input type="number" formControlName="constitution">
+        </label><br>
+        <label>
+            Intelligence:
+        <input type="number" formControlName="intelligence">
+        </label><br>
+        <label>
+            Wisdom:
+        <input type="number" formControlName="wisdom">
+        </label><br>
+        <label>
+            Charisma:
+        <input type="number" formControlName="charisma">
+        </label><br>
     <button type="submit">Save</button>
 </form>
