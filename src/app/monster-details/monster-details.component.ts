@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormGroup, FormsModule, Validators, FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MonsterService } from '../monster.service';
 
 
 
@@ -17,14 +18,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class MonsterDetailsComponent  implements OnInit{
 
   monsterDetailsForm: FormGroup = new FormGroup({});
-  monsterId!: number;
+  campaignId!: number;
 
   monster!: Monster;
 
   constructor
   ( private ar: ActivatedRoute, 
     private router: Router, 
-    private fb: FormBuilder ) {
+    private fb: FormBuilder,
+  private monsterService: MonsterService) {
 
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras.state) {
@@ -36,7 +38,7 @@ export class MonsterDetailsComponent  implements OnInit{
   ngOnInit(): void {
 
     this.ar.params.subscribe(params => {
-      this.monsterId = params['id'];
+      this.campaignId = params['id'];
     })  
 
     this.monsterDetailsForm = this.fb.group({
@@ -59,6 +61,16 @@ export class MonsterDetailsComponent  implements OnInit{
   }
 
   onSubmit(): void {
+
+    Object.assign(this.monster, this.monsterDetailsForm.value);
+    this.monsterService.updateMonster(this.monster, this.campaignId)
+    .subscribe({
+      next: (data) => {
+        console.log("Monster updated successfully.", data);
+        this.router.navigate(['/monster', this.campaignId]);
+      },
+      error: (e) => console.error(e)
+    });
   }
 }
 
