@@ -63,7 +63,7 @@ export class MonsterDetailsComponent  implements OnInit{
   onSubmit(): void {
 
     Object.assign(this.monster, this.monsterDetailsForm.value);
-    this.monsterService.updateMonster(this.monster, this.campaignId)
+    this.monsterService.updateMonster(this.monster)
     .subscribe({
       next: (data) => {
         console.log("Monster updated successfully.", data);

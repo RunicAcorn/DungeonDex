@@ -29,16 +29,15 @@ export class MonsterService {
 
   }
 
-  updateMonster( monster: Monster, id: number,): Observable<any> {
+  updateMonster( monster: Monster): Observable<any> {
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');
     } 
-
     // Set headers with JWT token for authentication
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.jwtToken}`
     });
-    return this.http.put(`http://localhost:5082/api/monster/`+id, monster, {headers});
+    return this.http.put( this.testApiUrl, monster, {headers});
   }
 
   addMonster(monsterData: Monster): Observable<any> {
