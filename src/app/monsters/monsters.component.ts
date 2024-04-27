@@ -51,6 +51,13 @@ export class MonstersComponent implements OnInit{
     this.router.navigate(['/monster/add', this.campaignId]);
   }
 
+  deleteMonster(monster: Monster): void {
+    this.ms.deleteMonster(monster).subscribe({
+      next: () => this.monsters = this.monsters.filter(m => m.id !== monster.id),
+      error: (e) => console.error(e)
+    });
+  }
+
   backToCodex(): void {
     this.router.navigate(['/codex', this.campaignId]);
   }

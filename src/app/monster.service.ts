@@ -49,4 +49,15 @@ export class MonsterService {
     return this.http.post<Monster>(`${this.apiUrl}`, monsterData, {headers});
     
   }
+
+  deleteMonster(monsterData: Monster): Observable<any> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+    // Set headers with JWT token for authentication
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
+    return this.http.delete(`${this.testApiUrl}/`+ monsterData.id,  {headers});
+  }
 }
