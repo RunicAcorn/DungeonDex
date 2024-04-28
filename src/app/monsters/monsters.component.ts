@@ -14,7 +14,7 @@ import { Monster } from '../monster.interface';
   styleUrl: './monsters.component.css'
 })
 export class MonstersComponent implements OnInit{
-  monsters: any[] = [];
+  monsters: Monster[] = [];
   campaignId!: number;
 
   constructor(private ar:ActivatedRoute, private ms:MonsterService, private router: Router) {}

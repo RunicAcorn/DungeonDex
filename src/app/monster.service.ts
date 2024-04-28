@@ -46,7 +46,7 @@ export class MonsterService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.post<Monster>(`${this.apiUrl}`, monsterData, {headers});
+    return this.http.post<Monster>(`${this.testApiUrl}`, monsterData, {headers});
     
   }
 

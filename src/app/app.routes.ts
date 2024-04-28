@@ -22,6 +22,7 @@ import { LocationsComponent } from './locations/locations.component';
 import { NPCsComponent } from './npcs/npcs.component';
 import { ItemsComponent } from './items/items.component';
 import { MonsterDetailsComponent } from './monster-details/monster-details.component';
+import { LocationFormComponent } from './location-form/location-form.component';
 
 
 
@@ -48,6 +49,7 @@ export const routes: Routes = [
     {path: 'character/:id', component: CharactersComponent},
     {path: 'quest/:id', component: QuestsComponent},
     {path: 'location/:id', component: LocationsComponent},
+    {path: 'location/add/:id', component: LocationFormComponent},
     {path: 'npc/:id', component: NPCsComponent},
     {path: 'item/:id', component: ItemsComponent}
 
