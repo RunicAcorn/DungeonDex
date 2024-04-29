@@ -1,5 +1,4 @@
-import { Campaign } from "./campaign.interface";
-import { Quest } from "./quest";
+
 
 export interface Location {
     id?: number;

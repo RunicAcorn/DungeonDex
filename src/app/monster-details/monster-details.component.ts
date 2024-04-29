@@ -66,7 +66,7 @@ export class MonsterDetailsComponent  implements OnInit{
     this.monsterService.updateMonster(this.monster)
     .subscribe({
       next: (data) => {
-        console.log("Monster updated successfully..", data);
+        console.log("Monster updated successfully.", data);
         this.router.navigate(['/monster', this.campaignId]);
       },
       error: (e) => console.error(e)

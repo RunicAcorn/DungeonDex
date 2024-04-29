@@ -44,7 +44,7 @@ export class LocationsComponent implements OnInit{
 
   selectLocation(selected: Location): void {
     console.log("Selected location: " + selected);
-    this.router.navigate(['/location/select', this.campaignId], {state: {monster: selected}});
+    this.router.navigate(['/location/select', this.campaignId], {state: {location: selected}});
   }
 
   addLocation(): void {

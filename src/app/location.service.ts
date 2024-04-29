@@ -35,4 +35,14 @@ export class LocationService {
     
   }
 
+  updateLocation(location: Location): Observable<any> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+
+    const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
+
+    return this.http.put( this.testApiUrl, location, {headers});
+  }
+
 }

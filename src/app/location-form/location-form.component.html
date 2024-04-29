@@ -1,17 +1,17 @@
-<form (ngSubmit)="submitMonster()" #monsterForm="ngForm" class="new-monster-form">
-    <div class="form-group">
-        <label for="locationPlane">Plane:</label>
-        <input type="text" id="locationPlane" name="plane" [(ngModel)]="location.plane" required>
-    </div>
-    <div class="form-group">
-        <label for="monsterName">Monster Name:</label>
-        <input type="text" id="monsterName" name="name" [(ngModel)]="location.name" required>
-    </div>
-    <div class="form-group">
-        <label for="monsterType">Type:</label>
-        <input type="text" id="monsterType" name="description" [(ngModel)]="location.description" required>
-    </div>
+
+<form  class="new-location-form" (ngSubmit)="onSubmit()">
+    <label>
+        Name:
+        <input type="text" formControlName="name">
+      </label><br>
+      <label>
+        Plane:
+        <input type="text" formControlName="plane">
+      </label><br>
+      <label>
+        Description:
+        <input type="text" formControlName="description">
+      </label><br>      
    
-    
-    <button type="submit" [disabled]="!monsterForm.form.valid">Submit Monster</button>
+    <button type="submit">Save</button>
 </form>

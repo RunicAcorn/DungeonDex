@@ -15,6 +15,7 @@ import { LocationService } from '../location.service';
 })
 export class LocationFormComponent implements OnInit{
   location!: Location;
+  
   campaignId!: number;
 
   constructor( private ar: ActivatedRoute, private ls:LocationService, private router: Router) { }
@@ -34,7 +35,7 @@ export class LocationFormComponent implements OnInit{
     } );
   }
 
-  submitMonster(): void {
+  onSubmit(): void {
     this.ls.addLocation(this.location).subscribe({
       next: (data) => {console.log(data)
         this.router.navigate(['/location', this.campaignId])},
