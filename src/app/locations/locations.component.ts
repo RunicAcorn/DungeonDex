@@ -51,13 +51,13 @@ export class LocationsComponent implements OnInit{
     this.router.navigate(['/location/add', this.campaignId]);
   }
 
-  deleteLocation(selectedDelete: Location): void {
-    /*
-    this.ms.deleteMonster(monster).subscribe({
-      next: () => this.monsters = this.monsters.filter(m => m.id !== monster.id),
+  deleteLocation(location: Location): void {
+    
+    this.ls.deleteLocation(location).subscribe({
+      next: () => this.locations = this.locations.filter(l => l.id !== location.id),
       error: (e) => console.error(e)
     });
-    */
+    
   }
 
 

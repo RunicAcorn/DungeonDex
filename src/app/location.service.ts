@@ -45,4 +45,14 @@ export class LocationService {
     return this.http.put( this.testApiUrl, location, {headers});
   }
 
+  deleteLocation(location: Location): Observable<any> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+
+    const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
+
+    return this.http.delete(`${this.testApiUrl}/${location.id}`, {headers});
+  }
+
 }
