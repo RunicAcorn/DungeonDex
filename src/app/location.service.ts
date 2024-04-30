@@ -23,7 +23,7 @@ export class LocationService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.get<Location[]>(`${this.testApiUrl}/${campaignId}`, {headers});
+    return this.http.get<Location[]>(`${this.apiUrl}/${campaignId}`, {headers});
 
   }
 
@@ -31,7 +31,7 @@ export class LocationService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.post<Location>(`${this.testApiUrl}`, locationData, {headers});
+    return this.http.post<Location>(`${this.apiUrl}`, locationData, {headers});
     
   }
 
@@ -42,7 +42,7 @@ export class LocationService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.put( this.testApiUrl, location, {headers});
+    return this.http.put( this.apiUrl, location, {headers});
   }
 
   deleteLocation(location: Location): Observable<any> {
@@ -52,7 +52,7 @@ export class LocationService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.delete(`${this.testApiUrl}/${location.id}`, {headers});
+    return this.http.delete(`${this.apiUrl}/${location.id}`, {headers});
   }
 
 }
