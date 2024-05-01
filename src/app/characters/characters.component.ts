@@ -13,7 +13,7 @@ import { CharacterService } from '../character.service';
   styleUrl: './characters.component.css'
 })
 export class CharactersComponent implements OnInit{
-  Characters: Character[] = [];
+  characters: Character[] = [];
   campaignId!: number;
 
   constructor(private ar:ActivatedRoute, private cs:CharacterService, private router: Router) {}
@@ -27,7 +27,7 @@ export class CharactersComponent implements OnInit{
 
       this.cs.getCharacterByCampaignId(this.campaignId)
       .subscribe({
-        next: (data) => this.Characters = data,
+        next: (data) => this.characters = data,
         error: (e) => console.error(e)
       });
     }
@@ -37,23 +37,23 @@ export class CharactersComponent implements OnInit{
 
   getCharacter(campaignId: number): void {
     this.cs.getCharacterByCampaignId(campaignId).subscribe(Characters => {
-      this.Characters = Characters;
+      this.characters = Characters;
     });
   }
 
   selectCharacter(selected: Character): void {
     console.log("Selected Character: " + selected);
-    this.router.navigate(['/Character/select', this.campaignId], {state: {Character: selected}});
+    this.router.navigate(['/character/select', this.campaignId], {state: {Character: selected}});
   }
 
   addCharacter(): void {
-    this.router.navigate(['/Character/add', this.campaignId]);
+    this.router.navigate(['/character/add', this.campaignId]);
   }
 
-  deleteCharacter(Character: Character): void {
+  deleteCharacter(character: Character): void {
     
-    this.cs.deleteCharacter(Character).subscribe({
-      next: () => this.Characters = this.Characters.filter(l => l.id !== Character.id),
+    this.cs.deleteCharacter(character).subscribe({
+      next: () => this.characters = this.characters.filter(l => l.id !== character.id),
       error: (e) => console.error(e)
     });
     

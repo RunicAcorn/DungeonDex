@@ -31,7 +31,7 @@ export class CharacterService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.post<Character>(`${this.apiUrl}`, characterData, {headers});
+    return this.http.post<Character>(`${this.testApiUrl}`, characterData, {headers});
     
   }
 

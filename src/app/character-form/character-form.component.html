@@ -1,59 +1,55 @@
-<form class="new-character-form" (ngSubmit)="onSubmit()">
-    <label>
-        Campaign ID:
-        <input type="text" formControlName="campaignId">
-    </label><br>
+<form class="new-character-form"  (ngSubmit)="onSubmit()">
     <label>
         Name:
-        <input type="text" formControlName="name">
+        <input type="text"  name="characterName" [(ngModel)]="character.name" required>
     </label><br>
     <label>
         Race:
-        <input type="text" formControlName="race">
+        <input type="text" name="race" [(ngModel)]="character.race" required> 
     </label><br>
     <label>
         Class:
-        <input type="text" formControlName="class">
+        <input type="text" name="class"  [(ngModel)]="character.class" >
     </label><br>
     <label>
         Owned By:
-        <input type="text" formControlName="ownedBy">
+        <input type="text" name="owner" [(ngModel)]="character.ownedBy" required>
     </label><br>
     <label>
         Level:
-        <input type="number" formControlName="level">
+        <input type="number" name="level" [(ngModel)]="character.level" required>
     </label><br>
     <label>
         Strength:
-        <input type="number" formControlName="strength">
+        <input type="number" name="strength" [(ngModel)]="character.strength" required>
     </label><br>
     <label>
         Dexterity:
-        <input type="number" formControlName="dexterity">
+        <input type="number" name="dexterity" [(ngModel)]="character.dexterity" required>
     </label><br>
     <label>
         Constitution:
-        <input type="number" formControlName="constitution">
+        <input type="number" name="constitution" [(ngModel)]="character.constitution" required>
     </label><br>
     <label>
         Intelligence:
-        <input type="number" formControlName="intelligence">
+        <input type="number" name="intelligence" [(ngModel)]="character.intelligence" required>
     </label><br>
     <label>
         Wisdom:
-        <input type="number" formControlName="wisdom">
+        <input type="number" name="wisdom" [(ngModel)]="character.wisdom" required>
     </label><br>
     <label>
         Charisma:
-        <input type="number" formControlName="charisma">
+        <input type="number" name="charisma" [(ngModel)]="character.charisma" required>
     </label><br>
     <label>
         Hit Points:
-        <input type="number" formControlName="hitPoints">
+        <input type="number" name="hitPoints" [(ngModel)]="character.hitPoints" required>
     </label><br>
     <label>
         Alignment:
-        <input type="number" formControlName="alignment">
+        <input type="number" name="alignment" [(ngModel)]="character.alignment" required>
     </label><br>
     <button type="submit">Save</button>
 </form>

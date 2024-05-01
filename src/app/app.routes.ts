@@ -24,7 +24,7 @@ import { ItemsComponent } from './items/items.component';
 import { MonsterDetailsComponent } from './monster-details/monster-details.component';
 import { LocationFormComponent } from './location-form/location-form.component';
 import { LocationDetailsComponent } from './location-details/location-details.component';
-
+import { CharacterFormComponent } from './character-form/character-form.component';
 
 
 export const routes: Routes = [
@@ -48,6 +48,7 @@ export const routes: Routes = [
     {path: 'monster/select/:id', component: MonsterDetailsComponent},
     {path: 'imageWizard/:id', component: ImageGeneratorComponent},
     {path: 'character/:id', component: CharactersComponent},
+    {path: 'character/add/:id', component: CharacterFormComponent},
     {path: 'quest/:id', component: QuestsComponent},
     {path: 'location/:id', component: LocationsComponent},
     {path: 'location/add/:id', component: LocationFormComponent},
