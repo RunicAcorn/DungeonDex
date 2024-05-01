@@ -1,1 +1,16 @@
-<p>characters works!</p>
+<p>character works!</p>
+
+<ul class="character-list">
+    <li *ngFor="let character of characters">
+      <div class="character-list">
+        <h3>{{ character.name }}</h3>
+      </div>
+      <div class="button-container">
+
+        <button (click)="selectcharacter(character)">Select</button>
+        <button (click)="deletecharacter(character)">Delete</button>
+      </div>
+    </li>
+    <button (click)="addcharacter()">Add character</button>
+    <button (click)="backToCodex()">Return to Codex</button>
+  </ul>
