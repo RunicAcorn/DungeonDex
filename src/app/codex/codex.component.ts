@@ -52,6 +52,9 @@ export class CodexComponent {
   toCharacters(): void{
     this.router.navigate(['/character', this.campaignId])
   }
+  toPlayers(): void{
+    this.router.navigate(['/player', this.campaignId])
+  }
 
   
 

@@ -1,0 +1,16 @@
+<p>players works!</p>
+
+<ul class="player-list">
+    <li *ngFor="let player of players">
+      <div class="players-list">
+        <h3>{{ player.name }}</h3>
+      </div>
+      <div class="button-container">
+
+        <button (click)="selectPlayer(player)">Select</button>
+        <button (click)="deletePlayer(player)">Delete</button>
+      </div>
+    </li>
+    <button (click)="addPlayer()">Add Player</button>
+    <button (click)="backToCodex()">Return to Codex</button>
+  </ul>

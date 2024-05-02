@@ -3,7 +3,7 @@ import { Campaign } from "./campaign.interface";
 export interface Character {
     id?: number;
     campaignId: number; // Replace 'any' with the actual type
-    ownedBy: any; // Replace 'any' with the actual type
+    ownedBy?: any; // Replace 'any' with the actual type
     name: string;
     race: string;
     class: string | null;

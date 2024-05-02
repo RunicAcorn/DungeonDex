@@ -25,7 +25,8 @@ import { MonsterDetailsComponent } from './monster-details/monster-details.compo
 import { LocationFormComponent } from './location-form/location-form.component';
 import { LocationDetailsComponent } from './location-details/location-details.component';
 import { CharacterFormComponent } from './character-form/character-form.component';
-
+import { PlayersComponent } from './players/players.component';
+import { PlayerFormComponent } from './player-form/player-form.component';
 
 export const routes: Routes = [
     {path: '', component: LoginMenuComponent},
@@ -54,7 +55,9 @@ export const routes: Routes = [
     {path: 'location/add/:id', component: LocationFormComponent},
     {path: 'location/select/:id', component: LocationDetailsComponent},
     {path: 'npc/:id', component: NPCsComponent},
-    {path: 'item/:id', component: ItemsComponent}
+    {path: 'item/:id', component: ItemsComponent},
+    {path: 'player/:id', component: PlayersComponent},
+    {path: 'player/add/:id', component: PlayerFormComponent}
 
   
     

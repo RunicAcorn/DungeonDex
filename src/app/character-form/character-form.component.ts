@@ -30,7 +30,6 @@ export class CharacterFormComponent implements OnInit{
         name: '',
         race: '',
         class: '',
-        ownedBy: '',
         level: 0,
         strength: 0,
         dexterity: 0,

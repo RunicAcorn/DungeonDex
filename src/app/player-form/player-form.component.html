@@ -1,0 +1,8 @@
+<form (ngSubmit)="submitPlayer()" #playerForm="ngForm" class="new-player-form">
+    <div class="form-group">
+        <label for="playerName">Player Name:</label>
+        <input type="text" id="playerName" name="playerName" [(ngModel)]="player.name" required>
+    </div>
+    
+    <button type="submit" [disabled]="!playerForm.form.valid">Submit Player</button>
+</form>
