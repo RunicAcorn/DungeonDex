@@ -1,11 +1,11 @@
 <form (ngSubmit)="submitLocation()" #locationForm="ngForm" class="new-location-form">
   <div class="form-group">
-      <label for="locationName">Plane:</label>
-      <input type="text" id="locationName" name="locationName" [(ngModel)]="location.name" required>
+      <label for="plane">Plane:</label>
+      <input type="text" id="plane" name="plane" [(ngModel)]="location.plane" required>
   </div>
   <div class="form-group">
-      <label for="plane">Name:</label>
-      <input type="text" id="plane" name="plane" [(ngModel)]="location.plane" required>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="location.name" required>
   </div>
   <div class="form-group">
     <label for="monsterType">Description:</label>
