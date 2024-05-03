@@ -10,12 +10,12 @@ import { catchError, throwError } from 'rxjs';
 })
 export class CampaignService {
   private apiUrl = 'https://dungeonapi.azurewebsites.net/api/campaign';
-  private testUrl = 'https://localhost:5000/api/campaign';
+  private testUrl = 'http://localhost:5082/api/campaign';
 
   constructor(private http: HttpClient) { }
 
   createCampaign(campaign: Campaign) : Observable<any> {
-    return this.http.post<any>('https://dungeonapi.azurewebsites.net/api/campaign/create', { campaign });
+    return this.http.post<Campaign>(this.testUrl + '/create', campaign);
   }
   getCampaignsByUserId(userId: string): Observable<Campaign[]> {
     const jwtToken = sessionStorage.getItem('jwtToken');
