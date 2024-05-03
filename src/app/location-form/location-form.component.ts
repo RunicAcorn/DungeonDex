@@ -35,7 +35,7 @@ export class LocationFormComponent implements OnInit{
     } );
   }
 
-  onSubmit(): void {
+  submitLocation(): void {
     this.ls.addLocation(this.location).subscribe({
       next: (data) => {console.log(data)
         this.router.navigate(['/location', this.campaignId])},

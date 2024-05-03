@@ -31,7 +31,7 @@ export class LocationService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.post<Location>(`${this.apiUrl}`, locationData, {headers});
+    return this.http.post<Location>(`${this.testApiUrl}`, locationData, {headers});
     
   }
 
