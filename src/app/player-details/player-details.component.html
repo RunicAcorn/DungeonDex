@@ -1,1 +1,9 @@
-<p>player-details works!</p>
+
+<form [formGroup]="playerDetailsForm"  (ngSubmit)="onSubmit()">
+    <label>
+        Name:
+        <input type="text" formControlName="name">
+      </label><br>
+     
+      <button type="submit">Save</button>
+</form>

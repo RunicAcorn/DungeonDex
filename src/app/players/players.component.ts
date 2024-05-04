@@ -49,7 +49,7 @@ export class PlayersComponent implements OnInit{
 
   deletePlayer(player: Player): void {
     this.ms.deletePlayer(player).subscribe({
-      next: () => this.players = this.players.filter(m => m.id !== player.id),
+      next: () => this.players = this.players.filter(p => p.id !== player.id),
       error: (e) => console.error(e)
     });
   }

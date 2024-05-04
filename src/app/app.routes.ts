@@ -27,6 +27,7 @@ import { LocationDetailsComponent } from './location-details/location-details.co
 import { CharacterFormComponent } from './character-form/character-form.component';
 import { PlayersComponent } from './players/players.component';
 import { PlayerFormComponent } from './player-form/player-form.component';
+import { PlayerDetailsComponent } from './player-details/player-details.component';
 import { CharacterDetailsComponent } from './character-details/character-details.component';
 
 export const routes: Routes = [
@@ -59,6 +60,7 @@ export const routes: Routes = [
     {path: 'item/:id', component: ItemsComponent},
     {path: 'player/:id', component: PlayersComponent},
     {path: 'player/add/:id', component: PlayerFormComponent},
+    {path: 'player/select/:id', component: PlayerDetailsComponent},
     {path: 'character/select/:id', component: CharacterDetailsComponent}
 
   
