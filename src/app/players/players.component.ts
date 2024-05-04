@@ -23,22 +23,19 @@ export class PlayersComponent implements OnInit{
     this.ar.params.subscribe(params => {
       this.campaignId = params['id'];
       // Use this.campaignId to fetch campaign details from the API
-      this.getPlayers(this.campaignId);
+     
 
       this.ms.getPlayersByCampaignId(this.campaignId)
       .subscribe({
-        next: (data) => this.players = data,
+        next: (data:any) => {
+          this.players = data.$values;
+          console.log("Players: ", data.$values);
+        },
         error: (e) => console.error(e)
       });
     }
     
 );
-  }
-
-  getPlayers(campaignId: number): void {
-    this.ms.getPlayersByCampaignId(campaignId).subscribe(players => {
-      this.players = players;
-    });
   }
 
   selectPlayer(selectedPlayer: Player): void {

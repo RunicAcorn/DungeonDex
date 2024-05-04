@@ -25,7 +25,7 @@ export class PlayerService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.get<Player[]>(`${this.apiUrl}/${campaignId}`, {headers});
+    return this.http.get<Player[]>(`${this.testApiUrl}/${campaignId}`, {headers});
 
   }
 

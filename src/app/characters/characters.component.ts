@@ -23,8 +23,6 @@ export class CharactersComponent implements OnInit{
     this.ar.params.subscribe(params => {
       this.campaignId = params['id'];
       // Use this.campaignId to fetch campaign details from the API
-      this.getCharacters(this.campaignId);
-
       this.cs.getCharacterByCampaignId(this.campaignId)
       .subscribe({
         next: (data) => this.characters = data,
@@ -35,17 +33,8 @@ export class CharactersComponent implements OnInit{
 );
   }
 
-  getCharacters(campaignId: number): void {
-    this.cs.getCharacterByCampaignId(campaignId).subscribe({
-      next: 
-        (data: any) => {
-          this.characters = data.$values;
-          console.log("Monsters: ", data.$values);
-        }
-      ,
-      error: (e) => console.error(e)
-    });
-  }
+  
+
 
   selectCharacter(selected: Character): void {
     console.log("Selected Character: " + selected);

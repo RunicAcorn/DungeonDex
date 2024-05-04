@@ -14,7 +14,11 @@ import { Campaign } from '../campaign.interface';
   styleUrl: './newcampaignform.component.scss'
 })
 export class NewcampaignformComponent {
-  campaign!: Campaign
+  campaign: Campaign = {
+    name: '',
+    description: '',
+    userId: ''
+  };
   user!: string;
 
   constructor(private campaignServ: CampaignService, private userService: UserService, private router: Router) { }

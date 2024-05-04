@@ -23,7 +23,7 @@ export class CharacterService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.get<Character[]>(`${this.apiUrl}/${campaignId}`, {headers});
+    return this.http.get<Character[]>(`${this.testApiUrl}/${campaignId}`, {headers});
 
   }
 
@@ -42,7 +42,7 @@ export class CharacterService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.put( this.apiUrl, character, {headers});
+    return this.http.put( this.testApiUrl, character, {headers});
   }
 
   deleteCharacter(character: Character): Observable<any> {
@@ -52,7 +52,7 @@ export class CharacterService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.delete(`${this.apiUrl}/${character.id}`, {headers});
+    return this.http.delete(`${this.testApiUrl}/${character.id}`, {headers});
   }
 
 }
