@@ -24,21 +24,23 @@ export class LocationsComponent implements OnInit{
     this.ar.params.subscribe(params => {
       this.campaignId = params['id'];
       // Use this.campaignId to fetch campaign details from the API
-      this.getLocation(this.campaignId);
+      this.getLocations(this.campaignId);
 
-      this.ls.getLocationByCampaignId(this.campaignId)
-      .subscribe({
-        next: (data) => this.locations = data,
-        error: (e) => console.error(e)
-      });
+
     }
     
 );
   }
 
-  getLocation(campaignId: number): void {
-    this.ls.getLocationByCampaignId(campaignId).subscribe(locations => {
-      this.locations = locations;
+  getLocations(campaignId: number): void {
+    this.ls.getLocationByCampaignId(campaignId).subscribe({
+      next: 
+        (data: any) => {
+          this.locations = data.$values;
+          console.log("Locations: ", data.$values);
+        }
+      ,
+      error: (e) => console.error(e)
     });
   }
 
