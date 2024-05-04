@@ -15,8 +15,10 @@ export class CampaignService {
   constructor(private http: HttpClient) { }
 
   createCampaign(campaign: Campaign) : Observable<any> {
-    return this.http.post<Campaign>(this.testUrl + '/create', campaign);
+    return this.http.post<Campaign>(this.testUrl, campaign);
   }
+
+
   getCampaignsByUserId(userId: string): Observable<Campaign[]> {
     const jwtToken = sessionStorage.getItem('jwtToken');
 
@@ -27,12 +29,14 @@ export class CampaignService {
   
     // Set headers with JWT token for authentication
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${jwtToken}`
+      'Authorization': `Bearer ${jwtToken}`,
+      'Content-Type': 'application/json'
     });
+    console.log("RErERER" + userId);
 
-    return this.http.get<Campaign[]>('https://dungeonapi.azurewebsites.net/api/campaign/campaigns',{ 
-      headers
-      });
+    const body = JSON.stringify({ userId });
+
+    return this.http.post<Campaign[]>(this.testUrl + '/Get',   body, { headers});
   }
 
 

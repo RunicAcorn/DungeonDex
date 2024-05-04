@@ -1,5 +1,5 @@
 // user.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from '../user-service.service';
 import { Router } from '@angular/router';
 import { CampaignListComponent } from '../campaign-list/campaign-list.component';
@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class MenuComponent {
   username: string ='';
+  userId: string = '';
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -21,6 +22,8 @@ export class MenuComponent {
     this.userService.getUsername().subscribe(
       (response: any) => {
         this.username = response.user;
+        this.userId = response.id;
+        console.log('Username retrieved successfully:', response);
       },
       (error: any) => {
         console.error('Error retrieving username:', error);

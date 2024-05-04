@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Campaign } from '../campaign.interface';
 import { Router } from '@angular/router';
 import { EditCampaignComponent } from '../edit-campaign/edit-campaign.component';
+import { UserService } from '../user-service.service';
 
 @Component({
   selector: 'app-campaign-list',
@@ -17,7 +18,7 @@ export class CampaignListComponent implements OnInit {
   @Output() editCampaignEmit = new EventEmitter<Campaign>();
 
   showEditComponent = false;
-
+  userId!: string;
   campaigns: Campaign[] = [];
   selectedCampaign!: Campaign;
 
@@ -27,12 +28,25 @@ export class CampaignListComponent implements OnInit {
      this.selectedCampaign = campaign;
   }
 
-  constructor(private campaignService: CampaignService, private router: Router ) {
+  constructor(private campaignService: CampaignService, private router: Router, private userService: UserService) {
    
    }
 
   ngOnInit(): void {
-    this.getCampaigns();
+    this.userService.getUsername().subscribe(
+      (userIdData: any) => {
+        this.userId = userIdData.userId;
+        
+        this.getCampaigns();
+      },
+      (error: any) => {
+        console.error('Error retrieving userId:', error);
+      }
+
+    );
+
+    
+
   }
 
   toggleShowEdit(){
@@ -65,18 +79,21 @@ export class CampaignListComponent implements OnInit {
     this.toggleShowEdit();
   }
 
+;
+  
   getCampaigns(): void {
     // Assuming you have the user ID, replace 'userIdValue' with the actual user ID
-    const userId = 'userIdValue';
-
-    this.campaignService.getCampaignsByUserId(userId).subscribe(
-      campaigns => {
-        this.campaigns = campaigns;
+     
+    console.log('trying from getcampt '+ this.userId)
+    this.campaignService.getCampaignsByUserId(this.userId).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.campaigns = response.$values;
       },
-      error => {
+      error: (error) => {
         console.error('Error fetching campaigns:', error);
       }
-    );
+    });
   }
 
   /*
