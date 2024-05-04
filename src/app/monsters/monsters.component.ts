@@ -26,20 +26,26 @@ export class MonstersComponent implements OnInit{
       // Use this.campaignId to fetch campaign details from the API
       this.getMonsters(this.campaignId);
 
-      this.ms.getMonstersByCampaignId(this.campaignId)
-      .subscribe({
-        next: (data) => this.monsters = data,
-        error: (e) => console.error(e)
-      });
+     
     }
     
 );
   }
 
   getMonsters(campaignId: number): void {
-    this.ms.getMonstersByCampaignId(campaignId).subscribe(monsters => {
-      this.monsters = monsters;
+    this.ms.getMonstersByCampaignId(campaignId).subscribe({
+      next: 
+        (data: any) => {
+          this.monsters = data.$values;
+          console.log("Monsters: ", data.$values);
+        }
+      ,
+      error: (e) => console.error(e)
     });
+    
+
+
+
   }
 
   selectMonster(selectedMonster: Monster): void {

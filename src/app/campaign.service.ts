@@ -15,7 +15,7 @@ export class CampaignService {
   constructor(private http: HttpClient) { }
 
   createCampaign(campaign: Campaign) : Observable<any> {
-    return this.http.post<Campaign>(this.testUrl, campaign);
+    return this.http.post<Campaign>(this.apiUrl, campaign);
   }
 
 
@@ -32,11 +32,10 @@ export class CampaignService {
       'Authorization': `Bearer ${jwtToken}`,
       'Content-Type': 'application/json'
     });
-    console.log("RErERER" + userId);
 
     const body = JSON.stringify({ userId });
 
-    return this.http.post<Campaign[]>(this.testUrl + '/Get',   body, { headers});
+    return this.http.post<Campaign[]>(this.apiUrl + '/Get',   body, { headers});
   }
 
 
