@@ -27,6 +27,7 @@ import { LocationDetailsComponent } from './location-details/location-details.co
 import { CharacterFormComponent } from './character-form/character-form.component';
 import { PlayersComponent } from './players/players.component';
 import { PlayerFormComponent } from './player-form/player-form.component';
+import { CharacterDetailsComponent } from './character-details/character-details.component';
 
 export const routes: Routes = [
     {path: '', component: LoginMenuComponent},
@@ -57,7 +58,8 @@ export const routes: Routes = [
     {path: 'npc/:id', component: NPCsComponent},
     {path: 'item/:id', component: ItemsComponent},
     {path: 'player/:id', component: PlayersComponent},
-    {path: 'player/add/:id', component: PlayerFormComponent}
+    {path: 'player/add/:id', component: PlayerFormComponent},
+    {path: 'character/select/:id', component: CharacterDetailsComponent}
 
   
     

@@ -24,7 +24,7 @@ export class CharacterFormComponent implements OnInit{
     this.ar.params.subscribe(params => {
 
       this.campaignId = params['id'];
-
+      
       this.character = {
         campaignId: this.campaignId,
         name: '',

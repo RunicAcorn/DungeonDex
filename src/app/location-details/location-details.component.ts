@@ -38,6 +38,7 @@ export class LocationDetailsComponent  implements OnInit{
 
       if (this.campaignId) {
         this.locationDetailsForm = this.fb.group({
+          campaignId: [this.campaignId, Validators.required],
           name: [this.location.name, Validators.required],
           description: [this.location.description, Validators.required],
           plane: [this.location.plane, Validators.required]

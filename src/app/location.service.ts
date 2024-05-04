@@ -42,7 +42,7 @@ export class LocationService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.put( this.apiUrl, location, {headers});
+    return this.http.put( this.testApiUrl, location, {headers});
   }
 
   deleteLocation(location: Location): Observable<any> {
