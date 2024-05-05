@@ -1,0 +1,12 @@
+<form (ngSubmit)="submitQuest()" #questForm="ngForm" class="new-quest-form">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="quest.name" required>
+    </div>
+    <div class="form-group">
+        <label for="objective">Objective:</label>
+        <input type="text" id="objective" name="objective" [(ngModel)]="quest.objective" required>
+    </div>
+
+    <button type="submit" [disabled]="!questForm.form.valid">Submit Quest</button>
+</form>

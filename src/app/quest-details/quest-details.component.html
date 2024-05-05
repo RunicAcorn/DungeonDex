@@ -1,0 +1,12 @@
+<form [formGroup]="questDetailsForm"  (ngSubmit)="onSubmit()">
+    <label>
+        Name:
+        <input type="text" formControlName="name">
+    </label><br>
+    <label>
+        Objective:
+        <input type="text" formControlName="objective">
+    </label><br>   
+    
+    <button type="submit">Save</button>
+</form>

@@ -18,6 +18,8 @@ import { MonsterFormComponent } from './monster-form/monster-form.component';
 import { ImageGeneratorComponent } from './image-generator/image-generator.component';
 import { CharactersComponent } from './characters/characters.component';
 import { QuestsComponent } from './quests/quests.component';
+import { QuestFormComponent } from './quest-form/quest-form.component';
+import { QuestDetailsComponent } from './quest-details/quest-details.component';
 import { LocationsComponent } from './locations/locations.component';
 import { NPCsComponent } from './npcs/npcs.component';
 import { NPCFormComponent } from './npc-form/npc-form.component';
@@ -65,7 +67,10 @@ export const routes: Routes = [
     {path: 'player/:id', component: PlayersComponent},
     {path: 'player/add/:id', component: PlayerFormComponent},
     {path: 'player/select/:id', component: PlayerDetailsComponent},
-    {path: 'character/select/:id', component: CharacterDetailsComponent}
+    {path: 'character/select/:id', component: CharacterDetailsComponent},
+    {path: 'quest/add/:id', component: QuestFormComponent},
+    {path: 'quest/select/:id', component: QuestDetailsComponent},
+    {path: '**', redirectTo: ''}
 
   
     

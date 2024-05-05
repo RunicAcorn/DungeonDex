@@ -1,1 +1,15 @@
-<p>quests works!</p>
+<p>Quests works!</p>
+
+<ul class="quest-list">
+    <li *ngFor="let quest of quests">
+      <div class="quest-list">
+        <h3>{{ quest.name }}</h3>
+      </div>
+      <div class="button-container">
+        <button (click)="selectQuest(quest)">Select</button>
+        <button (click)="deleteQuest(quest)">Delete</button>
+      </div>
+    </li>
+</ul>
+<button (click)="addQuest()">Add Quest</button>
+<button (click)="backToCodex()">Return to Codex</button>
