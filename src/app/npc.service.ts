@@ -52,7 +52,7 @@ export class NPCService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.delete(`${this.apiUrl}/${NPC.id}`, {headers});
+    return this.http.delete(`${this.testApiUrl}/${NPC.id}`, {headers});
   }
 
 }
