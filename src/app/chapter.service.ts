@@ -20,7 +20,7 @@ export class ChapterService {
 
   
 
-  getChaptersByCampaignId(campaignId: number): Observable<any[]> {
+  getChaptersByCampaignId(campaignId: number): Observable<any> {
 
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');

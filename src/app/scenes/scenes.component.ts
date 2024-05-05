@@ -45,7 +45,7 @@ export class ScenesComponent implements OnInit{
     this.ss.getScenes(this.chapterId)
     .subscribe({
       next: (data) => {
-        this.scenes = data;
+        this.scenes = data.$values;
       },
       error: (err) => console.error("Error getting scenes: ", err)
     });

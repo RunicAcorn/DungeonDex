@@ -16,7 +16,7 @@ import { CreateChapterComponent } from '../create-chapter/create-chapter.compone
 export class StoryComponent {
  
   campaignId!: number;
-  chapters: Chapter[] = [];
+  chapters!: any[];
   
   constructor
   (
@@ -32,9 +32,13 @@ export class StoryComponent {
       // Use this.campaignId to fetch campaign details from the API
       this.chapterService.getChaptersByCampaignId(this.campaignId)
       .subscribe({
-        next: (data) => this.chapters = data,
+        next: (data) => this.chapters = data.$values,
         error: (e) => console.error(e)
       });
+
+    
+    
+    
 
     });
     
