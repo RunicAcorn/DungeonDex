@@ -20,6 +20,8 @@ import { CharactersComponent } from './characters/characters.component';
 import { QuestsComponent } from './quests/quests.component';
 import { LocationsComponent } from './locations/locations.component';
 import { NPCsComponent } from './npcs/npcs.component';
+import { NPCFormComponent } from './npc-form/npc-form.component';
+import { NPCDetailsComponent } from './npc-details/npc-details.component';
 import { ItemsComponent } from './items/items.component';
 import { MonsterDetailsComponent } from './monster-details/monster-details.component';
 import { LocationFormComponent } from './location-form/location-form.component';
@@ -57,6 +59,8 @@ export const routes: Routes = [
     {path: 'location/add/:id', component: LocationFormComponent},
     {path: 'location/select/:id', component: LocationDetailsComponent},
     {path: 'npc/:id', component: NPCsComponent},
+    {path: 'npc/add/:id', component: NPCFormComponent},
+    {path: 'npc/select/:id', component: NPCDetailsComponent},
     {path: 'item/:id', component: ItemsComponent},
     {path: 'player/:id', component: PlayersComponent},
     {path: 'player/add/:id', component: PlayerFormComponent},

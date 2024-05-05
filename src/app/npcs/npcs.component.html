@@ -1,1 +1,16 @@
-<p>npcs works!</p>
+<p>NPC works!</p>
+
+<ul class="npc-list">
+    <li *ngFor="let npc of npcs">
+      <div class="npc-list">
+        <h3>{{ npc.name }}</h3>
+      </div>
+      <div class="button-container">
+
+        <button (click)="selectNPC(npc)">Select</button>
+        <button (click)="deleteNPC(npc)">Delete</button>
+      </div>
+    </li>
+    <button (click)="addNPC()">Add NPC</button>
+    <button (click)="backToCodex()">Return to Codex</button>
+  </ul>

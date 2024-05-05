@@ -37,6 +37,7 @@ export class CodexComponent {
     this.router.navigate(['/location', this.campaignId])
   }
 
+
   toQuests(): void{ 
     this.router.navigate(['/quest', this.campaignId])
   }
