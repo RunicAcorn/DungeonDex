@@ -1,1 +1,24 @@
-<p>npc-details works!</p>
+<form [formGroup]="npcDetailsForm" (ngSubmit)="onSubmit()">
+    <label>
+        Name:
+        <input type="text" formControlName="name">
+    </label><br>
+    <label>
+        Race:
+        <input type="text" formControlName="race">
+    </label><br>
+    <label>
+        Age:
+        <input type="number" formControlName="age">
+    </label><br>
+    <label>
+        Description:
+        <input type="text" formControlName="description">
+    </label><br>
+    <label>
+        Notes:
+        <input type="text" formControlName="notes">
+    </label><br>   
+
+    <button type="submit">Save</button>
+</form>
