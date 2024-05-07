@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -56,8 +56,48 @@ namespace API
                 return BadRequest("An error occurred while creating the item.");
             }
         }
-        
-        [HttpPut]
+    [HttpPost]
+    [Route("weapon/add")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
+    public async Task<IActionResult> AddWeapon([FromBody] WeaponDTO weapon)
+    {
+      try
+      {
+        await _itemService.CreateWeaponAsync(weapon);
+        return Ok();
+      }
+      catch (ArgumentException ex)
+      {
+        return BadRequest(ex.Message);
+      }
+      catch
+      {
+        return BadRequest("An error occurred while creating the item.");
+      }
+    }
+    [HttpPost]
+    [Route("potion/add")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
+    public async Task<IActionResult> AddPotion([FromBody] PotionDTO potion)
+    {
+      try
+      {
+        await _itemService.CreatePotionAsync(potion);
+        return Ok();
+      }
+      catch (ArgumentException ex)
+      {
+        return BadRequest(ex.Message);
+      }
+      catch
+      {
+        return BadRequest("An error occurred while creating the item.");
+      }
+    }
+
+    [HttpPut]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
         public async Task<IActionResult> UpdateItem([FromBody] ItemDTO item)

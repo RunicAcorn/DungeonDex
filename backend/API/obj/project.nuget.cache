@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NKujOdvE9t/M2R1GoTXyXX20dbseyMmpkO7RjNRKSZIxPhC2bI/b9+Vf9j4HKnLIt/QrBRDtI1n1ZoBc7ALUuA==",
+  "dgSpecHash": "XqEMXuk8N9UgyJ6mcM3yT4sgDxFBBpPjMkzvuRPuKa7+cZjtx78GXHhZ29dwJ0VYH4+rgGeRDVyHolEobIl6LQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Justi\\source\\repos\\DM2\\Everything\\API\\API.csproj",
+  "projectFilePath": "E:\\Dev\\Angular\\DungeonDex\\backend\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Justi\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Justi\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

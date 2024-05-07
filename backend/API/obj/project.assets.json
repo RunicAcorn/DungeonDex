@@ -5478,11 +5478,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Justi\\source\\repos\\DM2\\Everything\\API\\API.csproj",
+      "projectUniqueName": "E:\\Dev\\Angular\\DungeonDex\\backend\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\Justi\\source\\repos\\DM2\\Everything\\API\\API.csproj",
+      "projectPath": "E:\\Dev\\Angular\\DungeonDex\\backend\\API\\API.csproj",
       "packagesPath": "C:\\Users\\Justi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Justi\\source\\repos\\DM2\\Everything\\API\\obj\\",
+      "outputPath": "E:\\Dev\\Angular\\DungeonDex\\backend\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

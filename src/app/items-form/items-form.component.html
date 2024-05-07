@@ -7,6 +7,19 @@
         <label for="description">Description:</label>
         <input type="text" id="description" name="description" [(ngModel)]="item.description" required>
     </div>
+    <div class="form-group">
+        <label for="description">Type:</label>
+        <input type="text" id="description" name="description" [(ngModel)]="item.type" required>
+    </div>
+    <div *ngIf="item.type.toLowerCase() === 'weapon'" class="form-group">
+        <label for="damageDice">Damage Dice:</label>
+        <input type="text" id="damageDice" name="damageDice" [(ngModel)]="weapon.damageDice">
+    </div>
+    <div *ngIf="item.type.toLowerCase() === 'potion'" class="form-group">
+        <label for="potionEffect">Potion Effect:</label>
+        <input type="text" id="potionEffect" name="potionEffect" [(ngModel)]="potion.effect">
+    </div>
+
 
     <button type="submit" [disabled]="!itemForm.form.valid">Submit Item</button>
 </form>

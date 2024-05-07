@@ -73,4 +73,28 @@ export class ItemService {
 
     return this.httpclient.delete(`${this.testApiUrl}/${itemData.id}`, {headers});
   }
+
+  createWeapon(weaponData: Item): Observable<Item> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
+
+    return this.httpclient.post<Item>(`${this.testApiUrl}/weapon/add`, weaponData, {headers});
+  }
+
+  createPotion(potionData: Item): Observable<Item> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
+
+    return this.httpclient.post<Item>(`${this.testApiUrl}/potion/add`, potionData, {headers});
+  }
 }

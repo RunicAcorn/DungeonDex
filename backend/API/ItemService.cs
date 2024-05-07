@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace API
 {
@@ -55,6 +55,34 @@ namespace API
             _context.Items.Remove(item);
             await _context.SaveChangesAsync();
         }
+
+    public async Task CreateWeaponAsync(WeaponDTO weapon)
+    {
+      var newWeapon = new Weapon
+      {
+        Campaign = _context.Campaigns.Find(weapon.CampaignId),
+        Name = weapon.Name,
+        Description = weapon.Description,
+        DamageDice = weapon.DamageDice,
+      };
+
+      _context.Items.Add(newWeapon);
+      await _context.SaveChangesAsync();
+
+    }
+    public async Task CreatePotionAsync(PotionDTO potion)
+    {
+      var newPotion = new Potion
+      {
+        Campaign = _context.Campaigns.Find(potion.CampaignId),
+        Name = potion.Name,
+        Description = potion.Description,
+        Effect = potion.Effect,
+      };
+
+      _context.Items.Add(newPotion);
+      await _context.SaveChangesAsync();
+    }
 
 
     }
