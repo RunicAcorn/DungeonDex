@@ -399,3 +399,5 @@ E:\Dev\Angular\DungeonDex\backend\API\obj\Debug\net8.0\refint\API.dll
 E:\Dev\Angular\DungeonDex\backend\API\obj\Debug\net8.0\API.pdb
 E:\Dev\Angular\DungeonDex\backend\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 E:\Dev\Angular\DungeonDex\backend\API\obj\Debug\net8.0\ref\API.dll
+E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\AutoMapper.dll
+E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

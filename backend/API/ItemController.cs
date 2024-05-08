@@ -56,6 +56,7 @@ namespace API
                 return BadRequest("An error occurred while creating the item.");
             }
         }
+    /*
     [HttpPost]
     [Route("weapon/add")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -96,7 +97,8 @@ namespace API
         return BadRequest("An error occurred while creating the item.");
       }
     }
-
+    */
+  
     [HttpPut]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 

@@ -39,11 +39,15 @@ export class ItemDetailsComponent implements OnInit {
         });
 
         this.itemDetailsForm.patchValue(this.item);
+
+        console.log("Item: ", this.item.constructor.name);
       }
     });  
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+   
+  }
 
   onSubmit(): void {
     Object.assign(this.item, this.itemDetailsForm.value);

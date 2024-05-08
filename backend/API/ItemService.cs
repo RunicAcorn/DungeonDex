@@ -1,35 +1,45 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 namespace API
 {
-    public class ItemService
+  public class ItemService
+  {
+    private readonly ApplicationDbContext _context;
+    private readonly IMapper _mapper;
+
+    public ItemService(ApplicationDbContext context, IMapper mapper)
     {
-        private readonly ApplicationDbContext _context;
-        public ItemService(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-        public async Task CreateItemAsync(ItemDTO itemDTO)
-        {
-            var item = new Item
-            {
-                Campaign = _context.Campaigns.Find(itemDTO.CampaignId),
-                Name = itemDTO.Name,
-                Description = itemDTO.Description
-            };
-            _context.Items.Add(item);
-            await _context.SaveChangesAsync();
-          
-        }
+      _context = context;
+      _mapper = mapper;
+    }
+    public async Task CreateItemAsync(ItemDTO itemDTO)
+    {
 
-        public async Task<List<Item>> GetAllItemsAsync(int campaignId)
-        {
-            return await _context.Items
-                .Where(i => i.Campaign.CampaignId == campaignId)
-                .ToListAsync();
-        }
 
-        public async Task UpdateItemAsync(ItemDTO itemDTO)
+      // Map from ItemDTO to Item
+      var item = _mapper.Map<Item>(itemDTO);
+
+      _context.Items.Add(item);
+      await _context.SaveChangesAsync();
+
+    }
+  
+        
+
+    public async Task<List<ItemDTO>> GetAllItemsAsync(int campaignId)
+    {
+      var items = await _context.Items
+          .Where(i => i.Campaign.CampaignId == campaignId)
+          .ToListAsync();
+
+      var itemDTOs = _mapper.Map<List<ItemDTO>>(items);
+
+      return itemDTOs;
+    }
+
+
+    public async Task UpdateItemAsync(ItemDTO itemDTO)
         {
             var item = await _context.Items.FindAsync(itemDTO.Id);
             if (item == null)
@@ -58,6 +68,7 @@ namespace API
 
     public async Task CreateWeaponAsync(WeaponDTO weapon)
     {
+
       var newWeapon = new Weapon
       {
         Campaign = _context.Campaigns.Find(weapon.CampaignId),

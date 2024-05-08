@@ -44,37 +44,27 @@ export class ItemsFormComponent implements OnInit {
   }
 
   submitItem(): void {
-
     this.item.type = this.item.type.toLowerCase();
+    let itemToSend;
+  
     switch (this.item.type) {
-      default:
-      this.is.createItem(this.item).subscribe({
-        next: (data) => {
-          console.log(data);
-          this.router.navigate(['/item', this.campaignId]);
-        },
-        error: (e) => console.error(e)
-      });
-      break;
       case 'weapon':
-        this.weapon = {...this.item, damageDice: this.weapon.damageDice};
-      this.is.createWeapon(this.weapon).subscribe({
-        next: (data) => {
-          console.log(data);
-          this.router.navigate(['/item', this.campaignId]);
-        },
-        error: (e) => console.error(e)
-      });
-      break;
+        this.weapon = {...this.item, damageDice: this.weapon.damageDice, campaignId: this.campaignId};
+        itemToSend = this.weapon;
+        break;
       case 'potion':
-        this.potion = {...this.item, effect: this.potion.effect};
-      this.is.createPotion(this.potion).subscribe({
-        next: (data) => {
-          console.log(data);
-          this.router.navigate(['/item', this.campaignId]);
-        },
-        error: (e) => console.error(e)
-      });
-  }
+        itemToSend = this.potion;
+        break;
+      default:
+        itemToSend = this.item;
+    }
+  
+    this.is.createItem(itemToSend).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.router.navigate([`/item`, this.campaignId]);
+      },
+      error: (e) => console.error(e)
+    });
 }
 }

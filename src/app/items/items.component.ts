@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { Item } from '../item';
+import { Item, Potion, Weapon } from '../item';
 import { ItemService } from '../item.service';
 
 @Component({
@@ -35,9 +35,28 @@ export class ItemsComponent implements OnInit {
     });
   }
 
-  selectItem(selected: Item): void {
-    console.log("Selected Item: " + selected);
-    this.router.navigate(['/item/select', this.campaignId], {state: {item: selected}});
+  selectItem(selected: Item | Weapon | Potion): void {
+    console.log("Selected Item: " + selected.type);
+ /*
+    let route: string;
+    let state: any;
+
+    switch (selected.type.toLowerCase()) {
+      case 'weapon':
+        route = '/weapon/select';
+        state = {weapon: selected};
+        break;
+      case 'potion':
+        route = '/potion/select';
+        state = {potion: selected};
+        break;
+      default:
+        route = '/item/select';
+        state = {item: selected};
+    }
+
+    this.router.navigate([route, this.campaignId], {state: state});
+    */
   }
 
   addItem(): void {

@@ -17,6 +17,8 @@ using System.Text.Json.Serialization; // Add this using directive
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 // Configure services
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -45,6 +47,8 @@ builder.Services.AddScoped<CampaignService>();
 builder.Services.AddScoped<NPCService>();
 builder.Services.AddScoped<QuestService>();
 builder.Services.AddScoped<ItemService>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()

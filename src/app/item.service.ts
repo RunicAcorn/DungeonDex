@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Item } from './item';
+import { Item, Potion, Weapon } from './item';
 
 @Injectable({
   providedIn: 'root'
@@ -74,7 +74,7 @@ export class ItemService {
     return this.httpclient.delete(`${this.testApiUrl}/${itemData.id}`, {headers});
   }
 
-  createWeapon(weaponData: Item): Observable<Item> {
+  createWeapon(weaponData: Weapon): Observable<Item> {
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');
     } 
@@ -96,5 +96,53 @@ export class ItemService {
     });
 
     return this.httpclient.post<Item>(`${this.testApiUrl}/potion/add`, potionData, {headers});
+  }
+
+  updateWeapon(weaponData: Weapon): Observable<Weapon> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
+  
+    return this.httpclient.put<Weapon>(`${this.testApiUrl}/weapon/update`, weaponData, {headers});
+  }
+  
+  deleteWeapon(weaponData: Weapon): Observable<any> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
+  
+    return this.httpclient.delete(`${this.testApiUrl}/weapon/delete/${weaponData.id}`, {headers});
+  }
+  
+  updatePotion(potionData: Potion): Observable<Potion> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
+  
+    return this.httpclient.put<Potion>(`${this.testApiUrl}/potion/update`, potionData, {headers});
+  }
+  
+  deletePotion(potionData: Potion): Observable<any> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
+  
+    return this.httpclient.delete(`${this.testApiUrl}/potion/delete/${potionData.id}`, {headers});
   }
 }

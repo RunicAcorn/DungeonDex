@@ -323,38 +323,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "API.ItemController",
-    "Method": "AddPotion",
-    "RelativePath": "api/Item/potion/add",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "potion",
-        "Type": "API.PotionDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.ItemController",
-    "Method": "AddWeapon",
-    "RelativePath": "api/Item/weapon/add",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "weapon",
-        "Type": "API.WeaponDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "API.LocationController",
     "Method": "AddLocation",
     "RelativePath": "api/Location",
