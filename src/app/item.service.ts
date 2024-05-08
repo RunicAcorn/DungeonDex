@@ -38,7 +38,7 @@ export class ItemService {
     return this.httpclient.get<Item>(`${this.testApiUrl}/${itemId}`, {headers});
   }
 
-  createItem(itemData: Item): Observable<Item> {
+  createItem(itemData: Item | Weapon | Potion): Observable<Item> {
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');
     } 
@@ -47,10 +47,19 @@ export class ItemService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.httpclient.post<Item>(this.testApiUrl, itemData, {headers});
+    switch (itemData.type) {
+      case 'weapon':
+        return this.httpclient.post<Weapon>(`${this.testApiUrl}/weapon/add`, itemData, {headers});
+      case 'potion':
+        return this.httpclient.post<Potion>(`${this.testApiUrl}/potion/add`, itemData, {headers});
+      default:
+        return this.httpclient.post<Item>(this.testApiUrl, itemData, {headers});
+    }
+
+    
   }
 
-  updateItem(itemData: Item): Observable<Item> {
+  updateItem(itemData: Item ): Observable<Item> {
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');
     } 
@@ -83,10 +92,10 @@ export class ItemService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.httpclient.post<Item>(`${this.testApiUrl}/weapon/add`, weaponData, {headers});
+    return this.httpclient.post<Weapon>(`${this.testApiUrl}/weapon/add`, weaponData, {headers});
   }
 
-  createPotion(potionData: Item): Observable<Item> {
+  createPotion(potionData: Potion): Observable<Item> {
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');
     } 
@@ -95,7 +104,7 @@ export class ItemService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.httpclient.post<Item>(`${this.testApiUrl}/potion/add`, potionData, {headers});
+    return this.httpclient.post<Potion>(`${this.testApiUrl}/potion/add`, potionData, {headers});
   }
 
   updateWeapon(weaponData: Weapon): Observable<Weapon> {

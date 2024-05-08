@@ -12,6 +12,6 @@ public class CampaignResolver : IValueResolver<ItemDTO, Item, Campaign>
 
   public Campaign Resolve(ItemDTO source, Item destination, Campaign destMember, ResolutionContext context)
   {
-    return _context.Campaigns.Find(source.CampaignId);
+    return _context.Campaigns.Where(c => c.CampaignId == source.CampaignId).FirstOrDefault();
   }
 }

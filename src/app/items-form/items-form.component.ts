@@ -38,6 +38,7 @@ export class ItemsFormComponent implements OnInit {
       
 
       this.weapon = {...this.item, damageDice: ''};
+      this.potion = {...this.item, effect: ''};
 
       console.log("item is", this.item);
     });
@@ -53,6 +54,7 @@ export class ItemsFormComponent implements OnInit {
         itemToSend = this.weapon;
         break;
       case 'potion':
+        this.potion = {...this.item, effect: this.potion.effect, campaignId: this.campaignId};
         itemToSend = this.potion;
         break;
       default:

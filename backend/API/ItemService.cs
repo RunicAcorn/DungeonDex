@@ -15,12 +15,14 @@ namespace API
     }
     public async Task CreateItemAsync(ItemDTO itemDTO)
     {
-
-
       // Map from ItemDTO to Item
       var item = _mapper.Map<Item>(itemDTO);
 
+      //TODO: This is a hack to get the campaign. We should use a resolver.
+      item.Campaign = await _context.Campaigns.FindAsync(itemDTO.CampaignId);
+
       _context.Items.Add(item);
+
       await _context.SaveChangesAsync();
 
     }

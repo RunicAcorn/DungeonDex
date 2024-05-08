@@ -48,6 +48,10 @@ builder.Services.AddScoped<NPCService>();
 builder.Services.AddScoped<QuestService>();
 builder.Services.AddScoped<ItemService>();
 
+builder.Services.AddTransient<CampaignResolver>();
+
+builder.Services.AddScoped<CampaignResolver>();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -58,6 +62,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
 });
+
+
 
 builder.Services.AddCors(options =>
     {
