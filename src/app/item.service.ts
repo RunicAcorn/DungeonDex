@@ -38,7 +38,7 @@ export class ItemService {
     return this.httpclient.get<Item>(`${this.testApiUrl}/${itemId}`, {headers});
   }
 
-  createItem(itemData: Item | Weapon | Potion): Observable<Item> {
+  createItem(itemData: Item | Weapon | Potion ): Observable<Item> {
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');
     } 

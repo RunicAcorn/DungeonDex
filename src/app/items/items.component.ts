@@ -14,6 +14,8 @@ import { ItemService } from '../item.service';
 })
 export class ItemsComponent implements OnInit {
   items: Item[] = [];
+  weapons: Weapon[] = [];
+  potions: Potion[] = [];
   campaignId!: number;
 
   constructor(private ar: ActivatedRoute, private is: ItemService, private router: Router) {}
@@ -28,7 +30,11 @@ export class ItemsComponent implements OnInit {
   getItems(campaignId: number): void {
     this.is.getItemsByCampaignId(campaignId).subscribe({
       next: (data: any) => {
+        console.log("Data: ", data.$values);
         this.items = data.$values;
+        this.weapons = data.$values.filter((item: { type: string; }) => item.type === 'Weapon') as Weapon[];
+        this.potions = data.$values.filter((item: { type: string; }) => item.type === 'Potion') as Potion[];
+
         console.log("Items: ", data.$values);
       },
       error: (e) => console.error(e)
@@ -37,7 +43,7 @@ export class ItemsComponent implements OnInit {
 
   selectItem(selected: Item | Weapon | Potion): void {
     console.log("Selected Item: " + selected.type);
- /*
+ 
     let route: string;
     let state: any;
 
@@ -56,7 +62,7 @@ export class ItemsComponent implements OnInit {
     }
 
     this.router.navigate([route, this.campaignId], {state: state});
-    */
+    
   }
 
   addItem(): void {

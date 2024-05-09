@@ -40,7 +40,7 @@ export class ItemDetailsComponent implements OnInit {
 
         this.itemDetailsForm.patchValue(this.item);
 
-        console.log("Item: ", this.item.constructor.name);
+       
       }
     });  
   }

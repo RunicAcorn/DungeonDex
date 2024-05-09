@@ -27,6 +27,7 @@ import { NPCDetailsComponent } from './npc-details/npc-details.component';
 import { ItemsComponent } from './items/items.component';
 import { ItemsFormComponent } from './items-form/items-form.component';
 import { ItemDetailsComponent } from './items-details/items-details.component';
+import { PotionDetailsComponent} from './potion-details/potion-details.component';
 import { MonsterDetailsComponent } from './monster-details/monster-details.component';
 import { LocationFormComponent } from './location-form/location-form.component';
 import { LocationDetailsComponent } from './location-details/location-details.component';
@@ -68,6 +69,7 @@ export const routes: Routes = [
     {path: 'item/:id', component: ItemsComponent},
     {path: 'item/add/:id', component: ItemsFormComponent},
     {path: 'item/select/:id', component: ItemDetailsComponent},
+    {path: 'potion/select/:id', component: PotionDetailsComponent},
     {path: 'player/:id', component: PlayersComponent},
     {path: 'player/add/:id', component: PlayerFormComponent},
     {path: 'player/select/:id', component: PlayerDetailsComponent},

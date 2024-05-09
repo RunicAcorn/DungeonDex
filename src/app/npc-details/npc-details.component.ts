@@ -25,7 +25,7 @@ export class NPCDetailsComponent implements OnInit {
   ) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras.state) {
-      this.npc = navigation.extras.state['NPC'];
+      this.npc = navigation.extras.state['NPChen'];
     }
 
     this.ar.params.subscribe(params => {

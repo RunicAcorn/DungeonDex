@@ -1,0 +1,17 @@
+<form [formGroup]="potionDetailsForm" (ngSubmit)="onSubmit()">
+    <label>
+        Name:
+        <input type="text" formControlName="name">
+    </label><br>
+    <label>
+        Description:
+        <input type="text" formControlName="description">
+    </label><br>   
+    <label>
+        Effect:
+        <input type="text" formControlName="effect">
+    </label><br>   
+   
+
+    <button type="submit">Save</button>
+</form>

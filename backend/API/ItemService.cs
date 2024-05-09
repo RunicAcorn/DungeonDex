@@ -6,38 +6,47 @@ namespace API
   public class ItemService
   {
     private readonly ApplicationDbContext _context;
-    private readonly IMapper _mapper;
 
-    public ItemService(ApplicationDbContext context, IMapper mapper)
+    public ItemService(ApplicationDbContext context)
     {
       _context = context;
-      _mapper = mapper;
     }
     public async Task CreateItemAsync(ItemDTO itemDTO)
     {
       // Map from ItemDTO to Item
-      var item = _mapper.Map<Item>(itemDTO);
-
-      //TODO: This is a hack to get the campaign. We should use a resolver.
-      item.Campaign = await _context.Campaigns.FindAsync(itemDTO.CampaignId);
+      var item = new Item
+      {
+        Name = itemDTO.Name,
+        Description = itemDTO.Description,
+        Campaign = _context.Campaigns.Find(itemDTO.CampaignId)
+      };
 
       _context.Items.Add(item);
 
       await _context.SaveChangesAsync();
 
     }
-  
-        
+
+
 
     public async Task<List<ItemDTO>> GetAllItemsAsync(int campaignId)
     {
-      var items = await _context.Items
-          .Where(i => i.Campaign.CampaignId == campaignId)
-          .ToListAsync();
 
-      var itemDTOs = _mapper.Map<List<ItemDTO>>(items);
+
+      var items = await _context.Items.Include(i=> i.Campaign).Where(i => i.Campaign.CampaignId == campaignId).ToListAsync();
+
+      var itemDTOs = items.Select(item => new ItemDTO
+      {
+        Id = item.Id,
+        Name = item.Name,
+        Description = item.Description,
+        CampaignId = item.Campaign.CampaignId,
+        Type = item.GetType().Name
+        // Add additional properties as needed
+      }).ToList();
 
       return itemDTOs;
+
     }
 
 
