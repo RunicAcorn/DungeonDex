@@ -41,7 +41,7 @@ export class ItemsComponent implements OnInit {
     });
   }
 
-  selectItem(selected: Item | Weapon | Potion): void {
+  selectItem(selected: Item): void {
     console.log("Selected Item: " + selected.type);
  
     let route: string;
@@ -50,15 +50,15 @@ export class ItemsComponent implements OnInit {
     switch (selected.type.toLowerCase()) {
       case 'weapon':
         route = '/weapon/select';
-        state = {weapon: selected};
+        state = {weapon: selected.id};
         break;
       case 'potion':
         route = '/potion/select';
-        state = {potion: selected};
+        state = {potion: selected.id};
         break;
       default:
         route = '/item/select';
-        state = {item: selected};
+        state = {item: selected.id};
     }
 
     this.router.navigate([route, this.campaignId], {state: state});

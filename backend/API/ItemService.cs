@@ -49,6 +49,26 @@ namespace API
 
     }
 
+    public async Task<PotionDTO> GetPotionByIdAsync(int id)
+    {
+      var potion = await _context.Items.OfType<Potion>().Include(p => p.Campaign).FirstOrDefaultAsync(p => p.Id == id);
+      if (potion == null)
+      {
+        throw new ArgumentException("Potion not found.");
+      }
+
+      var potionDTO = new PotionDTO
+      {
+        Id = potion.Id,
+        Name = potion.Name,
+        Description = potion.Description,
+        CampaignId = potion.Campaign.CampaignId,
+        Effect = potion.Effect
+      };
+
+      return potionDTO;
+    }
+
 
     public async Task UpdateItemAsync(ItemDTO itemDTO)
         {

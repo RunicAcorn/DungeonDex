@@ -4,17 +4,19 @@ import { FormGroup, FormsModule, Validators, FormBuilder } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { ItemService } from '../item.service';
 import { Potion } from '../item';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-potion-details',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl:   './potion-details.component.html',
   styleUrls: ['./potion-details.component.css']
 })
 export class PotionDetailsComponent implements OnInit {
   potionDetailsForm: FormGroup = new FormGroup({});
     campaignId!: number;
+    potionId!: number;
   potion!: Potion;
 
   constructor(
@@ -25,26 +27,48 @@ export class PotionDetailsComponent implements OnInit {
   ) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras.state) {
-      this.potion = navigation.extras.state['potion'];
+      this.potionId = navigation.extras.state['potion'];
     }
+
+    
+  }
+
+  ngOnInit(): void {
+
+    this.potionDetailsForm = this.fb.group({
+      campaignId: ['', Validators.required],
+      potionName: ['', Validators.required],
+      potionDescription: ['', Validators.required],
+      effect: ['', Validators.required]
+    });
 
     this.ar.params.subscribe(params => {
       this.campaignId = params['id'];
 
       if (this.campaignId) {
-        this.potionDetailsForm = this.fb.group({
-          campaignId: [this.campaignId, Validators.required],
-          name: [this.potion.name, Validators.required],
-          description: [this.potion.description, Validators.required],
-          effect: [this.potion.effect, Validators.required]
-        });
 
-        this.potionDetailsForm.patchValue(this.potion);
+        this.is.getPotionById(this.potionId).subscribe({
+          next: (data: any) => {
+            console.log("Data: ", data);
+            this.potion = data;
+
+         
+        this.potionDetailsForm.patchValue({
+          
+          campaignId: this.campaignId,
+          potionName: this.potion.name,
+          potionDescription: this.potion.description,
+          effect: this.potion.effect
+       
+        });
+          },
+          error: (e) => console.error(e)
+        });
+       
+
+      
       }
     });  
-  }
-
-  ngOnInit(): void {
    
   }
 

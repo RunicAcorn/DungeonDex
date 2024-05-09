@@ -1,1 +1,13 @@
-<p>weapon-details works!</p>
+<form [formGroup]="itemDetailsForm" (ngSubmit)="onSubmit()">
+    <label>
+        Name:
+        <input type="text" formControlName="name">
+    </label><br>
+    <label>
+        Description:
+        <input type="text" formControlName="description">
+    </label><br>   
+   
+
+    <button type="submit">Save</button>
+</form>

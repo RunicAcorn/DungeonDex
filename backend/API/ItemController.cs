@@ -35,6 +35,16 @@ namespace API
             var item = await _itemService.GetAllItemsAsync(id);
             return Ok(item);
         }
+
+    [HttpGet]
+    [Route("potion/{id}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
+    public async Task<IActionResult> GetPotion([FromRoute] int id)
+    {
+      var potion = await _itemService.GetPotionByIdAsync(id);
+      return Ok(potion);
+    }
         
 
         [HttpPost]

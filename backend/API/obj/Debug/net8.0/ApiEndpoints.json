@@ -324,6 +324,22 @@
   },
   {
     "ContainingType": "API.ItemController",
+    "Method": "GetPotion",
+    "RelativePath": "api/Item/potion/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.ItemController",
     "Method": "AddPotion",
     "RelativePath": "api/Item/potion/add",
     "HttpMethod": "POST",

@@ -34,8 +34,8 @@ export class ItemDetailsComponent implements OnInit {
       if (this.campaignId) {
         this.itemDetailsForm = this.fb.group({
           campaignId: [this.campaignId, Validators.required],
-          name: [this.item.name, Validators.required],
-          description: [this.item.description, Validators.required]
+          itemName: [this.item.name, Validators.required],
+          itemDescription: [this.item.description, Validators.required]
         });
 
         this.itemDetailsForm.patchValue(this.item);

@@ -38,6 +38,18 @@ export class ItemService {
     return this.httpclient.get<Item>(`${this.testApiUrl}/${itemId}`, {headers});
   }
 
+  getPotionById(potionId: number): Observable<Potion> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
+  
+    return this.httpclient.get<Potion>(`${this.testApiUrl}/potion/${potionId}`, {headers});
+  }
+
   createItem(itemData: Item | Weapon | Potion ): Observable<Item> {
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');
