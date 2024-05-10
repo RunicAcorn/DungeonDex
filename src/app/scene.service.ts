@@ -20,7 +20,7 @@ export class SceneService {
 
   private jwtToken = sessionStorage.getItem('jwtToken');
 
-  private apiUrl = 'https://dungeonapi.azurewebsites.net/api/scene';
+
  
   private testUrl = 'http://localhost:5082/api/scene';
 
@@ -31,7 +31,7 @@ export class SceneService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.post<any>(`${this.apiUrl}`, sceneData, {headers})
+    return this.http.post<any>(`${this.testUrl}`, sceneData, {headers})
     .pipe(
       catchError(this.handleError)
     );;  
@@ -46,7 +46,7 @@ export class SceneService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.get<any>(`${this.apiUrl + '/scene'}/${sceneId}`, {headers});
+    return this.http.get<any>(`${this.testUrl + '/scene'}/${sceneId}`, {headers});
   }
 
   deleteScene(chapterId: number, sceneId: number): Observable<any> {
@@ -58,7 +58,7 @@ export class SceneService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.delete<any>(`${this.apiUrl}/${chapterId}/${sceneId}`, { headers })
+    return this.http.delete<any>(`${this.testUrl}/${chapterId}/${sceneId}`, { headers })
     .pipe(
       catchError(this.handleError)
     );
@@ -73,7 +73,7 @@ export class SceneService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
   
-    return this.http.get<any>(`${this.apiUrl}/${sceneId}/latest`, {headers});
+    return this.http.get<any>(`${this.testUrl}/${sceneId}/latest`, {headers});
   }
 
   getScenes(chapterId: number): Observable<any> {
@@ -85,7 +85,7 @@ export class SceneService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.get<any>(`${this.apiUrl}/${chapterId}`, {headers});
+    return this.http.get<any>(`${this.testUrl}/${chapterId}`, {headers});
   }
 
   private handleError(error: HttpErrorResponse) {

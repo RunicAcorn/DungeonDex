@@ -6,6 +6,6 @@ import { Observable } from 'rxjs';
 export class NameFetcherService {
   constructor(private httpClient: HttpClient) {}
   getNames(): Observable<any> {
-    return this.httpClient.get<any>(`https://dungeonapi.azurewebsites.net/api/test`);
+    return this.httpClient.get<any>(`http://localhost:5082/api/test`);
   }
 }

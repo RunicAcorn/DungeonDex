@@ -36,6 +36,8 @@ import { PlayersComponent } from './players/players.component';
 import { PlayerFormComponent } from './player-form/player-form.component';
 import { PlayerDetailsComponent } from './player-details/player-details.component';
 import { CharacterDetailsComponent } from './character-details/character-details.component';
+import { WeaponDetailsComponent } from './weapon-details/weapon-details.component';
+
 
 export const routes: Routes = [
     {path: '', component: LoginMenuComponent},
@@ -76,6 +78,7 @@ export const routes: Routes = [
     {path: 'character/select/:id', component: CharacterDetailsComponent},
     {path: 'quest/add/:id', component: QuestFormComponent},
     {path: 'quest/select/:id', component: QuestDetailsComponent},
+    {path: 'weapon/select/:id', component: WeaponDetailsComponent},
     {path: '**', redirectTo: ''}
 
   

@@ -10,7 +10,7 @@ export class QuestService {
 
   constructor(private httpclient: HttpClient) { }
 
-  private apiUrl = 'https://dungeonapi.azurewebsites.net/api/quest';
+
 
   private testApiUrl = 'http://localhost:5082/api/quest';
   private jwtToken = sessionStorage.getItem('jwtToken');

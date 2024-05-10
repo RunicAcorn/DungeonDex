@@ -1,4 +1,4 @@
-﻿namespace API
+namespace API
 {
     public class WeaponDTO : ItemDTO
     {

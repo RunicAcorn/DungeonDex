@@ -16,7 +16,7 @@ namespace API
             _itemService = itemService;
             _context = context;
         }
-        /*
+        
         [HttpGet("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
@@ -25,7 +25,7 @@ namespace API
             var item = await _itemService.GetItemAsync(id);
             return Ok(item);
         }
-        */
+        
         
         [HttpGet("{id}/all")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -45,9 +45,19 @@ namespace API
       var potion = await _itemService.GetPotionByIdAsync(id);
       return Ok(potion);
     }
-        
+    [HttpGet]
+    [Route("weapon/{id}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
-        [HttpPost]
+    public async Task<IActionResult> GetWeapon([FromRoute] int id)
+    {
+      var weapon = await _itemService.GetWeaponByIdAsync(id);
+      return Ok(weapon);
+    }
+
+
+
+    [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
         public async Task<IActionResult> AddItem([FromBody] ItemDTO item)
@@ -129,7 +139,44 @@ namespace API
             }
         }
 
-        [HttpDelete("{id}")]
+    [HttpPut]
+    [Route("weapon/update")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> UpdateWeapon([FromBody] WeaponDTO weapon)
+    {
+      try
+      {
+        await _itemService.UpdateWeaponAsync(weapon);
+        return Ok();
+      } catch (ArgumentException ex)
+      {
+        return BadRequest(ex.Message);
+      } catch
+      {
+        return BadRequest("An error occurred while updating the weapon.");
+      }
+    }
+    [HttpPut]
+    [Route("potion/update")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> UpdatePotion([FromBody] PotionDTO potion)
+    {
+      try
+      {
+        await _itemService.UpdatePotionAsync(potion);
+        return Ok();
+      }
+      catch (ArgumentException ex)
+      {
+        return BadRequest(ex.Message);
+      }
+      catch
+      {
+        return BadRequest("An error occurred while updating the potion.");
+      }
+    }
+
+    [HttpDelete("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
         public async Task<IActionResult> DeleteItem([FromRoute] int id)

@@ -9,13 +9,13 @@ import { catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class CampaignService {
-  private apiUrl = 'https://dungeonapi.azurewebsites.net/api/campaign';
+
   private testUrl = 'http://localhost:5082/api/campaign';
 
   constructor(private http: HttpClient) { }
 
   createCampaign(campaign: Campaign) : Observable<any> {
-    return this.http.post<Campaign>(this.apiUrl, campaign);
+    return this.http.post<Campaign>(this.testUrl, campaign);
   }
 
 
@@ -35,7 +35,7 @@ export class CampaignService {
 
     const body = JSON.stringify({ userId });
 
-    return this.http.post<Campaign[]>(this.apiUrl + '/Get',   body, { headers});
+    return this.http.post<Campaign[]>(this.testUrl + '/Get',   body, { headers});
   }
 
 
@@ -52,7 +52,7 @@ export class CampaignService {
       'Authorization': `Bearer ${jwtToken}`
     });
 
-    return this.http.delete<any>(`${this.apiUrl}/${campaignId}`, { headers })
+    return this.http.delete<any>(`${this.testUrl}/${campaignId}`, { headers })
       .pipe(
         catchError(this.handleError)
       );
@@ -69,7 +69,7 @@ export class CampaignService {
       'Content-Type': 'application/json' // Specify content type as JSON
     });
 
-    const url = `${this.apiUrl}/${campaignId}`;
+    const url = `${this.testUrl}/${campaignId}`;
 
 
     return this.http.put<Campaign>(url, campaignData, { headers })

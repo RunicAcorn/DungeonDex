@@ -1,11 +1,15 @@
-<form [formGroup]="itemDetailsForm" (ngSubmit)="onSubmit()">
+
+<form [formGroup]="weaponDetailsForm" (ngSubmit)="onSubmit()">
     <label>
-        Name:
-        <input type="text" formControlName="name">
+        Name: <input type="text" formControlName="name">
     </label><br>
     <label>
         Description:
         <input type="text" formControlName="description">
+    </label><br>   
+    <label>
+        Damage Dice:
+        <input type="text" formControlName="damageDice">
     </label><br>   
    
 

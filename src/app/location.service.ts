@@ -11,7 +11,7 @@ export class LocationService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'https://dungeonapi.azurewebsites.net/api/location';
+
   private testApiUrl = 'http://localhost:5082/api/location';
 
   private jwtToken = sessionStorage.getItem('jwtToken');
@@ -23,7 +23,7 @@ export class LocationService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.get<Location[]>(`${this.apiUrl}/${campaignId}`, {headers});
+    return this.http.get<Location[]>(`${this.testApiUrl}/${campaignId}`, {headers});
 
   }
 
@@ -52,7 +52,7 @@ export class LocationService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.delete(`${this.apiUrl}/${location.id}`, {headers});
+    return this.http.delete(`${this.testApiUrl}/${location.id}`, {headers});
   }
 
 }

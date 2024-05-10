@@ -8,14 +8,16 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class UserService {
 
+  apiUrl = 'https://dungeonapi.azurewebsites.net/api/users';
+  testApiUrl = 'http://localhost:5082/api/users';
   constructor(private http: HttpClient) { }
 
   createUser(username: string, password: string) {
-    return this.http.post<any>('https://dungeonapi.azurewebsites.net/api/users/createuser', { username, password });
+    return this.http.post<any>(this.testApiUrl + '/createuser', { username, password });
   }
   loginUser(username: string, password: string) {
     //return this.http.post<any>('http://localhost:5082/api/users/login', { username, password });
-    return this.http.post<any>('https://dungeonapi.azurewebsites.net/api/users/login', { username, password });
+    return this.http.post<any>(this.testApiUrl+ '/login', { username, password });
   }
  getUsername(): Observable<string> {
   const jwtToken = sessionStorage.getItem('jwtToken');
@@ -30,7 +32,7 @@ export class UserService {
     'Authorization': `Bearer ${jwtToken}`
   });
 
-  return this.http.get<string>(`https://dungeonapi.azurewebsites.net/api/users/username`, { 
+  return this.http.get<string>(this.testApiUrl+ `/username`, { 
     headers
     });
   

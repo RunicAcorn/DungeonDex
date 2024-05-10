@@ -37,8 +37,8 @@ export class PotionDetailsComponent implements OnInit {
 
     this.potionDetailsForm = this.fb.group({
       campaignId: ['', Validators.required],
-      potionName: ['', Validators.required],
-      potionDescription: ['', Validators.required],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
       effect: ['', Validators.required]
     });
 
@@ -56,8 +56,8 @@ export class PotionDetailsComponent implements OnInit {
         this.potionDetailsForm.patchValue({
           
           campaignId: this.campaignId,
-          potionName: this.potion.name,
-          potionDescription: this.potion.description,
+          name: this.potion.name,
+          description: this.potion.description,
           effect: this.potion.effect
        
         });
@@ -78,11 +78,11 @@ export class PotionDetailsComponent implements OnInit {
       return;
     }
     Object.assign(this.potion, this.potionDetailsForm.value);
-    this.is.updateItem(this.potion)
+    this.is.updatePotion(this.potion)
     .subscribe({
       next: (data) => {
         console.log("Potion updated successfully.", data);
-        this.router.navigate(['/potion', this.campaignId]);
+        this.router.navigate(['/item', this.campaignId]);
       },
       error: (e) => console.error(e)
     });

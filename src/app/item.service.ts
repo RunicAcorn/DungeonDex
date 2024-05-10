@@ -10,7 +10,6 @@ export class ItemService {
 
   constructor(private httpclient: HttpClient) { }
 
-  private apiUrl = 'https://dungeonapi.azurewebsites.net/api/item';
   private testApiUrl = 'http://localhost:5082/api/item';
   private jwtToken = sessionStorage.getItem('jwtToken');
 
@@ -46,9 +45,28 @@ export class ItemService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.jwtToken}`
     });
+
+    
   
     return this.httpclient.get<Potion>(`${this.testApiUrl}/potion/${potionId}`, {headers});
   }
+
+  getWeaponById(weaponId: number): Observable<Weapon> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
+
+    
+  
+    return this.httpclient.get<Weapon>(`${this.testApiUrl}/weapon/${weaponId}`, {headers});
+  }
+
+
+  
 
   createItem(itemData: Item | Weapon | Potion ): Observable<Item> {
     if (!this.jwtToken) {

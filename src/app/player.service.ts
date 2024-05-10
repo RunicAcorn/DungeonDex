@@ -10,7 +10,6 @@ export class PlayerService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'https://dungeonapi.azurewebsites.net/api/player';
 
   private testApiUrl = 'http://localhost:5082/api/player';
   private jwtToken = sessionStorage.getItem('jwtToken');

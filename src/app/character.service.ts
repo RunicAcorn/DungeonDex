@@ -11,7 +11,6 @@ export class CharacterService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'https://dungeonapi.azurewebsites.net/api/character';
   private testApiUrl = 'http://localhost:5082/api/character';
 
   private jwtToken = sessionStorage.getItem('jwtToken');

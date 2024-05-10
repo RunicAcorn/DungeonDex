@@ -11,9 +11,51 @@ namespace API
     {
       _context = context;
     }
+
+    public async Task<ItemDTO> GetItemAsync(int id)
+    {
+      var item = await _context.Items.Include(i => i.Campaign).FirstOrDefaultAsync(i => i.Id == id);
+      if (item == null)
+      {
+        throw new ArgumentException("Item not found.");
+      }
+
+      var itemDTO = new ItemDTO
+      {
+        Id = item.Id,
+        Name = item.Name,
+        Description = item.Description,
+        CampaignId = item.Campaign.CampaignId,
+        Type = item.GetType().Name
+        // Add additional properties as needed
+      };
+
+      return itemDTO;
+    }
+
+    public async Task<WeaponDTO> GetWeaponByIdAsync(int id)
+    {
+      var weapon = await _context.Items.OfType<Weapon>().Include(p => p.Campaign).FirstOrDefaultAsync(p => p.Id == id);
+      if (weapon == null)
+      {
+        throw new ArgumentException("Weapon not found.");
+      }
+
+      var weaponDTO = new WeaponDTO
+      {
+        Id = weapon.Id,
+        Name = weapon.Name,
+        Description = weapon.Description,
+        CampaignId = weapon.Campaign.CampaignId,
+        DamageDice = weapon.DamageDice
+      };
+
+      return weaponDTO;
+    }
+
     public async Task CreateItemAsync(ItemDTO itemDTO)
     {
-      // Map from ItemDTO to Item
+     
       var item = new Item
       {
         Name = itemDTO.Name,
@@ -85,7 +127,46 @@ namespace API
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteItemAsync(int id)
+        public async Task UpdatePotionAsync(PotionDTO potionDTO)
+        {
+           var potion = await _context.Items.OfType<Potion>().FirstOrDefaultAsync(p => p.Id == potionDTO.Id);
+
+
+           if (potion == null)
+            {
+              throw new ArgumentException("Potion not found.");
+            }
+
+          potion.Name = potionDTO.Name;
+          potion.Description = potionDTO.Description;
+          potion.Effect = potionDTO.Effect;
+
+          await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateWeaponAsync(WeaponDTO weaponDTO)
+        {
+          var weapon = await _context.Items.OfType<Weapon>().FirstOrDefaultAsync(p => p.Id == weaponDTO.Id);
+
+
+          if (weapon == null)
+          {
+            throw new ArgumentException("Potion not found.");
+          }
+
+          weapon.Name = weaponDTO.Name;
+          weapon.Description = weaponDTO.Description;
+          weapon.DamageDice = weaponDTO.DamageDice;
+
+          await _context.SaveChangesAsync();
+        }
+
+
+
+
+
+
+    public async Task DeleteItemAsync(int id)
         {
             var item = await _context.Items.FindAsync(id);
             if (item == null)

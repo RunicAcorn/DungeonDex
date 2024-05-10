@@ -32,7 +32,7 @@ export class ChapterService {
     });
   
 
-    return this.http.get<any[]>(`${this.apiUrl}/${campaignId}`, {headers});
+    return this.http.get<any[]>(`${this.testApiUrl}/${campaignId}`, {headers});
   }
 
   getLatestChapterOrder(campaignId: number): Observable<any> {
@@ -44,7 +44,7 @@ export class ChapterService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
   
-    return this.http.get<any>(`${this.apiUrl}/${campaignId}/latest`, {headers});
+    return this.http.get<any>(`${this.testApiUrl}/${campaignId}/latest`, {headers});
   }
 
   addChapter(chapterData: { campaignId: number, title: string, order: number }): Observable<any> {
@@ -54,7 +54,7 @@ export class ChapterService {
     });
 
 
-    return this.http.post<any>(`${this.apiUrl}`, chapterData, {headers})
+    return this.http.post<any>(`${this.testApiUrl}`, chapterData, {headers})
     .pipe(
       catchError(this.handleError)
     );;
@@ -70,7 +70,7 @@ export class ChapterService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.delete<any>(`${this.apiUrl}/${campaignId}/${chapterId}`, { headers })
+    return this.http.delete<any>(`${this.testApiUrl}/${campaignId}/${chapterId}`, { headers })
       .pipe(
         catchError(this.handleError)
       );

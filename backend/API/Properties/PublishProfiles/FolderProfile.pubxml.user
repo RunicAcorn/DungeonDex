@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>E:\Dev\Angular\DungeonDex\backend\API\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2024-05-09T12:38:07.7000818Z;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

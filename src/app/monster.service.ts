@@ -10,7 +10,7 @@ export class MonsterService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'https://dungeonapi.azurewebsites.net/api/monster';
+
 
   private testApiUrl = 'http://localhost:5082/api/monster';
   private jwtToken = sessionStorage.getItem('jwtToken');
@@ -25,7 +25,7 @@ export class MonsterService {
       'Authorization': `Bearer ${this.jwtToken}`
     });
 
-    return this.http.get<Monster[]>(`${this.apiUrl}/${campaignId}`, {headers});
+    return this.http.get<Monster[]>(`${this.testApiUrl}/${campaignId}`, {headers});
 
   }
 

@@ -356,9 +356,41 @@
   },
   {
     "ContainingType": "API.ItemController",
+    "Method": "UpdatePotion",
+    "RelativePath": "api/Item/potion/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "potion",
+        "Type": "API.PotionDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.ItemController",
     "Method": "AddWeapon",
     "RelativePath": "api/Item/weapon/add",
     "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "weapon",
+        "Type": "API.WeaponDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.ItemController",
+    "Method": "UpdateWeapon",
+    "RelativePath": "api/Item/weapon/update",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
