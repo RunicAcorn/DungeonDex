@@ -12,6 +12,12 @@
         <input type="text" name="class"  [(ngModel)]="character.class" >
     </label><br>
     <label>
+        Alignment:
+        <select name="alignment" [(ngModel)]="character.alignment">
+            <option *ngFor="let alignment of alignments" [value]="alignment.value">{{alignment.text}}</option>
+        </select>
+    </label><br>
+    <label>
         Level:
         <input type="number" name="level" [(ngModel)]="character.level" required>
     </label><br>
@@ -43,9 +49,6 @@
         Hit Points:
         <input type="number" name="hitPoints" [(ngModel)]="character.hitPoints" required>
     </label><br>
-    <label>
-        Alignment:
-        <input type="number" name="alignment" [(ngModel)]="character.alignment" required>
-    </label><br>
+
     <button type="submit">Save</button>
 </form>

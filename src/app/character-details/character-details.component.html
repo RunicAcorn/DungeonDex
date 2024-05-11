@@ -11,11 +11,13 @@
       <label>
         Race:
         <input type="text" formControlName="race">
-      </label><br> 
-    <label>
-        Alignment:
-        <input type="text" formControlName="alignment">
       </label><br>
+        <label>
+            Alignment:
+            <select name="alignment" formControlName="alignment">
+                <option *ngFor="let alignment of alignments" [value]="alignment.value">{{alignment.text}}</option>
+            </select>
+        </label><br>
         <label>
             Hit Points:
             <input type="number" formControlName="hitPoints">

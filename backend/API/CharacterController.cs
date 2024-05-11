@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -28,8 +28,17 @@ using API; // Add this using directive
         _characterService = characterService;
    
     }
+
     [HttpGet]
     [Route("{id}")]
+    public async Task<IActionResult> GetCharacter([FromRoute] int id)
+    {
+      var character = await _characterService.GetCharacter(id);
+      return Ok(character);
+    }
+
+    [HttpGet]
+    [Route("all/{id}")]
     public async Task<IActionResult> GetCharacters([FromRoute] int id)
     {
         var characters = await _characterService.GetCharactersAsync(id);

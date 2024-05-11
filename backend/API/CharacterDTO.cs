@@ -1,4 +1,4 @@
-﻿namespace API
+namespace API
 {
     public class CharacterDTO
     {
@@ -7,7 +7,7 @@
         public string Name { get; set; }
         public string Race { get; set; }
         public string Class { get; set; }
-        public string Alignment { get; set; }
+        public Alignment Alignment { get; set; }
         public int Level { get; set; }
         public int Strength { get; set; }
         public int Dexterity { get; set; }

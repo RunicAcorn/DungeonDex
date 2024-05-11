@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace API
 {
@@ -13,6 +13,34 @@ namespace API
             
         }
 
+    public async Task<CharacterDTO> GetCharacter(int id)
+    {
+        Character character = await _context.Characters.Include(c => c.Campaign).FirstOrDefaultAsync(c => c.Id == id);
+      if(character == null)
+      {
+            throw new ArgumentException("Character not found.");
+        }
+      CharacterDTO characterDTO = new CharacterDTO
+      {
+        Id = character.Id,
+        Name = character.Name,
+        CampaignId = character.Campaign.CampaignId,
+        Class = character.Class,
+        Race = character.Race,
+        Level = character.Level,
+        Strength = character.Strength,
+        Dexterity = character.Dexterity,
+        Constitution = character.Constitution,
+        Intelligence = character.Intelligence,
+        Wisdom = character.Wisdom,
+        Charisma = character.Charisma,
+        HitPoints = character.HitPoints,
+        Alignment = character.Alignment
+
+      };
+      return characterDTO;
+    }
+
         public async Task<Character[]> GetCharactersAsync(int campaignId)
         {
             return await _context.Characters.Where(c => c.Campaign.CampaignId == campaignId).ToArrayAsync();
@@ -21,7 +49,7 @@ namespace API
         public async Task<Character> CreateCharacter(CharacterDTO character)
         {
 
-            bool success = Enum.TryParse(character.Alignment, out Alignment alignmentEnum);
+          
             Character createdCharacer = new()
             {
                 Campaign = _context.Campaigns.Find(character.CampaignId),
@@ -36,7 +64,7 @@ namespace API
                 Wisdom = character.Wisdom,
                 Charisma = character.Charisma,
                 HitPoints = character.HitPoints,
-                Alignment = alignmentEnum
+                Alignment = character.Alignment
             };
             _context.Characters.Add(createdCharacer);
             await _context.SaveChangesAsync();
@@ -45,13 +73,9 @@ namespace API
 
         public async Task<bool> UpdateCharacter(CharacterDTO character)
         {
-            character.Alignment = character.Alignment.Replace(" ", "");
+          
             
-            bool success = Enum.TryParse(character.Alignment, out Alignment alignmentEnum);
-            if(!success)
-            {
-                return false;
-            }
+     
 
         Character charToUpdate = await _context.Characters.FirstOrDefaultAsync(c => c.Id == character.Id);
 
@@ -71,7 +95,7 @@ namespace API
             charToUpdate.Wisdom = character.Wisdom;
             charToUpdate.Charisma = character.Charisma;
             charToUpdate.HitPoints = character.HitPoints;
-            charToUpdate.Alignment = alignmentEnum;
+            charToUpdate.Alignment = character.Alignment;
 
             await _context.SaveChangesAsync();
 

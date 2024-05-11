@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Character } from '../character';
 import { CharacterService } from '../character.service';
 import { FormsModule } from '@angular/forms';
+import { Alignment } from '../aligment';
+
 @Component({
   selector: 'app-character-form',
   standalone: true,
@@ -15,6 +17,10 @@ import { FormsModule } from '@angular/forms';
 export class CharacterFormComponent implements OnInit{
   character!: Character;
   
+  alignments = Object.keys(Alignment)
+    .filter(key => isNaN(Number(key)))
+    .map(key => ({ text: key, value: Alignment[key as keyof typeof Alignment] }));
+  // ...
 
   campaignId!: number;
 

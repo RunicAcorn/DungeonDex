@@ -15,6 +15,16 @@ export class CharacterService {
 
   private jwtToken = sessionStorage.getItem('jwtToken');
 
+  getCharacterById(characterId: number): Observable<Character> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+
+    const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
+
+    return this.http.get<Character>(`${this.testApiUrl}/${characterId}`, {headers});
+  }
+
   getCharacterByCampaignId(campaignId: number): Observable<any[]> {
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');
@@ -22,7 +32,7 @@ export class CharacterService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.get<Character[]>(`${this.testApiUrl}/${campaignId}`, {headers});
+    return this.http.get<Character[]>(`${this.testApiUrl}/all/${campaignId}`, {headers});
 
   }
 

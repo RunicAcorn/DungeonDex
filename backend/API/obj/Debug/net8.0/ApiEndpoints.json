@@ -228,7 +228,7 @@
   },
   {
     "ContainingType": "CharacterController",
-    "Method": "GetCharacters",
+    "Method": "GetCharacter",
     "RelativePath": "api/Character/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -247,6 +247,22 @@
     "Method": "DeleteCharacter",
     "RelativePath": "api/Character/{id}",
     "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CharacterController",
+    "Method": "GetCharacters",
+    "RelativePath": "api/Character/all/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [

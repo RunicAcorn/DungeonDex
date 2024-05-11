@@ -5,12 +5,14 @@ import { FormGroup, FormsModule, Validators, FormBuilder } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { CharacterService } from '../character.service';
 import { Character } from '../character';
+import { Alignment } from '../aligment';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-character-details',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './character-details.component.html',
   styleUrl: './character-details.component.css'
 })
@@ -18,7 +20,13 @@ export class CharacterDetailsComponent  implements OnInit{
 
   characterDetailsForm: FormGroup = new FormGroup({});
   campaignId!: number;
+   alignments = Object.keys(Alignment)
+  .filter(key => isNaN(Number(key)))
+  .map(key => ({ text: key, value: Alignment[key as keyof typeof Alignment] }));
+  
 
+
+  characterId!: number;
   character!: Character;
 
   constructor
@@ -27,38 +35,64 @@ export class CharacterDetailsComponent  implements OnInit{
     private fb: FormBuilder,
   private characterService: CharacterService) {
 
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation && navigation.extras.state) {
-      console.log("state found", navigation.extras.state['character']);
-      
-      this.character = navigation.extras.state['character'];
-    }
 
    }
 
   ngOnInit(): void {
 
-    this.ar.params.subscribe(params => {
-      this.campaignId = params['id'];
-
-      
     this.characterDetailsForm = this.fb.group({
-      campaignId: [this.campaignId, Validators.required],
-      name: [this.character.name, Validators.required],
-      race: [this.character.race, Validators.required],
-      class: [this.character.class, Validators.required],
-      alignment: [this.character.alignment, Validators.required],
-      level: [this.character.level, Validators.required],
-      hitPoints: [this.character.hitPoints, Validators.required],
-      strength: [this.character.strength, Validators.required],
-      dexterity: [this.character.dexterity, Validators.required],
-      constitution: [this.character.constitution, Validators.required],
-      intelligence: [this.character.intelligence, Validators.required],
-      wisdom: [this.character.wisdom, Validators.required],
-      charisma: [this.character.charisma, Validators.required]
+      campaignId: ['', Validators.required],
+      name: ['', Validators.required],
+      race: ['', Validators.required],
+      class: ['', Validators.required],
+      alignment: ['', Validators.required],
+      level: ['', Validators.required],
+      hitPoints: ['', Validators.required],
+      strength: ['', Validators.required],
+      dexterity: ['', Validators.required],
+      constitution: ['', Validators.required],
+      intelligence: ['', Validators.required],
+      wisdom: ['', Validators.required],
+      charisma: ['', Validators.required]
     });
+  
 
-    this.characterDetailsForm.patchValue(this.character);
+    this.ar.params.subscribe(params => {
+      this.characterId = params['id'];
+
+      this.characterService.getCharacterById(this.characterId).subscribe({
+        next: (data: any) => {
+          console.log("Data from service: ", data);
+          this.character = data;
+
+          this.campaignId = this.character.campaignId;
+
+          this.characterDetailsForm = this.fb.group({
+            campaignId: [this.campaignId, Validators.required],
+            name: [this.character.name, Validators.required],
+            race: [this.character.race, Validators.required],
+            class: [this.character.class, Validators.required],
+            alignment: [this.character.alignment, Validators.required],
+            level: [this.character.level, Validators.required],
+            hitPoints: [this.character.hitPoints, Validators.required],
+            strength: [this.character.strength, Validators.required],
+            dexterity: [this.character.dexterity, Validators.required],
+            constitution: [this.character.constitution, Validators.required],
+            intelligence: [this.character.intelligence, Validators.required],
+            wisdom: [this.character.wisdom, Validators.required],
+            charisma: [this.character.charisma, Validators.required]
+          });
+
+          this.characterDetailsForm.patchValue(this.character);
+
+        }, error: (e) => console.error(e)
+
+        
+      });
+      
+  
+
+   
 
     })  
 
@@ -67,11 +101,15 @@ export class CharacterDetailsComponent  implements OnInit{
 
   onSubmit(): void {
 
+    const formValue = this.characterDetailsForm.value;
+    formValue.alignment = parseInt(formValue.alignment, 10);
+   
+
     Object.assign(this.character, this.characterDetailsForm.value);
     this.characterService.updateCharacter(this.character)
     .subscribe({
       next: (data) => {
-        console.log("Character updated successfully.", data);
+
         this.router.navigate(['/character', this.campaignId]);
       },
       error: (e) => console.error(e)

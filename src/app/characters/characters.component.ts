@@ -36,9 +36,14 @@ export class CharactersComponent implements OnInit{
   
 
 
-  selectCharacter(selected: Character): void {
+  selectCharacter(selected: number | undefined): void {
+    if (selected === undefined) {
+      console.error('No character selected');
+      return;
+    }
+
     console.log("Selected Character: " , selected);
-    this.router.navigate(['/character/select', this.campaignId], {state: {character: selected}});
+    this.router.navigate(['/character/select', selected]);
   }
 
   addCharacter(): void {
