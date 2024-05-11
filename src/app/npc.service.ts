@@ -16,6 +16,16 @@ export class NPCService {
 
   private jwtToken = sessionStorage.getItem('jwtToken');
 
+  getNPCById(NPCid:Number): Observable<NPC> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+
+    const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
+
+    return this.http.get<NPC>(`${this.testApiUrl}/${NPCid}`, {headers});
+  }
+
   getNPCByCampaignId(campaignId: number): Observable<any[]> {
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');
@@ -23,7 +33,7 @@ export class NPCService {
 
     const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
 
-    return this.http.get<NPC[]>(`${this.testApiUrl}/${campaignId}`, {headers});
+    return this.http.get<NPC[]>(`${this.testApiUrl}/all/${campaignId}`, {headers});
 
   }
 

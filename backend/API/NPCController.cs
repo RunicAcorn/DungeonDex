@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace API
 {
@@ -15,10 +15,17 @@ namespace API
             _context = context;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetNPC([FromRoute] int id)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetNPC([FromRoute] int id)
+    {
+      var npc = await _npcService.GetNPCAsync(id);
+      return Ok(npc);
+    }
+
+        [HttpGet("all/{id}")]
+        public async Task<IActionResult> GetNPCs([FromRoute] int id)
         {
-            var npc = await _npcService.GetNPCAsync(id);
+            var npc = await _npcService.GetNPCsAsync(id);
             return Ok(npc);
         }
 

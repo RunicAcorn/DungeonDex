@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace API
 {
@@ -10,7 +10,30 @@ namespace API
         {
             _context = context;
         }
-        public async Task<List<NPC>> GetNPCAsync(int campaignId)
+
+        public async Task<NPCDTO> GetNPCAsync(int id)
+        {
+          var npc = await _context.NPCs.Include(n => n.Campaign).FirstOrDefaultAsync(n => n.Id == id);
+          if (npc == null)
+          {
+            throw new ArgumentException("NPC not found.");
+          }
+
+          var npcDTO = new NPCDTO
+          {
+            Id = npc.Id,
+            Name = npc.Name,
+            Race = npc.Race,
+            Age = npc.Age,
+            campaignId = npc.Campaign.CampaignId,
+            Description = npc.Description,
+            Notes = npc.Notes,
+          };
+          return npcDTO;
+        }
+
+    
+        public async Task<List<NPC>> GetNPCsAsync(int campaignId)
         {
             return await _context.NPCs.Where(n => n.Campaign.CampaignId == campaignId).ToListAsync();
         }
@@ -34,12 +57,22 @@ namespace API
             npcToUpdate.Name = npc.Name;
             npcToUpdate.Race = npc.Race;
             npcToUpdate.Age = npc.Age;
+
             if(npc.Description != null)
             {
                 npcToUpdate.Description = npc.Description;
             }
-            await _context.SaveChangesAsync();
-        }
+
+            if (npc.Notes != null)
+            {
+              npcToUpdate.Notes = npc.Notes;
+            }
+
+
+             await _context.SaveChangesAsync();
+
+            }
+
         public async Task DeleteNPCAsync(int id)
         {
             var npc = await _context.NPCs.FirstOrDefaultAsync(n => n.Id == id);

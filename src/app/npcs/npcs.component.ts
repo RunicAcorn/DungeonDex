@@ -45,7 +45,7 @@ export class NPCsComponent implements OnInit{
 
   selectNPC(selected: NPC): void {
     console.log("Selected NPC: " + selected);
-    this.router.navigate(['/npc/select', this.campaignId], {state: {NPC: selected}});
+    this.router.navigate(['/npc/select', selected.id]);
   }
 
   addNPC(): void {

@@ -15,6 +15,8 @@ import { NPC } from '../npc';
 export class NPCDetailsComponent implements OnInit {
   npcDetailsForm: FormGroup = new FormGroup({});
   campaignId!: number;
+  npcId!: number;
+
   npc!: NPC;
 
   constructor(
@@ -22,31 +24,46 @@ export class NPCDetailsComponent implements OnInit {
     private router: Router, 
     private fb: FormBuilder,
     private ns: NPCService
-  ) {
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation && navigation.extras.state) {
-      this.npc = navigation.extras.state['NPChen'];
-    }
+  ) {}
 
+  ngOnInit(): void {
+
+    this.npcDetailsForm = this.fb.group({
+      campaignId: ['', Validators.required],
+      name: ['', Validators.required],
+      race: ['', Validators.required],
+      age: ['', Validators.required],
+      description: [''],
+      notes: ['']
+    });
     this.ar.params.subscribe(params => {
-      this.campaignId = params['id'];
+      this.npcId = params['id'];
 
-      if (this.campaignId) {
-        this.npcDetailsForm = this.fb.group({
-          campaignId: [this.campaignId, Validators.required],
-          name: [this.npc.name, Validators.required],
-          race: [this.npc.race, Validators.required],
-          age: [this.npc.age, Validators.required],
-          description: [this.npc.description],
-          notes: [this.npc.notes]
-        });
+      this.ns.getNPCById(this.npcId).subscribe({
+        next: (data: any) => {
+          console.log("Data: ", data);
+          this.npc = data;
+          this.campaignId= this.npc.campaignId;
 
-        this.npcDetailsForm.patchValue(this.npc);
-      }
+          this.npcDetailsForm = this.fb.group({
+            campaignId: [this.campaignId, Validators.required],
+            name: [this.npc.name, Validators.required],
+            race: [this.npc.race, Validators.required],
+            age: [this.npc.age, Validators.required],
+            description: [this.npc.description],
+            notes: [this.npc.notes]
+          });
+  
+          this.npcDetailsForm.patchValue(this.npc);
+        
+        },
+        error: (e) => console.error(e)
+      });
+
+      
+    
     });  
   }
-
-  ngOnInit(): void {}
 
   onSubmit(): void {
     Object.assign(this.npc, this.npcDetailsForm.value);

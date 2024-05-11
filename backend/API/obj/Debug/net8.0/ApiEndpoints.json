@@ -669,6 +669,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "API.NPCController",
+    "Method": "GetNPCs",
+    "RelativePath": "api/NPC/all/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "API.PlayerController",
     "Method": "AddPlayer",
     "RelativePath": "api/Player",
