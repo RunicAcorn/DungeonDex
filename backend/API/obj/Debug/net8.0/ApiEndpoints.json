@@ -292,6 +292,22 @@
   },
   {
     "ContainingType": "API.ItemController",
+    "Method": "GetItem",
+    "RelativePath": "api/Item/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.ItemController",
     "Method": "DeleteItem",
     "RelativePath": "api/Item/{id}",
     "HttpMethod": "DELETE",
@@ -365,6 +381,22 @@
       {
         "Name": "potion",
         "Type": "API.PotionDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.ItemController",
+    "Method": "GetWeapon",
+    "RelativePath": "api/Item/weapon/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

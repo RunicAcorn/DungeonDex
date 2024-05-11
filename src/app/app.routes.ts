@@ -54,7 +54,7 @@ export const routes: Routes = [
     {path: 'chapter/add/:id', component: CreateChapterComponent},
     {path: 'chapter/:id', component: ScenesComponent},
     {path: 'scene/add/:id', component: SceneCreatorComponent},
-    {path: 'chapter/:chapterid/:sceneid', component: SceneDisplayComponent},
+    {path: 'scene/:sceneid', component: SceneDisplayComponent},
     {path: 'monster/:id', component: MonstersComponent},
     {path: 'monster/add/:id', component: MonsterFormComponent},
     {path: 'monster/select/:id', component: MonsterDetailsComponent},

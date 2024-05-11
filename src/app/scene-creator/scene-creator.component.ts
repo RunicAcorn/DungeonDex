@@ -55,9 +55,9 @@ export class SceneCreatorComponent {
     this.sceneService.addScene(this.sceneForm.value)
       .subscribe({
         next: (res) => {
-          console.log("Scene added successfully.", res.message);
+          console.log("Scene added successfully.", res.id);
           const sceneId = res.id;
-          this.router.navigate(['/chapter', this.chapterId]);
+          this.router.navigate(['/scene', sceneId]);
         },
         error: (err: any) => console.error("Error adding scene: ", err)
       });

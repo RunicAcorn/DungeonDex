@@ -28,12 +28,13 @@ export class SceneDisplayComponent implements OnInit{
 
     ngOnInit(): void {
       this.route.params.subscribe(params => {
-        this.chapterId = params['chapterid'];
+       
         this.sceneId = params['sceneid'];
 
 
         this.sceneService.getSceneById(this.sceneId).subscribe({
           next: (data) => {
+            this.chapterId = data.chapterId;
             this.description = data.description;
           },
           error: (err) => console.error("Error getting scene: ", err)

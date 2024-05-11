@@ -68,7 +68,7 @@ export class ScenesComponent implements OnInit{
 
   selectScene(sceneId: number){
     
-    this.router.navigate(['/chapter', this.chapterId, sceneId]);
+    this.router.navigate(['/scene',  sceneId]);
   }
 
 }
