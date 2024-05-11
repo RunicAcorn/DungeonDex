@@ -3,7 +3,7 @@ export interface Monster {
     campaignId: number;
     name: string;
     type: string;
-    alignment: string;
+    alignment: number;
     hitPoints: number;
     armorClass: number;
     speed: number;

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace API
 {
@@ -11,18 +11,16 @@ namespace API
             _context = context;
         }
 
-        public async Task<int> AddNewMonsterAsync(string name, int campaignId, string type, string alignment, int hitPoints, int armorClass, int speed, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
+        public async Task<int> AddNewMonsterAsync(string name, int campaignId, string type, Alignment alignment, int hitPoints, int armorClass, int speed, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
         {
-            alignment = alignment.Replace(" ", "").Trim();
-            bool success = Enum.TryParse(alignment, out Alignment alignmentEnum);
-            if (success) 
-            {
+           
+        
                 var monster = new Monster
                 {
                     Name = name,
                     Type = type,
                     Campaign = await _context.Campaigns.FirstOrDefaultAsync(c => c.CampaignId == campaignId),
-                    Alignment = alignmentEnum,
+                    Alignment = alignment,
                     HitPoints = hitPoints,
                     ArmorClass = armorClass,
                     Speed = speed,
@@ -40,14 +38,10 @@ namespace API
                 return monster.Id;
 
             }
-            else
-            {
-                return -1;
-            }
-
+     
 
       
-        }   
+           
 
         public async Task<List<Monster>> GetMonstersAsync()
         {
@@ -58,41 +52,62 @@ namespace API
         {
             return await _context.Monsters.Where(m => m.Campaign.CampaignId == id).ToListAsync();
         }
-        public async Task<List<Monster>> GetMonsterByIdAsync(int id, string userId)
+        public async Task<MonsterDTO> GetMonsterByIdAsync(int id, string userId)
         {
 
-            var camp = await _context.Campaigns.FirstOrDefaultAsync(c => c.User.Id == userId);
-            var campaignId = camp.CampaignId;
+     
 
-            return await _context.Monsters.Where(m => m.Campaign.CampaignId == campaignId && m.Id == id).ToListAsync();
+         Monster monster = await _context.Monsters.Include(c => c.Campaign).FirstOrDefaultAsync(m => m.Id == id);
+
+
+         MonsterDTO returnMonster = new MonsterDTO
+          {
+            Name= monster.Name,
+            Type = monster.Type,
+            Alignment = monster.Alignment,
+            HitPoints = monster.HitPoints,
+            ArmorClass = monster.ArmorClass,
+            Speed = monster.Speed,
+            Strength = monster.Strength,
+            Dexterity = monster.Dexterity,
+            Constitution = monster.Constitution,
+            Intelligence = monster.Intelligence,
+            Wisdom = monster.Wisdom,
+            Charisma = monster.Charisma,
+            CampaignId = monster.Campaign.CampaignId
+            };
+
+               return returnMonster;
+
+          }
 
            
-        }
+        
         
 
-        public async Task UpdateMonsterAsync(int id, string name, string type, Alignment alignment, int hitPoints, int armorClass, int speed, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
+        public async Task UpdateMonsterAsync(MonsterDTO incomingMonsterData)
         {
-            var monster = await _context.Monsters.FirstOrDefaultAsync(m => m.Id == id);
+            var monster = await _context.Monsters.FirstOrDefaultAsync(m => m.Id == incomingMonsterData.Id);
           
             if (monster == null)
             {
                 throw new ArgumentException("Monster not found");
             }
 
-            monster.Name = name;
-            monster.Type = type;
-            monster.Alignment = alignment;
-            monster.HitPoints = hitPoints;
-            monster.ArmorClass = armorClass;
-            monster.Speed = speed;
-            monster.Strength = strength;
-            monster.Dexterity = dexterity;
-            monster.Constitution = constitution;
-            monster.Intelligence = intelligence;
-            monster.Wisdom = wisdom;
-            monster.Charisma = charisma;
+          monster.Name = incomingMonsterData.Name;
+          monster.Type = incomingMonsterData.Type;
+          monster.Alignment = incomingMonsterData.Alignment;
+          monster.HitPoints = incomingMonsterData.HitPoints;
+          monster.ArmorClass = incomingMonsterData.ArmorClass;
+          monster.Speed = incomingMonsterData.Speed;
+          monster.Strength = incomingMonsterData.Strength;
+          monster.Dexterity = incomingMonsterData.Dexterity;
+          monster.Constitution = incomingMonsterData.Constitution;
+          monster.Intelligence = incomingMonsterData.Intelligence;
+          monster.Wisdom = incomingMonsterData.Wisdom;
+          monster.Charisma = incomingMonsterData.Charisma;
 
-            await _context.SaveChangesAsync();
+      await _context.SaveChangesAsync();
         }
 
         public async Task DeleteMonsterAsync(int incomingMonsterId, string userId)

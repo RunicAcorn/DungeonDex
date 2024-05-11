@@ -15,6 +15,17 @@ export class MonsterService {
   private testApiUrl = 'http://localhost:5082/api/monster';
   private jwtToken = sessionStorage.getItem('jwtToken');
 
+getMonsterById(monsterId: number): Observable<Monster> {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+
+    const headers = new HttpHeaders({'Authorization': `Bearer ${this.jwtToken}`});
+
+    return this.http.get<Monster>(`${this.testApiUrl}/select/${monsterId}`, {headers});
+}
+
+
   getMonstersByCampaignId(campaignId: number): Observable<Monster[]> {
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');

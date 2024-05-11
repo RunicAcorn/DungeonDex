@@ -50,7 +50,7 @@ export class MonstersComponent implements OnInit{
 
   selectMonster(selectedMonster: Monster): void {
     console.log("Selected monster: " + selectedMonster);
-    this.router.navigate(['/monster/select', this.campaignId], {state: {monster: selectedMonster}});
+    this.router.navigate(['/monster/select', selectedMonster.id]);
   }
 
   addMonster(): void {

@@ -524,7 +524,7 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "API.MonsterController\u002BMonsterModel",
+        "Type": "API.MonsterDTO",
         "IsRequired": true
       }
     ],
@@ -550,7 +550,7 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "API.Monster",
+        "Type": "API.MonsterDTO",
         "IsRequired": true
       }
     ],

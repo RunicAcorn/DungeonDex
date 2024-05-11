@@ -8,10 +8,12 @@
         Type:
         <input type="text" formControlName="type">
       </label><br>   
-    <label>
+      <label>
         Alignment:
-        <input type="text" formControlName="alignment">
-      </label><br>
+        <select name="alignment" formControlName="alignment">
+            <option *ngFor="let alignment of alignments" [value]="alignment.value">{{alignment.text}}</option>
+        </select>
+    </label><br>
         <label>
             Hit Points:
             <input type="number" formControlName="hitPoints">

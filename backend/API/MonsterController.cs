@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -22,26 +22,11 @@ namespace API
 
         }
 
-        public class MonsterModel
-        {
-            public string Name { get; set; }
-            public int CampaignId { get; set; }
-            public string Type { get; set; }
-            public string Alignment { get; set; }
-            public int HitPoints { get; set; }
-            public int ArmorClass { get; set; }
-            public int Speed { get; set; }
-            public int Strength { get; set; }
-            public int Dexterity { get; set; }
-            public int Constitution { get; set; }
-            public int Intelligence { get; set; }
-            public int Wisdom { get; set; }
-            public int Charisma { get; set; }
-        }
+
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
-        public async Task<IActionResult> AddMonster([FromBody] MonsterModel model)
+        public async Task<IActionResult> AddMonster([FromBody] MonsterDTO model)
         {
             if (User?.Identity?.IsAuthenticated == true)
             {
@@ -93,7 +78,6 @@ namespace API
                 var monsters = await _monsterService.GetMonstersAsync();
                 return Ok(monsters);
             }
-
             else
             {
                 return BadRequest("User Not authenticated");
@@ -154,8 +138,8 @@ namespace API
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [HttpPut()]
-        public async Task<IActionResult> UpdateMonster( [FromBody] Monster model)
+        [HttpPut]
+        public async Task<IActionResult> UpdateMonster( [FromBody] MonsterDTO model)
         {
             if (User?.Identity?.IsAuthenticated == true)
             {
@@ -175,7 +159,7 @@ namespace API
 
                 try
                 {
-                    await _monsterService.UpdateMonsterAsync(model.Id, model.Name, model.Type, model.Alignment, model.HitPoints, model.ArmorClass, model.Speed, model.Strength, model.Dexterity, model.Constitution, model.Intelligence, model.Wisdom, model.Charisma);
+                    await _monsterService.UpdateMonsterAsync(model);
                     return Ok(new { message = "Monster updated successfully." });
                 }
                 catch (ArgumentException ex)

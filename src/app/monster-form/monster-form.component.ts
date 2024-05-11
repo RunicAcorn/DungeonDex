@@ -5,6 +5,7 @@ import { MonsterService } from '../monster.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Monster } from '../monster.interface';
+import { Alignment } from '../aligment';
 
 
 @Component({
@@ -17,7 +18,10 @@ import { Monster } from '../monster.interface';
 export class MonsterFormComponent implements OnInit{
   monster!: Monster;
   campaignId!: number;
-
+  alignments = Object.keys(Alignment)
+  .filter(key => isNaN(Number(key)))
+  .map(key => ({ text: key, value: Alignment[key as keyof typeof Alignment] }));
+// ...
   constructor( private ar: ActivatedRoute, private ms:MonsterService, private router: Router) { }
 
   ngOnInit(): void {
@@ -28,7 +32,7 @@ export class MonsterFormComponent implements OnInit{
         campaignId: this.campaignId,
         name: '',
         type: '',
-        alignment: '',
+        alignment: 1,
         hitPoints: 0,
         armorClass: 0,
         speed: 0,
@@ -39,6 +43,8 @@ export class MonsterFormComponent implements OnInit{
         wisdom: 0,
         charisma: 0}
     } );
+
+    console.log("alignment is", this.alignments);
   }
 
   submitMonster(): void {

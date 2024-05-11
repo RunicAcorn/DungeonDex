@@ -7,10 +7,12 @@
         <label for="monsterType">Type:</label>
         <input type="text" id="monsterType" name="monsterType" [(ngModel)]="monster.type" required>
     </div>
-    <div class="form-group">
-        <label for="monsterAlignment">Alignment:</label>
-        <input type="text" id="monsterAlignment" name="monsterAlignment" [(ngModel)]="monster.alignment" required>
-    </div>
+    <label>
+        Alignment:
+        <select name="alignment" [(ngModel)]="monster.alignment">
+            <option *ngFor="let alignment of alignments" [value]="alignment.value" >{{alignment.text}}</option>
+        </select>
+    </label><br>
     <div class="form-group">
         <label for="monsterHitPoints">Hit Points:</label>
         <input type="number" id="monsterHitPoints" name="monsterHitPoints" [(ngModel)]="monster.hitPoints" required>
