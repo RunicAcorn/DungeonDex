@@ -23,40 +23,53 @@ using static System.Formats.Asn1.AsnWriter;
                 throw new ArgumentException("The specified chapter does not exist.");
         }
 
-    switch (description)
+    switch (description.ToUpper())
     {
       default:
         throw new ArgumentException("Invalid type");
-      case "Narrative":
+      case "NARRATIVE":
         var narrative = new Narrative
         {
+          Chapter = await _context.Chapters.FindAsync(chapterId),
           ChapterId = chapterId,
           Title = title,
           Description = description,
           Order = order
         };
         _context.Scenes.Add(narrative);
-        break;
+        await _context.SaveChangesAsync();
+        return narrative.Id;
+        
+      case "DIALOGUE":
+        var dialogue = new Dialogue
+        {
+          Chapter = await _context.Chapters.FindAsync(chapterId),
+          ChapterId = chapterId,
+          Title = title,
+          Description = description,
+          Order = order
+
+        };
+        _context.Scenes.Add(dialogue);
+        await _context.SaveChangesAsync();
+
+        return dialogue.Id;
+
+
+
+
     }
-           
-
-           
-            await _context.SaveChangesAsync();
-
-    return 1;
+   
 
           
         }
 
     public async Task<List<Scene>> GetScenesByChapterIdAsync(int chapterId)
     {
-        var scenes = await _context.Scenes
-            .Where(scene => scene.ChapterId == chapterId)
-            .OrderBy(scene => scene.Order)
-            .ToListAsync();
-
-        return scenes;
-    }
+    var scenes = await _context.Scenes.OfType<Scene>().ToListAsync();
+    Console.WriteLine(scenes);
+    return scenes;
+  }
 
     public async Task<int?> GetNextSceneOrder(int chapterId)
     {
