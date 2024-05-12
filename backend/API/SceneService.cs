@@ -1,5 +1,8 @@
-﻿namespace API;
+namespace API;
+
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using static System.Formats.Asn1.AsnWriter;
 
 
     public class SceneService
@@ -20,18 +23,27 @@ using Microsoft.EntityFrameworkCore;
                 throw new ArgumentException("The specified chapter does not exist.");
         }
 
-            var scene = new Scene
-            {
-                ChapterId = chapterId,
-                Title = title,
-                Description = description,
-                Order = order
-            };
+    switch (description)
+    {
+      default:
+        throw new ArgumentException("Invalid type");
+      case "Narrative":
+        var narrative = new Narrative
+        {
+          ChapterId = chapterId,
+          Title = title,
+          Description = description,
+          Order = order
+        };
+        _context.Scenes.Add(narrative);
+        break;
+    }
+           
 
-            _context.Scenes.Add(scene);
+           
             await _context.SaveChangesAsync();
 
-            return scene.SceneId;
+    return 1;
 
           
         }

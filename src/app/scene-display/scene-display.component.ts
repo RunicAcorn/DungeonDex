@@ -34,6 +34,7 @@ export class SceneDisplayComponent implements OnInit{
 
         this.sceneService.getSceneById(this.sceneId).subscribe({
           next: (data) => {
+            console.log(data);
             this.chapterId = data.chapterId;
             this.description = data.description;
           },
@@ -52,6 +53,10 @@ export class SceneDisplayComponent implements OnInit{
   }
 
  returnToScenes(){
+  
+  this.router.navigate(['/chapter', this.chapterId]);
+ }
+ addNext(){
   
   this.router.navigate(['/chapter', this.chapterId]);
  }

@@ -234,10 +234,8 @@ C:\Users\Justi\source\repos\DM2\Everything\API\bin\Debug\net8.0\runtimes\win-x86
 E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\appsettings.Development.json
 E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\appsettings.json
 E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\API.exe
-E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\API.deps.json
-E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\API.runtimeconfig.json
-E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\API.dll
-E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\API.pdb
+E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\AutoMapper.dll
+E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\Azure.Core.dll
 E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\Azure.Identity.dll
 E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\EfSchemaCompare.dll
@@ -397,7 +395,9 @@ E:\Dev\Angular\DungeonDex\backend\API\obj\Debug\net8.0\API.csproj.Up2Date
 E:\Dev\Angular\DungeonDex\backend\API\obj\Debug\net8.0\API.dll
 E:\Dev\Angular\DungeonDex\backend\API\obj\Debug\net8.0\refint\API.dll
 E:\Dev\Angular\DungeonDex\backend\API\obj\Debug\net8.0\API.pdb
+E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\API.deps.json
+E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\API.runtimeconfig.json
+E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\API.dll
+E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\API.pdb
 E:\Dev\Angular\DungeonDex\backend\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 E:\Dev\Angular\DungeonDex\backend\API\obj\Debug\net8.0\ref\API.dll
-E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\AutoMapper.dll
-E:\Dev\Angular\DungeonDex\backend\API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

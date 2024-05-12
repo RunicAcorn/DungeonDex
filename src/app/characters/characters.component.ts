@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Character } from '../character';
 import { CharacterService } from '../character.service';
+import { Alignment } from '../aligment';
 
 @Component({
   selector: 'app-characters',
@@ -15,6 +16,8 @@ import { CharacterService } from '../character.service';
 export class CharactersComponent implements OnInit{
   characters: Character[] = [];
   campaignId!: number;
+
+  alignments = Alignment;
 
   constructor(private ar:ActivatedRoute, private cs:CharacterService, private router: Router) {}
 

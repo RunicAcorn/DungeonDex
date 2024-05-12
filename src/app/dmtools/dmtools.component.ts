@@ -30,7 +30,7 @@ export class DMToolsComponent implements OnInit {
     this.router.navigate(['/campaign', this.campaignId])
   }
 
-  toImageGen(): void{
+  toDice(): void{
     this.router.navigate(['/imageWizard', this.campaignId]);
   }
 

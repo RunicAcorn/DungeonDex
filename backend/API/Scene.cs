@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
@@ -13,7 +13,7 @@ namespace API
         {
         }
         [Key]
-        public int SceneId { get; set; }
+        public int Id { get; set; }
 
         public string Title { get; set; }
         public string Description { get; set; }
