@@ -56,7 +56,18 @@ using static System.Formats.Asn1.AsnWriter;
         return dialogue.Id;
 
 
-
+        case "COMBAT":
+        var combat = new Combat
+        {
+          Chapter = await _context.Chapters.FindAsync(chapterId),
+          ChapterId = chapterId,
+          Title = title,
+          Description = description,
+          Order = order
+        };
+        _context.Scenes.Add(combat);
+        await _context.SaveChangesAsync();
+        return combat.Id;
 
 
 

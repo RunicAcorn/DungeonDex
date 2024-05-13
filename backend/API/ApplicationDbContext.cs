@@ -27,49 +27,51 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-      base.OnModelCreating(modelBuilder);
+    base.OnModelCreating(modelBuilder);
 
-      modelBuilder.Entity<ApplicationUser>().ToTable("Users");
-      modelBuilder.Entity<Campaign>().ToTable("Campaigns");
-      modelBuilder.Entity<Chapter>().ToTable("Chapter"); 
-      modelBuilder.Entity<Scene>().ToTable("Scene");
-      modelBuilder.Entity<Monster>().ToTable("Monster");
-      modelBuilder.Entity<NPC>().ToTable("NPC");
-      modelBuilder.Entity<Character>().ToTable("Character");
-      modelBuilder.Entity<Quest>().ToTable("Quest");
-      modelBuilder.Entity<Location>().ToTable("Location");
-      modelBuilder.Entity<Player>().ToTable("Player");
-      modelBuilder.Entity<Item>().ToTable("Item");
-      modelBuilder.Entity<Weapon>();
-      modelBuilder.Entity<Potion>();
-      modelBuilder.Entity<Narrative>();
-      modelBuilder.Entity<Dialogue>();
+    modelBuilder.Entity<ApplicationUser>().ToTable("Users");
+    modelBuilder.Entity<Campaign>().ToTable("Campaigns");
+    modelBuilder.Entity<Chapter>().ToTable("Chapter"); 
+    modelBuilder.Entity<Scene>().ToTable("Scene");
+    modelBuilder.Entity<Monster>().ToTable("Monster");
+    modelBuilder.Entity<NPC>().ToTable("NPC");
+    modelBuilder.Entity<Character>().ToTable("Character");
+    modelBuilder.Entity<Quest>().ToTable("Quest");
+    modelBuilder.Entity<Location>().ToTable("Location");
+    modelBuilder.Entity<Player>().ToTable("Player");
+    modelBuilder.Entity<Item>().ToTable("Item");
+    modelBuilder.Entity<Weapon>();
+    modelBuilder.Entity<Potion>();
+    modelBuilder.Entity<Narrative>();
+    modelBuilder.Entity<Dialogue>();
+    modelBuilder.Entity<Combat>();
+    
 
     
-       
-       modelBuilder.Entity<Campaign>()
-      .HasMany(c => c.Chapters) 
-      .WithOne(e => e.Campaign)
-      .OnDelete(DeleteBehavior.Cascade);
+     
+     modelBuilder.Entity<Campaign>()
+    .HasMany(c => c.Chapters) 
+    .WithOne(e => e.Campaign)
+    .OnDelete(DeleteBehavior.Cascade);
 
-       modelBuilder.Entity<Campaign>().HasMany(c => c.Monsters).WithOne(e => e.Campaign).OnDelete(DeleteBehavior.Cascade);
-       modelBuilder.Entity<Campaign>().HasMany(c => c.NPCs).WithOne(e => e.Campaign).OnDelete(DeleteBehavior.Cascade);
-       modelBuilder.Entity<Campaign>().HasMany(c => c.Quests).WithOne(e => e.Campaign).OnDelete(DeleteBehavior.Cascade);
-       modelBuilder.Entity<Campaign>().HasMany(c => c.Locations).WithOne(e => e.Campaign).OnDelete(DeleteBehavior.Cascade);
-       modelBuilder.Entity<Campaign>().HasMany(c => c.Players).WithOne(e => e.Campaign).OnDelete(DeleteBehavior.Cascade);
-      
-
-
-       modelBuilder.Entity<Quest>().HasOne(q => q.StartLocation).WithMany(l => l.Quests).OnDelete(DeleteBehavior.NoAction);
+     modelBuilder.Entity<Campaign>().HasMany(c => c.Monsters).WithOne(e => e.Campaign).OnDelete(DeleteBehavior.Cascade);
+     modelBuilder.Entity<Campaign>().HasMany(c => c.NPCs).WithOne(e => e.Campaign).OnDelete(DeleteBehavior.Cascade);
+     modelBuilder.Entity<Campaign>().HasMany(c => c.Quests).WithOne(e => e.Campaign).OnDelete(DeleteBehavior.Cascade);
+     modelBuilder.Entity<Campaign>().HasMany(c => c.Locations).WithOne(e => e.Campaign).OnDelete(DeleteBehavior.Cascade);
+     modelBuilder.Entity<Campaign>().HasMany(c => c.Players).WithOne(e => e.Campaign).OnDelete(DeleteBehavior.Cascade);
+    
 
 
-       modelBuilder.Entity<Player>()
-           .HasOne(p => p.CurrentCharacter)
-           .WithOne(c => c.OwnedBy)
-           .HasForeignKey<Character>(c => c.OwnedById) // Specify the foreign key
-           .OnDelete(DeleteBehavior.SetNull);
+     modelBuilder.Entity<Quest>().HasOne(q => q.StartLocation).WithMany(l => l.Quests).OnDelete(DeleteBehavior.NoAction);
 
-       modelBuilder.Entity<Chapter>().HasMany(c => c.Scenes).WithOne(e => e.Chapter).OnDelete(DeleteBehavior.Cascade);
+
+     modelBuilder.Entity<Player>()
+         .HasOne(p => p.CurrentCharacter)
+         .WithOne(c => c.OwnedBy)
+         .HasForeignKey<Character>(c => c.OwnedById) // Specify the foreign key
+         .OnDelete(DeleteBehavior.SetNull);
+
+     modelBuilder.Entity<Chapter>().HasMany(c => c.Scenes).WithOne(e => e.Chapter).OnDelete(DeleteBehavior.Cascade);
 
     }
 }
