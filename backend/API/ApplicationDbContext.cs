@@ -43,6 +43,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
       modelBuilder.Entity<Weapon>();
       modelBuilder.Entity<Potion>();
       modelBuilder.Entity<Narrative>();
+      modelBuilder.Entity<Dialogue>();
 
     
        

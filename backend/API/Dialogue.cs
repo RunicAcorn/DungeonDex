@@ -1,8 +1,12 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace API
 {
 
   public class Statement
   {
+    [Key]
+    public int Id { get; set; }
     public string Speaker { get; set; }
     public string Text { get; set; }
   }
@@ -10,7 +14,7 @@ namespace API
   public class Dialogue : Scene
   {
 
-    public List<Statement> Statements { get; set; }
+    public List<Statement>? Statements { get; set; }
 
 
   }
