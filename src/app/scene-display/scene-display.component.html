@@ -1,4 +1,19 @@
 <h1>title</h1>
 <h2>Description: {{description}}</h2>
+<div [ngSwitch]="description">
+    <div *ngSwitchCase="'Combat'">
+        <button (click)="addNext()">Add Fight Scene</button>
+    </div>
+  
+    <div *ngSwitchCase="'Narrative'">
+        <button (click)="addNext()">Add Narrative</button>
+    </div>
+  
+    <!-- Add more *ngSwitchCase blocks for additional scene types -->
+  
+    <div *ngSwitchDefault>
+      <!-- Optional: Default display for unknown scene types -->
+    </div>
+  </div>
 <button (click)="addNext()">Add Next Scene</button>
 <button (click)="returnToScenes()">Return to Scene View</button>

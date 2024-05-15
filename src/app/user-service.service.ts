@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class UserService {
 
-  apiUrl = 'https://dungeonapi.azurewebsites.net/api/users';
+ 
   testApiUrl = 'http://localhost:5082/api/users';
   constructor(private http: HttpClient) { }
 

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { SceneService } from '../scene.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-scene-display',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './scene-display.component.html',
   styleUrl: './scene-display.component.css'
 })
@@ -14,6 +15,8 @@ export class SceneDisplayComponent implements OnInit{
 
   sceneId!: number;
   chapterId!: number;
+
+
 
   description!: string;
 
