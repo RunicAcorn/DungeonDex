@@ -3,11 +3,12 @@ import { SceneService } from '../scene.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-scene-display',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './scene-display.component.html',
   styleUrl: './scene-display.component.css'
 })
@@ -15,6 +16,23 @@ export class SceneDisplayComponent implements OnInit{
 
   sceneId!: number;
   chapterId!: number;
+
+
+  messages = [
+    { sender: 'User1', text: 'Hello!' },
+    { sender: 'User2', text: 'Hi there!' },
+    // add other messages as needed
+  ];
+  
+  newMessage = '';
+  
+  sendMessage() {
+    // add the new message to the messages array
+    this.messages.push({ sender: 'User1', text: this.newMessage });
+  
+    // clear the newMessage input
+    this.newMessage = '';
+  }
 
 
 

@@ -6,7 +6,24 @@
     </div>
   
     <div *ngSwitchCase="'Narrative'">
+        <textarea rows="10" cols="50"></textarea>
         <button (click)="addNext()">Add Narrative</button>
+    </div>
+  
+    <div *ngSwitchCase="'Dialogue'">
+        <div class="chat-room">
+            <div class="messages">
+              <div *ngFor="let message of messages">
+                <strong>{{message.sender}}:</strong> {{message.text}}
+              </div>
+            </div>
+          
+            <form (ngSubmit)="sendMessage()">
+              <input type="text" [(ngModel)]="newMessage" name="newMessage">
+              <button type="submit">Send</button>
+            </form>
+          </div>
+      
     </div>
   
     <!-- Add more *ngSwitchCase blocks for additional scene types -->
