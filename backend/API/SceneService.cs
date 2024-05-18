@@ -102,6 +102,14 @@ using static System.Formats.Asn1.AsnWriter;
         return scene;
     }
 
+  public async Task UpdateNarrative(Narrative scene, string incomingEvent)
+  {
+
+    scene.Events.Add(incomingEvent);
+      await _context.SaveChangesAsync();
+    }
+
+
     public async Task DeleteSceneById(int chapterId, int sceneId)
     {
 

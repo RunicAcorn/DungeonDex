@@ -4,10 +4,14 @@
     <div *ngSwitchCase="'Combat'">
         <button (click)="addNext()">Add Fight Scene</button>
     </div>
+
   
     <div *ngSwitchCase="'Narrative'">
-        <textarea rows="10" cols="50"></textarea>
-        <button (click)="addNext()">Add Narrative</button>
+        <ul>
+            <li *ngFor="let event of narrative">{{event}}</li>
+          </ul>
+        <textarea [(ngModel)]="newNarrative" rows="10" cols="50"></textarea>
+        <button (click)="addNarrative()">Add Event</button>
     </div>
   
     <div *ngSwitchCase="'Dialogue'">

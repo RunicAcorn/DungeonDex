@@ -6,7 +6,7 @@ namespace API
   public class Narrative : Scene
   {
 
-    public string[] Events { get; set; }
+    public List<string> Events { get; set; } = new List<string>();
 
 
   }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { Narrative } from './scene';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,8 @@ export class SceneService {
       catchError(this.handleError)
     );;  
   }
+
+  
 
   getSceneById(sceneId: number): Observable<any> {
     if (!this.jwtToken) {
@@ -99,5 +102,23 @@ export class SceneService {
     }
   
     return throwError(() => new Error(errorMessage));
+  }
+
+  updateNarrative(newNarrative: string, sceneId: number){
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+    newNarrative = JSON.stringify(newNarrative);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`,
+      'Content-Type': 'application/json'
+
+      
+    });
+
+    return this.http.put<string>(`${this.testUrl}/narrative/${sceneId}`, newNarrative, {headers})
+    .pipe(
+      catchError(this.handleError)
+    );
   }
 }

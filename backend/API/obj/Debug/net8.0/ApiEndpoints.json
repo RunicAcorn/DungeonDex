@@ -919,6 +919,27 @@
   },
   {
     "ContainingType": "API.SceneController",
+    "Method": "UpdateSceneNarrative",
+    "RelativePath": "api/Scene/narrative/{sceneId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sceneId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "incomingEvent",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.SceneController",
     "Method": "GetSceneById",
     "RelativePath": "api/Scene/scene/{sceneId}",
     "HttpMethod": "GET",

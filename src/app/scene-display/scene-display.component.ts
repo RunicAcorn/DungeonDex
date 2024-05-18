@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-scene-display',
@@ -17,7 +19,12 @@ export class SceneDisplayComponent implements OnInit{
   sceneId!: number;
   chapterId!: number;
 
-
+  //For narrative
+  narrative: string[] = [];
+  newNarrative = '';
+  result = '';
+  
+  //For Dialogue
   messages = [
     { sender: 'User1', text: 'Hello!' },
     { sender: 'User2', text: 'Hi there!' },
@@ -41,7 +48,8 @@ export class SceneDisplayComponent implements OnInit{
   constructor(
     private sceneService: SceneService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+ 
   ) { 
   
   
@@ -82,4 +90,30 @@ export class SceneDisplayComponent implements OnInit{
   this.router.navigate(['/chapter', this.chapterId]);
  }
   
+ addNarrative(){
+  
+
+  this.saveNarrative(this.newNarrative).subscribe({
+    next: (response) => {
+      this.result = 'Narrative saved successfully!';
+      this.narrative.push(this.newNarrative);
+      this.newNarrative = '';
+
+    }
+  }
+  
+  );
+
+
+ }
+
+ saveNarrative(narrative: string): Observable<any> {
+  // replace the URL with the actual URL of your server
+  return this.sceneService.updateNarrative(narrative,this.sceneId);
 }
+
+}
+
+
+  
+

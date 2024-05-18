@@ -166,7 +166,41 @@ namespace API
             }
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [HttpPut("narrative/{sceneId}")]
+    public async Task<IActionResult> UpdateSceneNarrative([FromRoute]int sceneId, [FromBody] string incomingEvent)
+    {
+        if (User?.Identity?.IsAuthenticated == true)
+      {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var scene = await _context.Scenes.FindAsync(sceneId);
+            if (scene == null)
+        {
+                return NotFound("Scene not found.");
+            }
+
+            var campId = await _context.Chapters.Where(c => c.ChapterId == scene.ChapterId).Select(c => c.CampaignId).FirstOrDefaultAsync();
+            var sceneBelongsToUser = await _context.Campaigns.AnyAsync(c => c.CampaignId == campId && c.User.Id == userId);
+
+            if (sceneBelongsToUser)
+        {
+               await _sceneService.UpdateNarrative((Narrative)scene, incomingEvent);
+              
+               
+                return Ok();
+            }
+            else
+        {
+                return BadRequest("Scene does not belong to user.");
+            }
+        }
+        else
+      {
+            return BadRequest("User not authenticated.");
+        }
+    }
+
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpDelete("{chapterId}/{sceneId}")]
         public async Task<IActionResult> DeleteScene(int chapterId, int sceneId)
         {
