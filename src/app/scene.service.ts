@@ -104,6 +104,9 @@ export class SceneService {
     return throwError(() => new Error(errorMessage));
   }
 
+
+  
+
   updateNarrative(newNarrative: string, sceneId: number){
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');
@@ -120,5 +123,14 @@ export class SceneService {
     .pipe(
       catchError(this.handleError)
     );
+  }
+
+  private getHeaders() {
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    }
+    return new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
   }
 }

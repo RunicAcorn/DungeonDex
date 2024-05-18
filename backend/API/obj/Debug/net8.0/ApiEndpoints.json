@@ -919,6 +919,32 @@
   },
   {
     "ContainingType": "API.SceneController",
+    "Method": "GetSceneNarrative",
+    "RelativePath": "api/Scene/narrative/{sceneId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sceneId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[API.Narrative, API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API.SceneController",
     "Method": "UpdateSceneNarrative",
     "RelativePath": "api/Scene/narrative/{sceneId}",
     "HttpMethod": "PUT",

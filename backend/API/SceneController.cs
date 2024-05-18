@@ -165,6 +165,39 @@ namespace API
                 return BadRequest("User not authenticated.");
             }
         }
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [HttpGet("narrative/{sceneId}")]
+    public async Task<ActionResult<List<Narrative>>> GetSceneNarrative(int sceneId)
+    {
+        if (User?.Identity?.IsAuthenticated == true)
+      {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var scene = await _context.Scenes.FindAsync(sceneId);
+            if (scene == null)
+        {
+                return NotFound("Scene not found.");
+            }
+
+            var campId = await _context.Chapters.Where(c => c.ChapterId == scene.ChapterId).Select(c => c.CampaignId).FirstOrDefaultAsync();
+            var sceneBelongsToUser = await _context.Campaigns.AnyAsync(c => c.CampaignId == campId && c.User.Id == userId);
+
+        if (sceneBelongsToUser)
+        {
+          Narrative narrative = (Narrative)scene;
+
+          return Ok(narrative.Events.ToList());
+
+            }
+            else
+        {
+                return BadRequest("Scene does not belong to user.");
+            }
+        }
+        else
+      {
+            return BadRequest("User not authenticated.");
+        }
+    }
 
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [HttpPut("narrative/{sceneId}")]
@@ -199,6 +232,8 @@ namespace API
             return BadRequest("User not authenticated.");
         }
     }
+
+
 
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpDelete("{chapterId}/{sceneId}")]

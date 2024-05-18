@@ -66,6 +66,15 @@ export class SceneDisplayComponent implements OnInit{
             console.log(data);
             this.chapterId = data.chapterId;
             this.description = data.description;
+          
+            switch(this.description){
+              case "Narrative":
+                if(data.events){
+                  this.narrative = data.events.$values;
+                }
+                break;
+            }
+            
           },
           error: (err) => console.error("Error getting scene: ", err)
         
@@ -74,6 +83,8 @@ export class SceneDisplayComponent implements OnInit{
 
         console.log("Values: scene: " + this.sceneId + " chapter: " + this.chapterId);
         this.sceneService.getSceneById(this.sceneId);
+
+  
         
       });
 
