@@ -109,6 +109,12 @@ using static System.Formats.Asn1.AsnWriter;
       await _context.SaveChangesAsync();
     }
 
+  public async Task UpdateDialogue(Dialogue scene, Statement[] incomingEvent)
+  {
+    scene.Statements.AddRange(incomingEvent);
+    await _context.SaveChangesAsync();
+  }
+
 
     public async Task DeleteSceneById(int chapterId, int sceneId)
     {

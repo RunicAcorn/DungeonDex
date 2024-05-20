@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { Narrative } from './scene';
+import { Narrative, Statement } from './scene';
 
 @Injectable({
   providedIn: 'root'
@@ -123,6 +123,20 @@ export class SceneService {
     .pipe(
       catchError(this.handleError)
     );
+  }
+
+  
+  updateDialogue(newDialogue: Statement[], sceneId: number) {
+   
+    if (!this.jwtToken) {
+      throw new Error('JWT token not found in session storage.');
+    } 
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.jwtToken}`
+    });
+
+    return this.http.put<Statement[]>(`${this.testUrl}/dialogue/${sceneId}`, newDialogue, {headers});
   }
 
   private getHeaders() {

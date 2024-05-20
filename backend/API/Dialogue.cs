@@ -16,7 +16,7 @@ namespace API
   public class Dialogue : Scene
   {
 
-    public List<Statement>? Statements { get; set; }
+    public List<Statement>? Statements { get; set; } = new List<Statement>();
 
 
   }
