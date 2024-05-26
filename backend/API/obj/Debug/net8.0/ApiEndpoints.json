@@ -919,6 +919,32 @@
   },
   {
     "ContainingType": "API.SceneController",
+    "Method": "GetDialogue",
+    "RelativePath": "api/Scene/dialogue/{sceneId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sceneId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "API.Dialogue",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API.SceneController",
     "Method": "UpdateSceneDialogue",
     "RelativePath": "api/Scene/dialogue/{sceneId}",
     "HttpMethod": "PUT",

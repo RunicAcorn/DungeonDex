@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240526014122_AddedStatements2")]
+    partial class AddedStatements2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -371,7 +374,7 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("DialogueId")
+                    b.Property<int?>("DialogueId")
                         .HasColumnType("int");
 
                     b.Property<int>("Order")
@@ -779,13 +782,9 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Statement", b =>
                 {
-                    b.HasOne("API.Dialogue", "Dialogue")
+                    b.HasOne("API.Dialogue", null)
                         .WithMany("Statements")
-                        .HasForeignKey("DialogueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Dialogue");
+                        .HasForeignKey("DialogueId");
                 });
 
             modelBuilder.Entity("Campaign", b =>

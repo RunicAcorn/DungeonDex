@@ -102,6 +102,14 @@ using static System.Formats.Asn1.AsnWriter;
         return scene;
     }
 
+    public async Task<List<Statement>> GetStatements(int sceneId)
+  {
+   var allStatements=  await _context.Statements.Where(s => s.DialogueId == sceneId).ToListAsync();
+
+    return allStatements;
+    
+  }
+
   public async Task UpdateNarrative(Narrative scene, string incomingEvent)
   {
 
@@ -114,6 +122,8 @@ using static System.Formats.Asn1.AsnWriter;
     scene.Statements.AddRange(incomingEvent);
     await _context.SaveChangesAsync();
   }
+
+
 
 
     public async Task DeleteSceneById(int chapterId, int sceneId)

@@ -17,6 +17,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Monster> Monsters { get; set; }
     public DbSet<Scene> Scenes { get; set; }
 
+    public DbSet<Statement> Statements { get; set;}
+
     public DbSet<Location> Locations { get; set; }
     public DbSet<NPC> NPCs { get; set; }
     public DbSet<Character> Characters { get; set; }
@@ -45,7 +47,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     modelBuilder.Entity<Narrative>();
     modelBuilder.Entity<Dialogue>();
     modelBuilder.Entity<Combat>();
-    
+    modelBuilder.Entity<Statement>().ToTable("Statement");
 
     
      

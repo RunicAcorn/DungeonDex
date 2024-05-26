@@ -67,6 +67,12 @@ export class SceneService {
     );
   }
 
+  getStatements(sceneId: number): Observable<any> {
+
+
+    return this.http.get<any>(`${this.testUrl}/dialogue/${sceneId}`, {headers: this.getHeaders()});
+  }
+
   getLatestSceneOrder(sceneId: number): Observable<any> {
     if (!this.jwtToken) {
       throw new Error('JWT token not found in session storage.');
@@ -133,7 +139,8 @@ export class SceneService {
     } 
     
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.jwtToken}`
+      'Authorization': `Bearer ${this.jwtToken}`,
+      'Content-Type': 'application/json'
     });
 
     return this.http.put<Statement[]>(`${this.testUrl}/dialogue/${sceneId}`, newDialogue, {headers});
