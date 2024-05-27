@@ -1,3 +1,6 @@
+import { Statement } from "@angular/compiler";
+
+
 export interface Scene {
     id?: number;
     title: string;
@@ -9,14 +12,7 @@ export interface Scene {
   export interface Narrative extends Scene {
     events: string[];
   }
-  
-  export interface Statement {
-    id?: number;
-    speaker: string;
-    text: string;
-    order: number;
-  }
-  
+
   export interface Dialogue extends Scene {
     statements: Statement[];
   }

@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { Narrative, Statement } from './scene';
+import { Narrative } from './scene';
+import { Statement } from './statement';
 
 @Injectable({
   providedIn: 'root'
